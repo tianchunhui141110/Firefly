@@ -9,7 +9,7 @@ import MainGridLayout from "@/layouts/MainGridLayout.astro";
 const aboutPost = await getEntry("spec", "about");
 
 if (!aboutPost) {
-	return Astro.redirect("/404/");
+	throw new Error("About page content not found");
 }
 
 const { Content } = await render(aboutPost);

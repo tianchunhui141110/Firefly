@@ -1,4 +1,7 @@
 ---
+import Live2DWidget from "@components/features/Live2DWidget.astro";
+
+import SpineModel from "@components/features/SpineModel.astro";
 import Footer from "@components/layout/Footer.astro";
 import Navbar from "@components/layout/Navbar.astro";
 import SideBar from "@components/layout/SideBar.astro";
@@ -13,6 +16,7 @@ import CategoryBar from "@/components/layout/CategoryBar.astro";
 import {
 	backgroundWallpaper,
 	displaySettingsConfig,
+	live2dWidgetConfig,
 	sidebarLayoutConfig,
 	siteConfig,
 } from "@/config";
@@ -931,6 +935,9 @@ const hasMultipleImages =
                 <Footer></Footer>
             </div>
         </div>
+
+        <SpineModel></SpineModel>
+        {live2dWidgetConfig.enable && <Live2DWidget config={live2dWidgetConfig} />}
     </div>
 </div>
 

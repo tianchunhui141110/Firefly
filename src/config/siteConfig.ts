@@ -6,30 +6,27 @@ const SITE_LANG = "zh_CN";
 
 export const siteConfig: SiteConfig = {
 	// 站点标题
-	title: "田小晖",
+	title: "Firefly",
 
 	// 站点副标题
-	subtitle: "记录技术成长，分享运维与开发经验",
+	subtitle: "Demo site",
 
 	// 站点 URL
-	site_url: "https://tianch.com.cn",
+	site_url: "https://firefly.cuteleaf.cn",
 
 	// 站点描述
 	description:
-		"田小晖的博客，记录技术成长，分享运维与开发经验，涵盖 Linux、Docker、Kubernetes、MySQL、Redis、Nginx 等运维与开发技术教程。",
+		"Firefly 是一款基于 Astro 框架和 Fuwari 模板开发的清新美观且现代化个人博客主题模板，专为技术爱好者和内容创作者设计。该主题融合了现代 Web 技术栈，提供了丰富的功能模块和高度可定制的界面，让您能够轻松打造出专业且美观的个人博客网站。",
 
 	// 站点关键词
 	keywords: [
-		"田小晖",
+		"Firefly",
+		"Fuwari",
+		"Astro",
+		"ACGN",
 		"博客",
 		"技术博客",
-		"运维",
-		"Docker",
-		"Kubernetes",
-		"MySQL",
-		"Redis",
-		"Nginx",
-		"Linux",
+		"静态博客",
 	],
 
 	// 主题色
@@ -84,7 +81,7 @@ export const siteConfig: SiteConfig = {
 			alt: "🍀",
 		},
 		// 导航栏标题
-		title: "田小晖的博客",
+		title: "Firefly",
 		// 全宽导航栏，导航栏是否占满屏幕宽度
 		widthFull: false,
 		// 导航菜单对齐方式，left：左对齐，center：居中
@@ -105,21 +102,21 @@ export const siteConfig: SiteConfig = {
 	// 页面开关配置 - 控制特定页面的访问权限，设为false会返回404并自动隐藏对应的导航栏菜单项
 	pages: {
 		// 友链页面开关
-		friends: false,
+		friends: true,
 		// 打赏页面开关
-		sponsor: false,
+		sponsor: true,
 		// 留言板页面开关，需要配置评论系统
-		guestbook: false,
+		guestbook: true,
 		// 番组计划页面开关，含追番、游戏、书籍和音乐
-		bangumi: false,
+		bangumi: true,
 		// 相册页面开关
-		gallery: false,
+		gallery: true,
 		// 追番页面开关
-		anime: false,
+		anime: true,
 		// 动态页面开关
-		dynamic: false,
+		dynamic: true,
 		// 书签导航页面开关
-		booknav: false,
+		booknav: true,
 	},
 
 	// 分类导航栏开关，在首页和归档页顶部显示分类快捷导航
