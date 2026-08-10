@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes-Secret"
-published: 2026-01-05
+published: 2023-11-06
 description: "一般情况下 ConfigMap 是用来存储一些非安全的配置信息，如果涉及到一些安全相关的数据的话用 ConfigMap 就非常不妥了，因为 ConfigMap 是明文存储的，这个时候我们就需要用到另外一个资源对象了：Secret，Secre"
 tags: ["Kubernetes"]
 category: "Kubernetes"

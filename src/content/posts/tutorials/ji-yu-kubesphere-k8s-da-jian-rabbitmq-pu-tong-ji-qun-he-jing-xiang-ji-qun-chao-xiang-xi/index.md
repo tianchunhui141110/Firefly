@@ -1,6 +1,6 @@
 ---
 title: "基于KubeSphere+k8s搭建rabbitmq普通集群和镜像集群 超详细"
-published: 2026-01-05
+published: 2020-10-16
 description: "这里创建的有状态服务默认外网访问不了"
 tags: ["KubeSphere","集群"]
 category: "Kubernetes"

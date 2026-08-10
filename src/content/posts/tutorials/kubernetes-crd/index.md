@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes-CRD"
-published: 2026-01-05
+published: 2023-11-02
 description: "Custom Resource Define 简称 CRD，是 Kubernetes（v1.7+）为提高可扩展性，让开发者去自定义资源的一种方式。CRD 资源可以动态注册到集群中，注册完毕后，用户可以通过 kubectl 来创建访问这个自定"
 tags: ["Kubernetes"]
 category: "Kubernetes"

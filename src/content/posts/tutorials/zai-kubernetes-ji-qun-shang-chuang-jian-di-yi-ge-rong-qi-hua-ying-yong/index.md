@@ -1,6 +1,6 @@
 ---
 title: "在Kubernetes集群上创建第一个容器化应用"
-published: 2026-01-05
+published: 2023-10-16
 description: "Kubernetes 集群已经搭建成功了，现在就可以在集群里面来跑应用了。要在集群里面运行应用，首先需要知道几个概念。"
 tags: ["Kubernetes","集群"]
 category: "Kubernetes"

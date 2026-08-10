@@ -1,6 +1,6 @@
 ---
 title: "完美解决IDEA自定义方法注释没有参数列表问题"
-published: 2026-01-05
+published: 2021-12-16
 description: "只有截图和关键配置"
 tags: ["运维"]
 category: "Java"

@@ -1,6 +1,6 @@
 ---
 title: "Linux下ActiveMQ的集群配置"
-published: 2026-01-05
+published: 2020-06-13
 description: "自从activemq5.9.0开始，activemq的集群实现方式取消了传统的Pure Master Slave方式，增加了基于zookeeper+leveldb的实现方式，其他两种方式：目录共享和数据库共享依然存在。"
 tags: ["Linux","ActiveMQ","集群"]
 category: "中间件"

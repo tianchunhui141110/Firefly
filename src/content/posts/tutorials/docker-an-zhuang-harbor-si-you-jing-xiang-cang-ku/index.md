@@ -1,6 +1,6 @@
 ---
 title: "Docker安装Harbor私有镜像仓库"
-published: 2026-01-05
+published: 2022-02-16
 description: "仅适用于公网环境"
 tags: ["Docker"]
 category: "Docker"

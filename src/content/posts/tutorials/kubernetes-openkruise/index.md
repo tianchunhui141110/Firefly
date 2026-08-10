@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes-OpenKruise"
-published: 2026-01-05
+published: 2023-11-03
 description: "OpenKruise 是一个基于 Kubernetes 的扩展套件，主要聚焦于云原生应用的自动化，比如部署、发布、运维以及可用性防护。OpenKruise 提供的绝大部分能力都是基于 CRD 扩展来定义的，它们不存在于任何外部依赖，可以运行"
 tags: ["Kubernetes"]
 category: "Kubernetes"

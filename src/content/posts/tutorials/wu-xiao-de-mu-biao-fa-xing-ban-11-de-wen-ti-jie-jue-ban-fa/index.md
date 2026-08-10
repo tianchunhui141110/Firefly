@@ -1,6 +1,6 @@
 ---
 title: "无效的目标发行版 11 的问题解决办法"
-published: 2026-01-05
+published: 2021-12-16
 description: "安装了JDK11之后，将原本基于java8的项目换成了java11，然而在maven打包的时候报错：无效的目标发行版 11。"
 tags: ["运维"]
 category: "其他"

@@ -1,6 +1,6 @@
 ---
 title: "MySQL高级系列-性能分析"
-published: 2026-01-05
+published: 2020-12-31
 description: "MySQL中有专门负责优化SELECT语句的优化器模块，主要功能：通过计算分析系统中搜集到的统计信息，为客户端请求的Query提供它认为最优执行计划（它认为最优的数据检索方式，但不见得是DBA认为是最优的）。"
 tags: ["MySQL"]
 category: "MySQL"

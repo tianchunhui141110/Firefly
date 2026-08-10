@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes-Ingress"
-published: 2026-01-05
+published: 2023-11-14
 description: "前面学习了在 Kubernetes 集群内部使用 kube-dns 实现服务发现的功能，那么部署在 Kubernetes 集群中的应用如何暴露给外部的用户使用呢？可以使用 NodePort 和 LoadBlancer 类型的 Service"
 tags: ["Kubernetes"]
 category: "Kubernetes"

@@ -1,6 +1,6 @@
 ---
 title: "基于Springboot2.x+Mybatis Plus+Atomikos实现多数据源事务和DAP层多数据源动态切换"
-published: 2026-01-05
+published: 2020-05-30
 description: ""
 tags: ["Spring"]
 category: "Java"

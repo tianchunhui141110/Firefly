@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes-RBAC"
-published: 2026-01-05
+published: 2023-11-06
 description: "对于资源对象的操作都是通过 APIServer 进行的，那么集群是怎样知道请求就是合法的请求呢？这个就需要了解 Kubernetes 中另外一个非常重要的知识点了：RBAC（基于角色的权限控制）。"
 tags: ["Kubernetes"]
 category: "Kubernetes"

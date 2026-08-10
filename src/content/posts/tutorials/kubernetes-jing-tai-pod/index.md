@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes-静态Pod"
-published: 2026-01-05
+published: 2023-10-30
 description: "在 Kubernetes 集群中除了经常使用到的普通的 Pod 外，还有一种特殊的 Pod，叫做Static Pod，也就是静态Pod，静态Pod有什么特殊的地方呢？"
 tags: ["Kubernetes"]
 category: "Kubernetes"

@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes-Service"
-published: 2026-01-05
+published: 2023-11-07
 description: "每个 Pod 都有自己的 IP 地址，但是如果 Pod 重建了的话 IP 很有可能也就变化了。这就会带来一个问题：比如有一些后端的 Pod 集合为集群中的其他应用提供 API 服务，在前端应用中把所有的这些后端的 Pod 的地址都写死，然后"
 tags: ["Kubernetes"]
 category: "Kubernetes"

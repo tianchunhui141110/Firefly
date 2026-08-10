@@ -1,6 +1,6 @@
 ---
 title: "使用KubeKey安装Kubernetes集群"
-published: 2026-01-05
+published: 2023-10-13
 description: "| 主机IP       | 主机名称 | 角色         |"
 tags: ["Kubernetes","集群"]
 category: "Kubernetes"

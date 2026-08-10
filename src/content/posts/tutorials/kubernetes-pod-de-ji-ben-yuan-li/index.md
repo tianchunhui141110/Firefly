@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes-Pod的基本原理"
-published: 2026-01-05
+published: 2022-09-05
 description: "Pod 是 Kubernetes 集群中最基本的调度单元，在集群中部署的应用都是以 Pod 为单位的，而并不是我们熟知的容器"
 tags: ["Kubernetes"]
 category: "Kubernetes"

@@ -1,6 +1,6 @@
 ---
 title: "Linux下JDK环境变量配置"
-published: 2026-01-05
+published: 2020-03-13
 description: ""
 tags: ["Linux"]
 category: "Linux"

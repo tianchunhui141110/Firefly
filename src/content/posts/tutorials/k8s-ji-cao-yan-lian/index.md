@@ -1,6 +1,6 @@
 ---
 title: "ks8集群基操演练"
-published: 2026-01-05
+published: 2020-06-01
 description: "意思是tomcat8.5是无效的名字 标签必须由小写字母数字字符或“-”组成，以字母字符开头，以字母数字字符结尾（例如，“我的名字”或“abc-123”，用于验证的regex是“[a-z]（[-a-z0-9][a-z0-9]）"
 tags: ["k8s"]
 category: "Kubernetes"

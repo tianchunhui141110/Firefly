@@ -1,6 +1,6 @@
 ---
 title: "dubbo服务提供者无法捕捉自定义异常的问题解决"
-published: 2026-01-05
+published: 2021-12-16
 description: "Dubbo服务调用过程中抛出的自定义异常捕获不到，总是抛出了一个RuntimeException包装了自定义异常，导致全局异常处理器捕捉不到自定义异常。"
 tags: ["dubbo"]
 category: "Java"

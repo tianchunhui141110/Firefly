@@ -1,6 +1,6 @@
 ---
 title: "Containerd命令行工具-nerdctl"
-published: 2026-01-05
+published: 2023-10-16
 description: "习惯了使用 docker cli，ctr 使用起来可能还是不太顺手，为了能够让大家更好的转到 containerd 上面来，社区提供了一个新的命令行工具：nerdctl。nerdctl 是一个与 docker cli 风格兼容的 conta"
 tags: ["Containerd"]
 category: "Kubernetes"

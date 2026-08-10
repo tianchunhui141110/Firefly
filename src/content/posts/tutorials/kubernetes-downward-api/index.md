@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes-Downward API"
-published: 2026-01-05
+published: 2023-10-31
 description: "作为 Kubernetes 中最核心的资源对象、最基本的调度单元，可以发现 Pod 中的属性还是非常繁多的，前面使用过一个 volumes 的属性，表示声明一个数据卷，可以通过命令kubectl explain pod.spec.volum"
 tags: ["Kubernetes"]
 category: "Kubernetes"

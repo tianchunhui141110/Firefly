@@ -1,6 +1,6 @@
 ---
 title: "k8s集群之-Ingress"
-published: 2026-01-05
+published: 2020-06-01
 description: "底层是nginx"
 tags: ["k8s","集群"]
 category: "Kubernetes"

@@ -1,6 +1,6 @@
 ---
 title: "MySQL高级系列-数据库锁"
-published: 2026-01-05
+published: 2021-01-04
 description: "针对同一份数据，多个读操作可以同时进行而不会相互影响"
 tags: ["MySQL"]
 category: "MySQL"

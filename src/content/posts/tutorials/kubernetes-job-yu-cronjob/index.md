@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes-Job与CronJob"
-published: 2026-01-05
+published: 2023-11-02
 description: "Job 负责处理任务，即仅执行一次的任务，它保证批处理任务的一个或多个 Pod 成功结束。而CronJob 则就是在 Job 上加上了时间调度。"
 tags: ["Kubernetes"]
 category: "Kubernetes"

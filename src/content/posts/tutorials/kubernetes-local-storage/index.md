@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes-Local Storage"
-published: 2026-01-05
+published: 2023-12-11
 description: "前面通过 hostPath 或者 emptyDir 的方式来持久化数据，但是显然还需要更加可靠的存储来保存应用的持久化数据，这样容器在重建后，依然可以使用之前的数据。但是存储资源和 CPU 资源以及内存资源有很大不同，为了屏蔽底层的技术实现"
 tags: ["Kubernetes"]
 category: "Kubernetes"

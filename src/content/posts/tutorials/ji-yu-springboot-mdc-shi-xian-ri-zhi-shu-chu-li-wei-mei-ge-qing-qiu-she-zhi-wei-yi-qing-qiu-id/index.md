@@ -1,6 +1,6 @@
 ---
 title: "基于SpringBoot+logback+MDC使用拦截器实现日志输出里为每个请求设置唯一请求ID"
-published: 2026-01-05
+published: 2020-05-30
 description: "MDC为“Mapped Diagnostic Context”（映射诊断上下文），即将一些运行时的上下文数据通过logback打印出来；此时我们需要借助org.sl4j.MDC类。"
 tags: ["Spring","MDC","日志"]
 category: "Java"

@@ -1,6 +1,6 @@
 ---
 title: "MDC进阶 给异步线程添加唯一id"
-published: 2026-01-05
+published: 2020-10-13
 description: "之前写过了MDC的简单用法。"
 tags: ["MDC"]
 category: "Java"

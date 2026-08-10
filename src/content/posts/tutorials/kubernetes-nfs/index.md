@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes-NFS"
-published: 2026-01-05
+published: 2023-10-13
 description: "nfs 的默认配置文件在 /etc/exports 文件下，在该文件中添加下面的配置信息"
 tags: ["Kubernetes"]
 category: "Kubernetes"

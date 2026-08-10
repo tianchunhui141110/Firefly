@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes-CoreDNS"
-published: 2026-01-05
+published: 2023-11-09
 description: "前面可以通过 Service 生成的 ClusterIP(VIP) 来访问 Pod 提供的服务，但是在使用的时候还有一个问题：怎么知道某个应用的 VIP 呢？有两个应用，一个是 api 应用，一个是 db 应用，两个应用都是通过 Deplo"
 tags: ["Kubernetes"]
 category: "Kubernetes"

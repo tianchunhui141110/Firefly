@@ -1,6 +1,6 @@
 ---
 title: "k8s基操之-yaml"
-published: 2026-01-05
+published: 2020-06-01
 description: "--dry-run 尝试部署"
 tags: ["k8s"]
 category: "Kubernetes"

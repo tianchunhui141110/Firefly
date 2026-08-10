@@ -1,6 +1,6 @@
 ---
 title: "docker-compose安装 Nginx Proxy Manager"
-published: 2026-01-05
+published: 2023-10-09
 description: "官网：https://nginxproxymanager.com/"
 tags: ["docker","Nginx"]
 category: "Docker"

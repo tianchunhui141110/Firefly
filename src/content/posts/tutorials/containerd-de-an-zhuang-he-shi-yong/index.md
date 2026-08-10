@@ -1,6 +1,6 @@
 ---
 title: "Containerd的安装和使用"
-published: 2026-01-05
+published: 2023-10-15
 description: "我的系统是 CentOS 7.9"
 tags: ["Containerd"]
 category: "Kubernetes"

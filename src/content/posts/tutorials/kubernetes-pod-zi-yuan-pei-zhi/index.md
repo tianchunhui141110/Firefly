@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes-Pod资源配置"
-published: 2026-01-05
+published: 2023-10-30
 description: "实际上上面几个步骤就是影响一个 Pod 生命周期的大的部分，但是还有一些细节也会在 Pod 的启动过程进行设置，比如在容器启动之前还会为当前的容器设置分配的 CPU、内存等资源，可以通过 CGroup 来对容器的资源进行限制，同样的，在 P"
 tags: ["Kubernetes"]
 category: "Kubernetes"

@@ -1,6 +1,6 @@
 ---
 title: "Apollo分布式注册和配置中心的安装和配置"
-published: 2026-01-05
+published: 2020-03-14
 description: "如果遇到提示系统出错，请重试或联系系统负责人，请稍后几秒钟重试一下，因为通过Eureka注册的服务有一个刷新的延时"
 tags: ["Apollo","分布式"]
 category: "中间件"

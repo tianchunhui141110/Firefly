@@ -1,6 +1,6 @@
 ---
 title: "Docker安装指定版本"
-published: 2026-01-05
+published: 2020-02-12
 description: ""
 tags: ["Docker"]
 category: "Docker"

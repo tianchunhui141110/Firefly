@@ -1,6 +1,6 @@
 ---
 title: "基于SpringBoot+logstash+redis实现日志异步集中存储"
-published: 2026-01-05
+published: 2020-05-30
 description: "logstash是一个数据分析软件，主要目的是分析log日志。整一套软件可以当作一个MVC模型，logstash是controller层，Elasticsearch是一个model层，kibana是view层。首先将数据传给logstash"
 tags: ["Spring","日志"]
 category: "中间件"

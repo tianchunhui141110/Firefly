@@ -1,6 +1,6 @@
 ---
 title: "IDEA控制台Tomcat乱码的问题解决"
-published: 2026-01-05
+published: 2022-01-26
 description: "在Tomcat配置项VM options文本框中输入-Dfile.encoding=UTF-8"
 tags: ["运维"]
 category: "Java"

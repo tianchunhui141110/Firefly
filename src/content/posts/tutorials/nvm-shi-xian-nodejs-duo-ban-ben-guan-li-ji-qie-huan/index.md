@@ -1,6 +1,6 @@
 ---
 title: "nvm实现nodejs多版本管理及切换"
-published: 2026-01-05
+published: 2023-10-09
 description: ""
 tags: ["运维"]
 category: "其他"

@@ -1,6 +1,6 @@
 ---
 title: "OpenResty+nginx+lua+redis实现二级缓存"
-published: 2026-01-05
+published: 2021-06-24
 description: ""
 tags: ["OpenResty"]
 category: "Nginx"

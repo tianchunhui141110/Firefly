@@ -1,6 +1,6 @@
 ---
 title: "Linux安装SVN并配置钩子"
-published: 2026-01-05
+published: 2020-05-29
 description: ""
 tags: ["Linux"]
 category: "Linux"

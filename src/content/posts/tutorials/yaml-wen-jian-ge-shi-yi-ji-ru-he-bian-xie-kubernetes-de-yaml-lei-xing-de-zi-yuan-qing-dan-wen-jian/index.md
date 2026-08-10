@@ -1,6 +1,6 @@
 ---
 title: "YAML文件格式以及如何编写Kubernetes的YAML类型的资源清单文件"
-published: 2026-01-05
+published: 2023-10-16
 description: "YAML 是专门用来写配置文件的语言，非常简洁和强大，远比 JSON 格式方便。YAML语言（发音 /ˈjæməl/）的设计目标，就是方便人类读写。它实质上是一种通用的数据串行化格式。"
 tags: ["Kubernetes"]
 category: "Kubernetes"

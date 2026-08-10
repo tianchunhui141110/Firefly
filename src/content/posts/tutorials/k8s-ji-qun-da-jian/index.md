@@ -1,6 +1,6 @@
 ---
 title: "k8s集群搭建"
-published: 2026-01-05
+published: 2020-05-31
 description: "[preflight] Running pre-flight checks"
 tags: ["k8s","集群"]
 category: "Kubernetes"

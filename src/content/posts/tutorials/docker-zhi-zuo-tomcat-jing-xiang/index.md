@@ -1,6 +1,6 @@
 ---
 title: "Linux下使用Dockerfile制作Tomcat镜像(含JDK)"
-published: 2026-01-05
+published: 2020-05-29
 description: ""
 tags: ["docker"]
 category: "Docker"

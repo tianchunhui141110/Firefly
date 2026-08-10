@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes-StatefulSet控制器"
-published: 2026-01-05
+published: 2022-09-06
 description: "在实际使用的过程中，Deployment 并不能编排所有类型的应用，对无状态服务编排是非常容易的，但是对于有状态服务就无能为力了。需要先明白一个概念：什么是有状态服务，什么是无状态服务。"
 tags: ["Kubernetes"]
 category: "Kubernetes"

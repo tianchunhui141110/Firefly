@@ -1,6 +1,6 @@
 ---
 title: "Linux编译安装Nginx"
-published: 2026-01-05
+published: 2020-03-28
 description: ""
 tags: ["Linux"]
 category: "Linux"

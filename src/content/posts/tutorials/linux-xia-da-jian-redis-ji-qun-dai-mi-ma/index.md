@@ -1,6 +1,6 @@
 ---
 title: "Linux下搭建Redis 集群版 带密码"
-published: 2026-01-05
+published: 2020-05-27
 description: "先回顾一下Linux编译安装Redis 单机版"
 tags: ["Redis","Linux","集群"]
 category: "Redis"

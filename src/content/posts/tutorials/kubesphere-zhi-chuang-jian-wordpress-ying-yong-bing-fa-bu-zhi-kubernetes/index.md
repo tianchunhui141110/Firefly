@@ -1,6 +1,6 @@
 ---
 title: "kubesphere之-创建 Wordpress 应用并发布至 Kubernetes"
-published: 2026-01-05
+published: 2020-06-03
 description: "WordPress 是使用 PHP 开发的博客平台，用户可以在支持 PHP 和 MySQL 数据库的环境中架设属于自己的网站。本文以创建一个 Wordpress 应用 为例，以创建 KubeSphere 应用的形式将 Wordpress 的"
 tags: ["Kubernetes"]
 category: "Kubernetes"

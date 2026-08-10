@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes-Ingress Nginx"
-published: 2026-01-05
+published: 2023-11-15
 description: "ingress-nginx 控制器主要是用来组装一个 nginx.conf 的配置文件，当配置文件发生任何变动的时候就需要重新加载 Nginx 来生效，但是并不会只在影响 upstream 配置的变更后就重新加载 Nginx，控制器内部会使"
 tags: ["Kubernetes","Nginx"]
 category: "Kubernetes"

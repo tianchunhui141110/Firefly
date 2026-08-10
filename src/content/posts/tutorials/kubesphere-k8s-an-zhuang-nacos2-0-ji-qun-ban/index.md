@@ -1,6 +1,6 @@
 ---
 title: "kubesphere+k8s安装nacos2.0集群版"
-published: 2026-01-05
+published: 2022-01-20
 description: "修改配置文件中的数据库信息-修改成自己的"
 tags: ["k8s","nacos","集群"]
 category: "中间件"

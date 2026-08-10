@@ -1,6 +1,6 @@
 ---
 title: "Redis单实例数据迁移到集群"
-published: 2026-01-05
+published: 2020-05-28
 description: "在使用redis4前，可以使用redis-migrate-tool工具做redis在线数据迁移（参考https://wxy0327.blog.csdn.net/article/details/84138537）。但是我们现在使用的redis"
 tags: ["Redis","集群"]
 category: "Redis"

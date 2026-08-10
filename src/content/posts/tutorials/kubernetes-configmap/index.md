@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes-ConfigMap"
-published: 2026-01-05
+published: 2023-11-06
 description: "对于应用的可变配置在 Kubernetes 中是通过一个 ConfigMap 资源对象来实现的，应用经常会有从配置文件、命令行参数或者环境变量中读取一些配置信息的需求，这些配置信息肯定不会直接写死到应用程序中去的，比如一个应用连接一个 re"
 tags: ["Kubernetes"]
 category: "Kubernetes"
