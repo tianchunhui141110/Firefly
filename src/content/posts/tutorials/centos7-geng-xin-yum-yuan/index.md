@@ -1,6 +1,6 @@
 ---
 title: "CentOS7更新Yum源"
-published: 2026-01-05
+published: 2023-10-08
 description: ""
 tags: ["CentOS"]
 category: "Linux"

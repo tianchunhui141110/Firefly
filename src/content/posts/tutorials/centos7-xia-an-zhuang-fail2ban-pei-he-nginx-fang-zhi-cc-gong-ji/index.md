@@ -1,6 +1,6 @@
 ---
 title: "Centos7下安装Fail2ban 配合Nginx防止CC攻击"
-published: 2026-01-05
+published: 2020-08-13
 description: "从CentOS7(RHEL7)开始，官方的标准防火墙设置软件从iptables变更为firewalld。 因此，为了使Fail2ban与iptables联动，需禁用自带的firewalld服务，同时安装iptables服务。"
 tags: ["Nginx"]
 category: "Nginx"

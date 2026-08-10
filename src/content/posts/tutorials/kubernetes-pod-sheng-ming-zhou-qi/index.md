@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes-Pod生命周期"
-published: 2022-09-05
+published: 2023-10-30
 description: "上图展示了一个 Pod 的完整生命周期过程，其中包含 Init Container、Pod Hook、健康检查 三个主要部分，接下来分别介绍影响 Pod 生命周期的部分："
 tags: ["Kubernetes"]
 category: "Kubernetes"

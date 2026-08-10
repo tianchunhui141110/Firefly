@@ -1,6 +1,6 @@
 ---
 title: "面试官：优化代码中大量的if/else，你有什么方案？"
-published: 2026-01-05
+published: 2020-06-30
 description: "一个快速迭代的项目，时间久了之后，代码中可能会充斥着大量的if/else，嵌套6、7层，一个函数几百行，简！直！看！死！人！"
 tags: ["运维"]
 category: "其他"

@@ -1,6 +1,6 @@
 ---
 title: "k8s+helm安装Elasticsearch集群"
-published: 2026-01-05
+published: 2022-01-27
 description: "基本不用改什么东西"
 tags: ["k8s","Elasticsearch","集群"]
 category: "中间件"

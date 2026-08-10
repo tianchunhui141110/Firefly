@@ -1,6 +1,6 @@
 ---
 title: "Linux docker安装Redis"
-published: 2026-01-05
+published: 2020-12-16
 description: ""
 tags: ["docker","Redis","Linux"]
 category: "Docker"

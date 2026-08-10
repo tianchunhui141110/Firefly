@@ -1,6 +1,6 @@
 ---
 title: "ssh使用秘钥文件登录仍然需要密码的解决方案"
-published: 2026-01-05
+published: 2024-12-02
 description: "SSH 使用密钥文件登录时，通常不需要密码，但有几种情况可能会要求你输入密码。以下是一些常见的原因和解决方法："
 tags: ["Kubernetes"]
 category: "Kubernetes"

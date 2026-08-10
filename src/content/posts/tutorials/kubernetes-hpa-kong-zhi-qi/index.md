@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes-HPA控制器"
-published: 2022-09-06
+published: 2023-11-02
 description: "在前面使用了一个 kubectl scale 命令可以来实现 Pod 的扩缩容功能，但是这个是完全手动操作的，要应对线上的各种复杂情况，需要能够做到自动化去感知业务，来自动进行扩缩容。为此，Kubernetes 也提供了这样的一个资源对象："
 tags: ["Kubernetes"]
 category: "Kubernetes"

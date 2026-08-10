@@ -1,6 +1,6 @@
 ---
 title: "Linux docker安装GitLib中文版"
-published: 2020-02-13
+published: 2020-05-27
 description: "启动需要时间 在启动过程中访问会出现下面情景 等1~2分钟即可 因为服务还没有启动完成"
 tags: ["docker","Linux"]
 category: "Docker"

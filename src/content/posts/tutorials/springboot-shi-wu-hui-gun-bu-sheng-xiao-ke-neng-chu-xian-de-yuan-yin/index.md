@@ -1,6 +1,6 @@
 ---
 title: "Springboot 事务回滚不生效可能出现的原因"
-published: 2026-01-05
+published: 2021-07-01
 description: "注意：添加@Transactional的方法必须是public"
 tags: ["Spring"]
 category: "Java"

@@ -1,6 +1,6 @@
 ---
 title: "Docker终端无法输入中文问题解决"
-published: 2026-01-05
+published: 2020-12-25
 description: "在docker里搭建了一套MySQL服务，发现在MySQL命令行内无法输入中文"
 tags: ["Docker"]
 category: "Docker"

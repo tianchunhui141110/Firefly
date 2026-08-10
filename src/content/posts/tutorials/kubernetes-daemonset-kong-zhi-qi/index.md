@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes-DaemonSet控制器"
-published: 2022-09-06
+published: 2023-11-02
 description: "通过该控制器的名称可以看出它的用法：Daemon，就是用来部署守护进程的，DaemonSet用于在每个 Kubernetes 节点中将守护进程的副本作为后台进程运行，说白了就是在每个节点部署一个 Pod 副本，当节点加入到 Kubernet"
 tags: ["Kubernetes"]
 category: "Kubernetes"

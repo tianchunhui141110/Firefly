@@ -1,6 +1,6 @@
 ---
 title: "Docker里使用CentOS7中文乱码的解决办法"
-published: 2026-01-05
+published: 2020-05-30
 description: "在使用docker制作tomcat镜像后，进入容器内部，发现中文出现乱码"
 tags: ["Docker","CentOS"]
 category: "Docker"

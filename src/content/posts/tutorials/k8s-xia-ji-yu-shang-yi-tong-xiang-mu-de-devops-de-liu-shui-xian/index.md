@@ -1,6 +1,6 @@
 ---
 title: "K8S下基于尚医通项目的devops的流水线"
-published: 2026-01-05
+published: 2022-02-19
 description: "之所以加上while循环,是因为在弱网环境下容易出现网络闪断导致流水线执行失败"
 tags: ["运维"]
 category: "其他"

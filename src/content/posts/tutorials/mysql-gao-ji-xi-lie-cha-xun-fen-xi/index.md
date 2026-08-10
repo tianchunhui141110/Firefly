@@ -1,6 +1,6 @@
 ---
 title: "MySQL高级系列-查询分析"
-published: 2021-01-02
+published: 2021-01-04
 description: "优化原则：小表驱动大表，即小的数据集驱动大的数据集"
 tags: ["MySQL"]
 category: "MySQL"

@@ -1,6 +1,6 @@
 ---
 title: "MDC是什么鬼？用法、源码一锅端"
-published: 2026-01-05
+published: 2020-06-30
 description: "阿里开源项目 Canal："
 tags: ["MDC"]
 category: "Java"

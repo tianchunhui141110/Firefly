@@ -1,6 +1,6 @@
 ---
 title: "使用kubeKey安装k8s+kubesphere"
-published: 2026-01-05
+published: 2022-01-23
 description: "以下内容均参考kubesphere官网"
 tags: ["k8s"]
 category: "Kubernetes"

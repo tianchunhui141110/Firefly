@@ -1,6 +1,6 @@
 ---
 title: "Linux编译安装Redis"
-published: 2026-01-05
+published: 2020-05-27
 description: ""
 tags: ["Redis","Linux"]
 category: "Redis"

@@ -1,6 +1,6 @@
 ---
 title: "Nginx 16连环问"
-published: 2026-01-05
+published: 2020-06-30
 description: "作为一个后端程序员，Nginx也是必备技能之一哦，作为一个web服务器，Nginx的性能方面是很不错的。本文总结或16个知识点，或者面试题分享给大家，后续还会继续更新。"
 tags: ["Nginx"]
 category: "Nginx"

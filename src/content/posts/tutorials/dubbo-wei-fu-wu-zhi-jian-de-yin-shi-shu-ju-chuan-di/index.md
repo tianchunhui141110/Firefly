@@ -1,6 +1,6 @@
 ---
 title: "dubbo微服务之间的隐式数据传递"
-published: 2026-01-05
+published: 2022-02-20
 description: "在做全链路压测插件时,如何让流量标识在dubbo远程RPC调用时进行传递是一个需要解决的问题,就可以用dubbo的Attachment做隐式传递,服务A） -- （服务B -- ）（服务C）等等."
 tags: ["dubbo"]
 category: "Java"

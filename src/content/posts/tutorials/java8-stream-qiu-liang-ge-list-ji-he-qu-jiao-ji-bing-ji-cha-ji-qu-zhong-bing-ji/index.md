@@ -1,6 +1,6 @@
 ---
 title: "Java8 stream 求两个List集合取交集、并集、差集、去重并集"
-published: 2026-01-05
+published: 2021-06-24
 description: "原网址:https://juejin.cn/post/6844903833726894093"
 tags: ["Java"]
 category: "Java"

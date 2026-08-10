@@ -1,6 +1,6 @@
 ---
 title: "spring-plugin异常的解决办法"
-published: 2026-01-05
+published: 2021-02-20
 description: "在学习ES的过程中，本着有最新就用最新的想法，使用了springboot2.3.x的版本，在实操过程中遇到了配置和方法过时的情况，于是将springboot版本降级为2.1.13，诡异的事情发生了，原本能正常启动的项目起不来了，报错如下："
 tags: ["运维"]
 category: "其他"

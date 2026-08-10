@@ -1,6 +1,6 @@
 ---
 title: "MySQL高级系列-索引"
-published: 2020-12-31
+published: 2021-01-02
 description: "MySQL官方对索引的定义为：索引（Index）是帮助MySQL高效获取数据的数据结构（有序）。所以，就可以得到索引的本质：索引是有序的数据结构。"
 tags: ["MySQL"]
 category: "MySQL"

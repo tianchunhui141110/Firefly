@@ -1,6 +1,6 @@
 ---
 title: "kubesphere+k8s+helm安装RabbitMQ集群+镜像模式"
-published: 2022-01-21
+published: 2022-01-23
 description: "使用kubekey安装k8skubesphere 使用此方式会自动安装helm"
 tags: ["k8s","RabbitMQ","集群"]
 category: "中间件"

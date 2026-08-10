@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes-Deployment控制器"
-published: 2022-09-06
+published: 2023-10-31
 description: "通过前面的 ReplicaSet 控制器，了解到ReplicaSet控制器是用来维护集群中运行的 Pod 数量的，但是往往在实际操作的时候，不会去直接使用 RS，而是会使用更上层的控制器，比如Deployment，Deployment 一个"
 tags: ["Kubernetes"]
 category: "Kubernetes"

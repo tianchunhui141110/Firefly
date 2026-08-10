@@ -1,6 +1,6 @@
 ---
 title: "docker安装nacos2.0MySQL单机版"
-published: 2026-01-05
+published: 2021-12-16
 description: "下载nacos源码包 我下载的2.0.3版本,上传到服务器上"
 tags: ["docker","MySQL","nacos"]
 category: "中间件"

@@ -1,6 +1,6 @@
 ---
 title: "Dockerfile 详解，看这一篇就够了"
-published: 2026-01-05
+published: 2020-06-30
 description: "指令格式有两种：注释和指令"
 tags: ["Docker"]
 category: "Docker"

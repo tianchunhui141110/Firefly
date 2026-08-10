@@ -1,6 +1,6 @@
 ---
 title: "Windows远程桌面提示出现身份验证错误"
-published: 2026-01-05
+published: 2020-06-13
 description: "使用命令“gpedit.msc”打开组策略。"
 tags: ["CentOS"]
 category: "Linux"

@@ -1,6 +1,6 @@
 ---
 title: "kubersphere之-安装"
-published: 2020-06-01
+published: 2020-06-02
 description: "KubeSphere 支持离线和在线的方式部署至现有的 Kubernetes 集群，部署之前请确保您的 Kubernetes 环境满足以下 4 个前提条件："
 tags: ["运维"]
 category: "其他"

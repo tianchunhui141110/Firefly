@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes-Prometheus"
-published: 2023-12-13
+published: 2023-12-14
 description: "Prometheus 最初是 SoundCloud 构建的开源系统监控和报警工具，是一个独立的开源项目，于 2016 年加入了 CNCF 基金会，作为继 Kubernetes 之后的第二个托管项目。Prometheus 相比于其他传统监控工"
 tags: ["Kubernetes"]
 category: "Kubernetes"

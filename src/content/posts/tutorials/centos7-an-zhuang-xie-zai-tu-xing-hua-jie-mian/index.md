@@ -1,6 +1,6 @@
 ---
 title: "CentOS7图形化界面安装及卸载"
-published: 2026-01-05
+published: 2020-06-13
 description: ""
 tags: ["CentOS"]
 category: "Linux"

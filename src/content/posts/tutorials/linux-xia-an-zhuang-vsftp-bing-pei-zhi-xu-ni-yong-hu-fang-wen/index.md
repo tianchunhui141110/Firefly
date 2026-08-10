@@ -1,6 +1,6 @@
 ---
 title: "Linux下安装vsftp并配置虚拟用户访问"
-published: 2026-01-05
+published: 2020-06-09
 description: "添加下面的内容"
 tags: ["Linux"]
 category: "Linux"

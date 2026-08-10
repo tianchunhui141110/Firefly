@@ -1,6 +1,6 @@
 ---
 title: "记一道简单的Java面试题，但答错率很高！"
-published: 2026-01-05
+published: 2020-06-30
 description: "这可能是历史上最简单的一道java面试题了。"
 tags: ["Java"]
 category: "Java"

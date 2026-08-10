@@ -1,6 +1,6 @@
 ---
 title: "Linux使用netstat命令查看并发连接数"
-published: 2026-01-05
+published: 2023-10-09
 description: "提示没有netstat命令的先安装工具软件"
 tags: ["Linux"]
 category: "Linux"

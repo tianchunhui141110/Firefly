@@ -1,6 +1,6 @@
 ---
 title: "使用docker-compose安装skywalking和elasticsearch"
-published: 2026-01-05
+published: 2022-02-19
 description: ""
 tags: ["docker","skywalking"]
 category: "中间件"

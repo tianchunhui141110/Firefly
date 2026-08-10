@@ -1,6 +1,6 @@
 ---
 title: "Nginx 反向代理最常见的三种用法"
-published: 2026-01-05
+published: 2020-06-30
 description: "说到 大名鼎鼎的 Nginx， 大家肯定都不陌生，不管是做运维，做开发，还是做网络的都应该对他很熟悉。Nginx的功能很多，很强大，今天我主要是分享一下 Nginx 反向代理的常见用法。"
 tags: ["Nginx"]
 category: "Nginx"

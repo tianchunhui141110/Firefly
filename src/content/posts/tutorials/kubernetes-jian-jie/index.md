@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes 简介"
-published: 2026-01-05
+published: 2023-10-11
 description: "Kubernetes（简称 K8S） 的出现是容器化技术发展的必然结果，容器化是应用程序级别的虚拟化，运行单个内核上有多个独立的用户空间实例，这些实例就是容器；容器提供了将应用程序的代码、运行时、系统工具、系统库和配置打包到一个实例中的标准"
 tags: ["Kubernetes"]
 category: "Kubernetes"

@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes-ReplicaSet控制器"
-published: 2022-09-06
+published: 2023-10-31
 description: "在实际使用的时候并不会直接使用 Pod，而是会使用各种控制器，Kubernetes 中运行了一系列控制器来确保集群的当前状态与期望状态保持一致，它们就是 Kubernetes 的大脑。例如，ReplicaSet 控制器负责维护集群中运行的 "
 tags: ["Kubernetes"]
 category: "Kubernetes"

@@ -1,6 +1,6 @@
 ---
 title: "Linux下使用cron定时执行脚本备份数据库"
-published: 2026-01-05
+published: 2020-05-28
 description: "这里还有一篇MySQL数据库备份的10个教程 有兴趣的自行尝试"
 tags: ["Linux"]
 category: "Linux"

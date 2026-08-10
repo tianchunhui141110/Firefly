@@ -1,6 +1,6 @@
 ---
 title: "SpringBoot+Redis+ELK日志集中存储和查询"
-published: 2026-01-05
+published: 2022-05-13
 description: "http://www.tianch.xyz/archives/%E4%BD%BF%E7%94%A8docker-compose%E5%AE%89%E8%A3%85skywalking%E5%92%8Celasticsearchmd"
 tags: ["Redis","Spring","日志"]
 category: "中间件"

@@ -1,6 +1,6 @@
 ---
 title: "Linux下nginx配置SSL证书实现https"
-published: 2026-01-05
+published: 2020-05-30
 description: "域名.crt文件"
 tags: ["Nginx","Linux"]
 category: "Nginx"

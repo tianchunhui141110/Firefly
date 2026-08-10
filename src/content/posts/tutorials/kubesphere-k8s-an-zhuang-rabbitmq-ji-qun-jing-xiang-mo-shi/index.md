@@ -1,6 +1,6 @@
 ---
 title: "kubesphere+k8s安装RabbitMQ集群+镜像模式"
-published: 2020-10-18
+published: 2022-01-21
 description: "从krew官网进去,再进入安装文档页"
 tags: ["k8s","RabbitMQ","集群"]
 category: "中间件"

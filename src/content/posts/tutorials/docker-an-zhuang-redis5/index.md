@@ -1,6 +1,6 @@
 ---
 title: "docker 安装redis"
-published: 2026-01-05
+published: 2020-12-16
 description: ""
 tags: ["docker"]
 category: "Docker"
