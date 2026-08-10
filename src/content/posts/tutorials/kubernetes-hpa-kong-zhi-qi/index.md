@@ -10,7 +10,7 @@ lang: zh_CN
 
 在前面使用了一个 `kubectl scale` 命令可以来实现 Pod 的扩缩容功能，但是这个是完全手动操作的，要应对线上的各种复杂情况，需要能够做到自动化去感知业务，来自动进行扩缩容。为此，Kubernetes 也提供了这样的一个资源对象：`Horizontal Pod Autoscaling（Pod 水平自动伸缩）`，简称 `HPA`，HPA通过监控分析一些控制器控制的所有 Pod 的负载变化情况来确定是否需要调整 Pod 的副本数量，这是 HPA 最基本的原理：
 
-![HPA](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/1662427592804.png)
+![HPA](https://blog.tianch.com.cn/img/1662427592804.png)
 
 可以简单的通过 `kubectl autoscale` 命令来创建一个 HPA 资源对象，`HPA Controller` 默认`30s`轮询一次（可通过 `kube-controller-manager` 的`--horizontal-pod-autoscaler-sync-period` 参数进行设置），查询指定的资源中的 Pod 资源使用率，并且与创建时设定的值和指标做对比，从而实现自动伸缩的功能。
 
@@ -24,7 +24,7 @@ https://10.96.0.1/apis/metrics.k8s.io/v1beta1/namespaces/<namespace-name>/pods/<
 
 比如访问上面的 API 的时候，就可以获取到该 Pod 的资源数据，这些数据其实是来自于 kubelet 的 `Summary API` 采集而来的。不过需要说明的是这里可以通过标准的 API 来获取资源监控数据，并不是因为 `Metrics Server` 就是 APIServer 的一部分，而是通过 Kubernetes 提供的 `Aggregator` 汇聚插件来实现的，是独立于 APIServer 之外运行的。
 
-![HAP Metrics Server](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/1662427613235.jpg)
+![HAP Metrics Server](https://blog.tianch.com.cn/img/1662427613235.jpg)
 
 ### 安装
 
@@ -35,7 +35,7 @@ metrics_server:
   enabled: true
 ```
 
-![image-20231102162825701](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231102162825701.png)
+![image-20231102162825701](https://blog.tianch.com.cn/img/image-20231102162825701.png)
 
 ## HPA对象
 
@@ -76,7 +76,7 @@ kubectl apply -f hpa-demo.yaml
 kubectl get pods -n default -l app=nginx
 ```
 
-![image-20231102163302181](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231102163302181.png)
+![image-20231102163302181](https://blog.tianch.com.cn/img/image-20231102163302181.png)
 
 现在创建一个 `HPA` 资源对象，可以使用`kubectl autoscale`命令来创建：
 
@@ -84,7 +84,7 @@ kubectl get pods -n default -l app=nginx
 kubectl autoscale deployment hpa-demo -n default --cpu-percent=10 --min=1 --max=10
 ```
 
-![image-20231102163443659](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231102163443659.png)
+![image-20231102163443659](https://blog.tianch.com.cn/img/image-20231102163443659.png)
 
 此命令创建了一个关联资源 hpa-demo 的 HPA，最小的 Pod 副本数为 1，最大为 10。HPA 会根据设定的 cpu 使用率（10%）动态的增加或者减少 Pod 数量。
 
@@ -155,13 +155,13 @@ status:
 kubectl describe hpa hpa-demo -n default
 ```
 
-![image-20231102164015112](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231102164015112.png)
+![image-20231102164015112](https://blog.tianch.com.cn/img/image-20231102164015112.png)
 
 如果在事件信息里面出现了 `failed to get cpu utilization: missing request for cpu` 这样的错误信息。这是因为创建的 Pod 对象**没有添加 request 资源**声明，这样导致 HPA 读取不到 CPU 指标信息，所以如果要想让 HPA 生效，对应的 Pod 资源必须添加 requests 资源声明。
 
 这是没有添加`resources`的事件信息:
 
-![image-20231102164340424](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231102164340424.png)
+![image-20231102164340424](https://blog.tianch.com.cn/img/image-20231102164340424.png)
 
 现在增大负载进行测试，创建一个 busybox 的 Pod，并且循环访问上面创建的 Pod：
 
@@ -169,27 +169,27 @@ kubectl describe hpa hpa-demo -n default
 kubectl get pod -n default -o wide
 ```
 
-![image-20231102170035336](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231102170035336.png)
+![image-20231102170035336](https://blog.tianch.com.cn/img/image-20231102170035336.png)
 
 ```sh
 kubectl run -it --image busybox test-hpa --restart=Never --rm /bin/sh
 ```
 
-![image-20231102170226578](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231102170226578.png)
+![image-20231102170226578](https://blog.tianch.com.cn/img/image-20231102170226578.png)
 
 可以看到CPU达到了29%且已经自动拉起了几个新的 Pod，查看资源 hpa-demo 的副本数量，副本数量已经从原来的 1 变成了 3 个：
 
-![image-20231102165809206](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231102165809206.png)
+![image-20231102165809206](https://blog.tianch.com.cn/img/image-20231102165809206.png)
 
 ```sh
 kubectl describe hpa hpa-demo -n default
 ```
 
-![image-20231102170506410](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231102170506410.png)
+![image-20231102170506410](https://blog.tianch.com.cn/img/image-20231102170506410.png)
 
 关掉 busybox 来减少负载，然后等待一段时间观察下 HPA 和 Deployment 对象：
 
-![image-20231102170609774](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231102170609774.png)
+![image-20231102170609774](https://blog.tianch.com.cn/img/image-20231102170609774.png)
 
 从 Kubernetes `v1.12` 版本开始可以通过设置 `kube-controller-manager` 组件的`--horizontal-pod-autoscaler-downscale-stabilization` 参数来设置一个持续时间，用于指定在当前操作完成后，`HPA` 必须等待多长时间才能执行另一次缩放操作。默认为5分钟，也就是默认需要等待5分钟后才会开始自动缩放。
 
@@ -264,7 +264,7 @@ kubectl apply -f hpa-mem-demo.yaml
 kubectl get pod -n default -l app=nginx
 ```
 
-![image-20231102172228859](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231102172228859.png)
+![image-20231102172228859](https://blog.tianch.com.cn/img/image-20231102172228859.png)
 
 然后需要创建一个基于内存的 HPA 资源对象：_hpa-mem.yaml_
 
@@ -297,7 +297,7 @@ kubectl apply -f hpa-mem.yaml
 kubectl get hpa -n default
 ```
 
-![image-20231102173342248](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231102173342248.png)
+![image-20231102173342248](https://blog.tianch.com.cn/img/image-20231102173342248.png)
 
 到这里证明 HPA 资源对象已经部署成功了，接下来对应用进行压测，将内存压上去，直接执行上面挂载到容器中的 `increase-mem.sh` 脚本即可：
 
@@ -305,7 +305,7 @@ kubectl get hpa -n default
 kubectl exec -it hpa-mem-demo-fcff6c67-89pst -- /bin/bash
 ```
 
-![image-20231102174000384](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231102174000384.png)
+![image-20231102174000384](https://blog.tianch.com.cn/img/image-20231102174000384.png)
 
 可以看到内存使用已经超过了设定的 30% 这个阈值了，HPA 资源对象也已经触发了自动扩容，变成了 4 个副本了。
 

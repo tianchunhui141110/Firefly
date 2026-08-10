@@ -24,7 +24,7 @@ lang: zh_CN
 cat /var/lib/kubelet/config.yaml
 ```
 
-![image-20231030180348902](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231030180348902.png)
+![image-20231030180348902](https://blog.tianch.com.cn/img/image-20231030180348902.png)
 
 打开这个文件可以看到其中有一个属性为 `staticPodPath` 的配置，其实和命令行的 `--pod-manifest-path` 配置是一致的，所以如果通过 kubeadm 的方式来安装的集群环境，对应的 kubelet 已经配置了静态 Pod 文件的路径，默认地址为 `/etc/kubernetes/manifests`，所以只需要在该目录下面创建一个标准的 Pod 的 JSON 或者 YAML 文件即可，如果kubelet 启动参数中没有配置上面的`--pod-manifest-path` 参数的话，那么添加上这个参数然后重启 kubelet 即可。
 
@@ -52,9 +52,9 @@ kubelet 周期地从 `–manifest-url=` 参数指定的地址下载文件，并�
 
 kubelet 启动时，由 `--pod-manifest-path=` 或 `--manifest-url=` 参数指定的目录下定义的所有 pod 都会自动创建，例如，示例中的 `static-web`。
 
-![image-20231030181002778](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231030181002778.png)
+![image-20231030181002778](https://blog.tianch.com.cn/img/image-20231030181002778.png)
 
-![image-20231030181118103](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231030181118103.png)
+![image-20231030181118103](https://blog.tianch.com.cn/img/image-20231030181118103.png)
 
 可以看到这里创建了一个新的镜像 Pod：
 
@@ -68,7 +68,7 @@ kubectl get pods
 kubectl delete pod static-web-node1 -n default
 ```
 
-![image-20231030181417585](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231030181417585.png)
+![image-20231030181417585](https://blog.tianch.com.cn/img/image-20231030181417585.png)
 
 **静态 Pod 的动态增加和删除**
 
@@ -90,7 +90,7 @@ mv /tmp/static-web.yaml  /etc/kubernetes/manifests
 crictl ps
 ```
 
-![image-20231030181724270](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231030181724270.png)
+![image-20231030181724270](https://blog.tianch.com.cn/img/image-20231030181724270.png)
 
 用 kubeadm 安装的集群，master 节点上面的几个重要组件都是用静态 Pod 的方式运行的，登录到 master 节点上查看`/etc/kubernetes/manifests`目录：
 

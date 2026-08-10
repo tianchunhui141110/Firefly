@@ -126,7 +126,7 @@ kubectl describe cm cm-demo1 -n default
 kubectl get cm cm-demo1 -n default -o yaml
 ```
 
-![image-20231106111529692](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231106111531.png)
+![image-20231106111529692](https://blog.tianch.com.cn/img/20231106111531.png)
 
 除了通过文件目录进行创建，也可以使用指定的文件进行创建 `ConfigMap`，同样的，以上面的配置文件为例，创建一个 redis 的配置的一个单独 `ConfigMap` 对象：
 
@@ -134,7 +134,7 @@ kubectl get cm cm-demo1 -n default -o yaml
 kubectl create configmap cm-demo2 --from-file=testcm/redis.conf
 ```
 
-![image-20231106141102350](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231106141104.png)
+![image-20231106141102350](https://blog.tianch.com.cn/img/20231106141104.png)
 
 可以看到一个关联 redis.conf 文件配置信息的 `ConfigMap` 对象创建成功了，另外值得注意的是 `--from-file` 这个参数可以使用多次，比如使用两次分别指定 redis.conf 和 mysql.conf 文件，就和直接指定整个目录是一样的效果了。
 
@@ -144,7 +144,7 @@ kubectl create configmap cm-demo2 --from-file=testcm/redis.conf
 kubectl create configmap cm-demo3 -n default --from-literal=db.host=localhost --from-literal=db.port=3306
 ```
 
-![image-20231106141456031](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231106141457.png)
+![image-20231106141456031](https://blog.tianch.com.cn/img/20231106141457.png)
 
 ## 使用
 
@@ -192,7 +192,7 @@ spec:
 kubectl logs testcm1-pod -n default
 ```
 
-![image-20231106142922739](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231106142924.png)
+![image-20231106142922739](https://blog.tianch.com.cn/img/20231106142924.png)
 
 可以看到 DB_HOST 和 DB_PORT 都已经正常输出了，另外的环境变量是因为这里直接把 cm-demo1 给注入进来了，所以把它们的整个键值给输出出来了，这也是符合预期的。
 
@@ -228,7 +228,7 @@ spec:
           cpu: "500m"
 ```
 
-![image-20231106143809538](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231106143809538.png)
+![image-20231106143809538](https://blog.tianch.com.cn/img/image-20231106143809538.png)
 
 另外一种是非常常见的使用 `ConfigMap` 的方式：通过**数据卷**使用，在数据卷里面使用 ConfigMap，就是将文件填入数据卷，在这个文件中，键就是文件名，键值就是文件内容，如下资源对象所示：_testcm3-pod.yaml_
 
@@ -258,7 +258,7 @@ spec:
           cpu: "500m"
 ```
 
-![image-20231106144633482](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231106144633482.png)
+![image-20231106144633482](https://blog.tianch.com.cn/img/image-20231106144633482.png)
 
 也可以在 `ConfigMap` 值被映射的数据卷里去控制路径，如下 Pod 定义：_testcm4-pod.yaml_
 
@@ -291,7 +291,7 @@ spec:
           cpu: "500m"
 ```
 
-![image-20231106145708602](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231106145710.png)
+![image-20231106145708602](https://blog.tianch.com.cn/img/20231106145710.png)
 
 另外需要注意的是，当 `ConfigMap` 以数据卷的形式挂载进 `Pod` 的时，这时更新 `ConfigMap（或删掉重建ConfigMap）`，Pod 内挂载的配置信息会热更新。这时可以增加一些监测配置文件变更的脚本，然后重加载对应服务就可以实现应用的热更新。
 

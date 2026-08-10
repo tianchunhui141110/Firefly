@@ -77,7 +77,7 @@ lang: zh_CN
        existingErlangSecret: ""
      ```
 
-     ![image-20220123203354564](https://oss.tianch.xyz/img/image-20220123203354564.png)
+     ![image-20220123203354564](https://blog.tianch.com.cn/img/image-20220123203354564.png)
 
    - 安装时set方式指定
 
@@ -91,7 +91,7 @@ lang: zh_CN
    replicaCount: 3
    ```
 
-   ![image-20220123204103644](https://oss.tianch.xyz/img/image-20220123204103644.png)
+   ![image-20220123204103644](https://blog.tianch.com.cn/img/image-20220123204103644.png)
 
 3. 设置持久化存储
 
@@ -143,7 +143,7 @@ lang: zh_CN
      annotations: {}
    ```
 
-   ![image-20220123204323840](https://oss.tianch.xyz/img/image-20220123204323840.png)
+   ![image-20220123204323840](https://blog.tianch.com.cn/img/image-20220123204323840.png)
 
 4. 设置集群访问方式
 
@@ -185,7 +185,7 @@ lang: zh_CN
      partitionHandling: autoheal
    ```
 
-   ![image-20220123205045975](https://oss.tianch.xyz/img/image-20220123205045975.png)
+   ![image-20220123205045975](https://blog.tianch.com.cn/img/image-20220123205045975.png)
 
 6. 指定时区
 
@@ -219,7 +219,7 @@ lang: zh_CN
      --set auth.username=admin,auth.password=77589910,auth.erlangCookie=secretcookie123
      ```
 
-   ![image-20220123205912776](https://oss.tianch.xyz/img/image-20220123205912776.png)
+   ![image-20220123205912776](https://blog.tianch.com.cn/img/image-20220123205912776.png)
 
 3. 查看安装状态
    - 查看安装进度
@@ -228,7 +228,7 @@ lang: zh_CN
      kubectl get pod -n demo-project -w
      ```
 
-     ![image-20220123210139110](https://oss.tianch.xyz/img/image-20220123210139110.png)
+     ![image-20220123210139110](https://blog.tianch.com.cn/img/image-20220123210139110.png)
 
    - 查看svc
 
@@ -271,9 +271,9 @@ lang: zh_CN
 
 - 使用控制台
 
-  ![image-20220121183803914](https://oss.tianch.xyz/img/image-20220121183803914.png)
+  ![image-20220121183803914](https://blog.tianch.com.cn/img/image-20220121183803914.png)
 
-![image-20220121183850796](https://oss.tianch.xyz/img/image-20220121183850796.png)
+![image-20220121183850796](https://blog.tianch.com.cn/img/image-20220121183850796.png)
 
 ### 5.清理RabbitMQ集群
 

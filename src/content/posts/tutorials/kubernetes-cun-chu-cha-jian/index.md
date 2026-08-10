@@ -10,8 +10,6 @@ lang: zh_CN
 
 Kubernetes 默认情况下就提供了主流的存储卷接入方案，可以执行命令 `kubectl explain pod.spec.volumes` 查看到支持的各种存储卷，另外也提供了插件机制，允许其他类型的存储服务接入到 Kubernetes 系统中来，在 Kubernetes 中就对应 `In-Tree` 和 `Out-Of-Tree` 两种方式，`In-Tree` 就是在 Kubernetes 源码内部实现的，和 Kubernetes 一起发布、管理的，但是更新迭代慢、灵活性比较差，`Out-Of-Tree` 是独立于 Kubernetes 的，目前主要有 `CSI` 和 `FlexVolume` 两种机制，开发者可以根据自己的存储类型实现不同的存储插件接入到 Kubernetes 中去，其中 `CSI` 是现在也是以后主流的方式。
 
-
-
 FlexVolume 提供了一种扩展 Kubernetes 存储插件的方式，用户可以自定义自己的存储插件。要使用 FlexVolume 需要在每个节点上安装存储插件二进制文件，该二进制需要实现 FlexVolume 的相关接口，默认存储插件的存放路径为 `/usr/libexec/kubernetes/kubelet-plugins/volume/exec/<vendor~driver>/<driver>`，`VolumePlugins` 组件会不断 watch 这个目录来实现插件的添加、删除等功能。
 
 其中 `vendor~driver` 的名字需要和 Pod 中`flexVolume.driver` 的字段名字匹配，例如：

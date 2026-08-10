@@ -74,7 +74,7 @@ kubectl get pod -l app=nginx -n default
 kubectl get deployment -l chapter=first-app -n default
 ```
 
-![image-20231016174103937](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231016174103937-1697449278698-1.png)
+![image-20231016174103937](https://blog.tianch.com.cn/img/image-20231016174103937-1697449278698-1.png)
 
 查看某一个pod的详细信息
 
@@ -182,7 +182,7 @@ kubectl apply -f first-demo.yaml
 kubectl get pods -l app=nginx -n default --watch
 ```
 
-![image-20231016175247637](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231016175247637.png)
+![image-20231016175247637](https://blog.tianch.com.cn/img/image-20231016175247637.png)
 
 更新过程是先杀掉了一个 Pod，然后又重新创建了一个新的 Pod，然后又杀掉一个旧的 Pod，再创建一个新的 Pod，这样交替替换的，最后剩下两个新的 Pod，这就是滚动更新，滚动更新对于应用持续提供服务是非常重要的手段，在日常工作中更新应用肯定会采用这种方式。
 

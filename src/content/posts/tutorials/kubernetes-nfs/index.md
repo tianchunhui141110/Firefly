@@ -52,7 +52,7 @@ systemctl enable rpcbind
 systemctl status rpcbind
 ```
 
-![image-20231013164935829](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231212193238.png)
+![image-20231013164935829](https://blog.tianch.com.cn/img/20231212193238.png)
 
 看到上面的 active 证明启动成功了
 
@@ -64,7 +64,7 @@ systemctl enable nfs
 systemctl status nfs
 ```
 
-![image-20231013165243369](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231212193235.png)
+![image-20231013165243369](https://blog.tianch.com.cn/img/20231212193235.png)
 
 看到上面的 active 证明启动成功了
 
@@ -74,7 +74,7 @@ systemctl status nfs
 rpcinfo -p|grep nfs
 ```
 
-![image-20231212193352295](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231212193354.png)
+![image-20231212193352295](https://blog.tianch.com.cn/img/20231212193354.png)
 
 ### 查看目录挂载权限
 
@@ -82,7 +82,7 @@ rpcinfo -p|grep nfs
 cat /var/lib/nfs/etab
 ```
 
-![image-20231013165418547](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231212193230.png)
+![image-20231013165418547](https://blog.tianch.com.cn/img/20231212193230.png)
 
 ### 安装nfs客户端
 
@@ -111,7 +111,7 @@ systemctl enable rpcbind
 systemctl status rpcbind
 ```
 
-![image-20231013164935829](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231212193704.png)
+![image-20231013164935829](https://blog.tianch.com.cn/img/20231212193704.png)
 
 看到上面的 active 证明启动成功了
 
@@ -123,7 +123,7 @@ systemctl enable nfs
 systemctl status nfs
 ```
 
-![image-20231013165243369](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231212193702.png)
+![image-20231013165243369](https://blog.tianch.com.cn/img/20231212193702.png)
 
 看到上面的 active 证明启动成功了
 
@@ -133,7 +133,7 @@ systemctl status nfs
 showmount -e 10.168.1.100
 ```
 
-![image-20231013165832419](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231212193700.png)
+![image-20231013165832419](https://blog.tianch.com.cn/img/20231212193700.png)
 
 ### 测试挂载
 
@@ -239,7 +239,7 @@ kubectl apply -f pod.yaml
 kubectl get pv nfs-pv
 ```
 
-![image-20231212195908587](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231212195910.png)
+![image-20231212195908587](https://blog.tianch.com.cn/img/20231212195910.png)
 
 由于 PV 中的数据为空，所以挂载后会将 nginx 容器中的 `/usr/share/nginx/html` 目录覆盖，那么访问应用的时候就没有内容了：
 
@@ -247,7 +247,7 @@ kubectl get pv nfs-pv
 curl http://10.233.92.95
 ```
 
-![image-20231212200025141](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231212200026.png)
+![image-20231212200025141](https://blog.tianch.com.cn/img/20231212200026.png)
 
 在 PV 目录中添加一些内容：
 
@@ -258,7 +258,7 @@ echo "nfs pv content" > /opt/nfs/test-volumes/index.html
 
 然后重新访问就有数据了，而且 Pod 应用挂掉或者被删掉重新启动后数据还是存在的，因为数据已经持久化了。
 
-![image-20231212200331680](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231212200333.png)
+![image-20231212200331680](https://blog.tianch.com.cn/img/20231212200333.png)
 
 上面的示例中需要手动去创建 PV 来和 PVC 进行绑定，有的场景下面需要自动创建 PV，这个时候就需要使用到 StorageClass 了，并且需要一个对应的 provisioner 来自动创建 PV，比如这里使用的 NFS 存储，则可以使用 [nfs-subdir-external-provisioner](https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner) 这个 Provisioner，它使用现有的和已配置的 NFS 服务器来支持通过 PVC 动态配置 PV，持久卷配置为 `${namespace}-${pvcName}-${pvName}`，首先使用 Helm Chart 来安装：
 
@@ -269,13 +269,13 @@ helm upgrade --install nfs-subdir-external-provisioner nfs-subdir-external-provi
 
 上面的命令会在 `kube-system` 命名空间下安装 `nfs-subdir-external-provisioner`，并且会创建一个名为 `nfs-client` 默认的 StorageClass：
 
-![image-20231212200648291](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231212200650.png)
+![image-20231212200648291](https://blog.tianch.com.cn/img/20231212200650.png)
 
 ```sh
 kubectl get sc nfs-client -o yaml
 ```
 
-![image-20231212200718716](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231212200722.png)
+![image-20231212200718716](https://blog.tianch.com.cn/img/20231212200722.png)
 
 如果把nfs-client设置成默认的存储类之后,创建 PVC 时如果没有指定具体的 `StorageClass` 的时候，则会使用上面的 SC(nfs-client) 自动创建一个 PV。这里没有把nfs设置成默认的SC,所以要使用nfs-client的SC就需要指定*storageClassName*,比如创建一个如下所示的 PVC：_nfs-sc-pvc.yaml_
 
@@ -299,7 +299,7 @@ spec:
 kubectl apply -f nfs-sc-pvc.yaml
 ```
 
-![image-20231212201424344](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231212201426.png)
+![image-20231212201424344](https://blog.tianch.com.cn/img/20231212201426.png)
 
 对应自动创建的 PV 如下所示：
 
@@ -307,7 +307,7 @@ kubectl apply -f nfs-sc-pvc.yaml
 kubectl get pv pvc-e662895d-e1e6-4e11-afe1-33f80fee7c6a -o yaml
 ```
 
-![image-20231212201542622](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231212201544.png)
+![image-20231212201542622](https://blog.tianch.com.cn/img/20231212201544.png)
 
 挂载的 nfs 目录为 `/opt/nfs/default-nfs-sc-pvc-pvc-e662895d-e1e6-4e11-afe1-33f80fee7c6a`，和上面的 `${namespace}-${pvcName}-${pvName}` 规范一致的。
 
@@ -359,7 +359,7 @@ TARGET                                                                          
 docker run -v /var/lib/kubelet/pods/<Pod的ID>/volumes/kubernetes.io~<Volume类型>/<Volume名字>:/<容器内的目标目录> 镜像 ...
 ```
 
-整个存储的架构可以用下图来说明： ![存储架构](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231212202519.png)
+整个存储的架构可以用下图来说明： ![存储架构](https://blog.tianch.com.cn/img/20231212202519.png)
 
 - PV Controller：负责 PV/PVC 的绑定，并根据需求进行数据卷的 Provision/Delete 操作
 - AD Controller：负责存储设备的 Attach/Detach 操作，将设备挂载到目标节点

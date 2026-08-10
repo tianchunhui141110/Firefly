@@ -34,7 +34,6 @@ lang: zh_CN
     <version>3.3.1</version>
 </dependency>
 
-
 <!--多数据源事务-->
 <dependency>
     <groupId>org.springframework.boot</groupId>
@@ -208,7 +207,6 @@ lang: zh_CN
           return new DruidXADataSource();
       }
 
-
       @Bean(name = "userMasterDataSource")
       public DataSource userMasterDataSource(DruidXADataSource userMasterDruidDataSource) {
           return getXaDataSource(userMasterDruidDataSource, "userMasterDruidDataSource");
@@ -228,7 +226,6 @@ lang: zh_CN
       public DataSource orderSlaveDataSource(DruidXADataSource productSlaveDruidDataSource) {
           return getXaDataSource(productSlaveDruidDataSource, "productSlaveDruidDataSource");
       }
-
 
       @Bean(name = "dynamicDataSource")
       @DependsOn({"transactionManager"})
@@ -394,7 +391,6 @@ lang: zh_CN
 
       }
 
-
       @Around("dataSourcePointCut()")
       public Object around(ProceedingJoinPoint point) throws Throwable {
           String methodName = point.getSignature().getName();
@@ -462,7 +458,6 @@ lang: zh_CN
       private String determinateDataSource(String classDS, String methodDS) {
           return methodDS == null ? classDS : methodDS;
       }
-
 
       @After("dataSourcePointCut()")
       public void restoreActivityDataSource(JoinPoint point) {

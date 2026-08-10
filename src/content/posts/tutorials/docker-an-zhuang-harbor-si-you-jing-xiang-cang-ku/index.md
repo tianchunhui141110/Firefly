@@ -145,5 +145,5 @@ openssl x509 -in xxx.pem -out xxx.crt
 
    默认账号密码:admin/Harbor12345
 
-   ![image-20220216104738377](https://oss.tianch.xyz/img/image-20220216104738377.png)
+   ![image-20220216104738377](https://blog.tianch.com.cn/img/image-20220216104738377.png)
 

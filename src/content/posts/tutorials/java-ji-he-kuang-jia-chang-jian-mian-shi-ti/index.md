@@ -117,9 +117,6 @@ Java 集合概览
 从下图可以看出，在 Java 中除了以 Map 结尾的类之外， 其他类都实现了 `Collection` 接口。
 
 并且，以 `Map` 结尾的类都实现了 `Map` 接口。
-
-![Java-Collections](http://oss.tianch.xyz/img/Java-Collections_1594193994505.jpeg)
-
 说说 List,Set,Map 三者的区别？
 
 - `List`(对付顺序的好帮手)： 存储的元素是有序的、可重复的。
@@ -259,13 +256,7 @@ Arraylist 与 LinkedList 区别?
 
 > 
 另外推荐一篇把双向链表讲清楚的文章：https://juejin.im/post/5b5d1a9af265da0f47352f14
-
-![双向链表](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/双向链表.png)
-
 **双向循环链表：** 最后一个节点的 next 指向 head，而 head 的 prev 指向最后一个节点，构成一个环。
-
-![双向循环链表](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/双向循环链表.png)
-
 补充内容:RandomAccess 接口
 
 ```java
@@ -468,9 +459,6 @@ HashMap 使用键（Key）计算 HashcodeHashSet 使用成员对象来计算 has
 HashMap 和 TreeMap 区别
 
 `TreeMap` 和`HashMap` 都继承自`AbstractMap` ，但是需要注意的是`TreeMap`它还实现了`NavigableMap`接口和`SortedMap` 接口。
-
-![TreeMap继承结构](http://oss.tianch.xyz/img/TreeMap%E7%BB%A7%E6%89%BF%E7%BB%93%E6%9E%84_1594193994490.png)
-
 实现 `NavigableMap` 接口让 `TreeMap` 有了对集合内元素的搜索的能力。
 
 实现`SortMap`接口让 `TreeMap` 有了对集合中的元素根据键排序的能力。默认是按 key 的升序排序，不过我们也可以指定排序的比较器。示例代码如下：
@@ -599,15 +587,9 @@ static int hash(int h) {
 相比于 JDK1.8 的 hash 方法 ，JDK 1.7 的 hash 方法的性能会稍差一点点，因为毕竟扰动了 4 次。
 
 所谓 **“拉链法”** 就是：将链表和数组相结合。也就是说创建一个链表数组，数组中每一格就是一个链表。若遇到哈希冲突，则将冲突的值加到链表中即可。
-
-![jdk1.8之前的内部结构-HashMap](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/jdk1.8之前的内部结构-HashMap.jpg)
-
 JDK1.8 之后
 
 相比于之前的版本， JDK1.8 之后在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为 8）（将链表转换成红黑树前会判断，如果当前数组的长度小于 64，那么会选择先进行数组扩容，而不是转换为红黑树）时，将链表转化为红黑树，以减少搜索时间。
-
-![jdk1.8之后的内部结构-HashMap](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/JDK1.8之后的HashMap底层数据结构.jpg)
-
 > 
 TreeMap、TreeSet 以及 JDK1.8 之后的 HashMap 底层都用到了红黑树。红黑树就是为了解决二叉查找树的缺陷，因为二叉查找树在某些情况下会退化成一个线性结构。
 
@@ -646,17 +628,8 @@ ConcurrentHashMap 和 Hashtable 的区别主要体现在实现线程安全的方
 图片来源：http://www.cnblogs.com/chengxiao/p/6842045.html
 
 **HashTable:**
-
-![HashTable全表锁](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/HashTable全表锁.png)
-
 **JDK1.7 的 ConcurrentHashMap：**
-
-![JDK1.7的ConcurrentHashMap](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/ConcurrentHashMap分段锁.jpg)
-
 **JDK1.8 的 ConcurrentHashMap（TreeBin: 红黑二叉树节点 Node: 链表节点）：**
-
-![JDK1.8的ConcurrentHashMap](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/JDK1.8-ConcurrentHashMap-Structure.jpg)
-
 ConcurrentHashMap 线程安全的具体实现方式/底层具体实现
 
 JDK1.7（上面有示意图）
@@ -765,9 +738,6 @@ final void checkForComodification() {
 好吧！相信大家已经搞懂了快速失败(fail-fast)机制以及它的原理。
 
 我们再来趁热打铁，看一个阿里巴巴手册相关的规定：
-
-![](https://imgkr.cn-bj.ufileos.com/ad28e3ba-e419-4724-869c-73879e604da1.png)
-
 有了前面讲的基础，我们应该知道：使用 `Iterator` 提供的 `remove` 方法，可以修改到 `expectedModCount` 的值。所以，才不会再抛出`ConcurrentModificationException` 异常。
 
 什么是安全失败(fail-safe)呢？

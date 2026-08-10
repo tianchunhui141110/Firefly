@@ -112,7 +112,6 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 import java.util.UUID;
 
-
 public class SimpleMDC {
     public static void main(String[] args) {
         new BizHandle("F0000").start();

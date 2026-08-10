@@ -66,5 +66,5 @@ spec:
 kubectl apply -f nacos-k8s/nacos-k8s-master/operator/config/samples/nacos_cluster_mysql.yaml
 ```
 
-![image-20220513151754058](https://oss.tianch.xyz/img/image-20220513151754058.png)
+![image-20220513151754058](https://blog.tianch.com.cn/img/image-20220513151754058.png)
 

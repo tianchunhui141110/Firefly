@@ -22,7 +22,7 @@ lang: zh_CN
 
 - 如果已经有docker，并且想重新安装的执行下面的操作 否则忽略
 
-  ![image-20200212150336772](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20200212150336772.png)
+  ![image-20200212150336772](https://blog.tianch.com.cn/img/image-20200212150336772.png)
 
   ```shell
   yum remove docker-ce.x86_64 docker-ce-cli.x86_64 -y
@@ -57,7 +57,7 @@ lang: zh_CN
   yum list docker-ce --showduplicates|sort -r
   ```
 
-  ![image-20200313174615611](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20200313174615611.png)
+  ![image-20200313174615611](https://blog.tianch.com.cn/img/image-20200313174615611.png)
 
 - 安装指定版本
 
@@ -84,5 +84,5 @@ lang: zh_CN
   docker version
   ```
 
-  ![image-20200313175418462](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20200313175418462.png)
+  ![image-20200313175418462](https://blog.tianch.com.cn/img/image-20200313175418462.png)
 

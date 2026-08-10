@@ -165,11 +165,11 @@ spec:
 
 比如要了解创建一个 Deployment 资源对象需要哪些字段，我们可以打开上面的 API 文档页面，在左侧侧边栏找到 `Deployment v1 apps`，就能找到 Deployment 需要提交的 Body 参数
 
-![image-20231016183744336](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231016183744336.png)
+![image-20231016183744336](https://blog.tianch.com.cn/img/image-20231016183744336.png)
 
 可以看到创建 Deployment 需要的一些字段，比如 apiVersion、kind、metadata、spec 等，而且每个字段都有对应的文档说明，要了解 DeploymentSpec 下面有哪些字段，继续点击进去查看就行
 
-![image-20231016183838537](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231016183838537.png)
+![image-20231016183838537](https://blog.tianch.com.cn/img/image-20231016183838537.png)
 
 每个字段具体什么含义以及每个字段下面是否还有其他字段都可以这样去追溯。
 

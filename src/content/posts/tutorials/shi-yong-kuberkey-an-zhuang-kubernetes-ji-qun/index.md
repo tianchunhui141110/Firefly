@@ -69,7 +69,7 @@ systemctl enable rpcbind
 systemctl status rpcbind
 ```
 
-![image-20231013164935829](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231013164935829.png)
+![image-20231013164935829](https://blog.tianch.com.cn/img/image-20231013164935829.png)
 
 看到上面的 active 证明启动成功了
 
@@ -81,7 +81,7 @@ systemctl enable nfs
 systemctl status nfs
 ```
 
-![image-20231013165243369](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231013165243369.png)
+![image-20231013165243369](https://blog.tianch.com.cn/img/image-20231013165243369.png)
 
 看到上面的 active 证明启动成功了
 
@@ -91,7 +91,7 @@ systemctl status nfs
 cat /var/lib/nfs/etab
 ```
 
-![image-20231013165418547](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231013165418547.png)
+![image-20231013165418547](https://blog.tianch.com.cn/img/image-20231013165418547.png)
 
 ## 在各个节点安装nfs客户端
 
@@ -120,7 +120,7 @@ systemctl enable rpcbind
 systemctl status rpcbind
 ```
 
-![image-20231013164935829](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231013164935829.png)
+![image-20231013164935829](https://blog.tianch.com.cn/img/image-20231013164935829.png)
 
 看到上面的 active 证明启动成功了
 
@@ -132,7 +132,7 @@ systemctl enable nfs
 systemctl status nfs
 ```
 
-![image-20231013165243369](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231013165243369.png)
+![image-20231013165243369](https://blog.tianch.com.cn/img/image-20231013165243369.png)
 
 看到上面的 active 证明启动成功了
 
@@ -142,7 +142,7 @@ systemctl status nfs
 showmount -e 10.168.1.100
 ```
 
-![image-20231013165832419](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231013165832419.png)
+![image-20231013165832419](https://blog.tianch.com.cn/img/image-20231013165832419.png)
 
 ## 创建nfs存储配置文件
 
@@ -173,7 +173,7 @@ curl -sfL https://get-kk.kubesphere.io | sh -
 curl -sfL https://get-kk.kubesphere.io | VERSION=v3.1.0-alpha.5 sh -
 ```
 
-![image-20231013161100943](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231013161100943.png)
+![image-20231013161100943](https://blog.tianch.com.cn/img/image-20231013161100943.png)
 
 ## 安装Kubernetes和KubeSphere
 
@@ -471,7 +471,7 @@ spec:
 kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l 'app in (ks-install, ks-installer)' -o jsonpath='{.items[0].metadata.name}') -f
 ```
 
-![image-20231013181549212](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231013181549212.png)
+![image-20231013181549212](https://blog.tianch.com.cn/img/image-20231013181549212.png)
 
 到这里安装完成
 

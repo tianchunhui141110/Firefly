@@ -50,7 +50,7 @@ lang: zh_CN
     <broker xmlns="http://activemq.apache.org/schema/core" brokerName="hamq" dataDirectory="/opt/activemq-cluster/sharedb">
     ```
 
-    ![image-20200613214116195](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20200613214116195.png)
+    ![image-20200613214116195](https://blog.tianch.com.cn/img/image-20200613214116195.png)
 
     ```xml
     <!-- 修改kahaDB共享目录地址 -->
@@ -59,7 +59,7 @@ lang: zh_CN
     </persistenceAdapter>
     ```
 
-    ![image-20200613214426995](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20200613214426995.png)
+    ![image-20200613214426995](https://blog.tianch.com.cn/img/image-20200613214426995.png)
 
     ```xml
     <!-- 修改openwire的tcp连接地址端口分别为 61616 61626 61636 其它协议没用到可以注释掉 -->
@@ -76,7 +76,7 @@ lang: zh_CN
 
     ```
 
-    ![image-20200613214613498](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20200613214613498.png)
+    ![image-20200613214613498](https://blog.tianch.com.cn/img/image-20200613214613498.png)
 
     ```xml
     <!-- 添加访问ActiveMQ的账号密码 -->
@@ -89,7 +89,7 @@ lang: zh_CN
     </plugins>
     ```
 
-    ![image-20200613215005962](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20200613215005962.png)
+    ![image-20200613215005962](https://blog.tianch.com.cn/img/image-20200613215005962.png)
 
   - jetty.xml
 
@@ -102,7 +102,7 @@ lang: zh_CN
     </bean>
     ```
 
-    ![image-20200613215350577](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20200613215350577.png)
+    ![image-20200613215350577](https://blog.tianch.com.cn/img/image-20200613215350577.png)
 
   - jetty-realm.properties
 
@@ -171,7 +171,7 @@ lang: zh_CN
   ./start.sh
   ```
 
-  ![image-20200613220855875](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20200613220855875.png)
+  ![image-20200613220855875](https://blog.tianch.com.cn/img/image-20200613220855875.png)
 
   `61626抢到了锁 另外两个节点成功slave节点 等待获取锁`
 

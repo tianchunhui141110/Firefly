@@ -35,7 +35,7 @@ Kubernetes 控制器使用控制循环模式来检查控制器中所需的状态
 
 支持的版本列表,根据k8s的版本下载支持的ingress-nginx:
 
-![image-20231115111025262](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231115111027.png)
+![image-20231115111025262](https://blog.tianch.com.cn/img/20231115111027.png)
 
 ```sh
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
@@ -153,7 +153,7 @@ cd ingress-nginx
 
 Helm Chart 包下载下来后解压可以看到里面包含的模板文件，其中的 `ci` 目录中就包含了各种场景下面安装的 Values 配置文件，`values.yaml` 文件中包含的是所有可配置的默认值，可以对这些默认值进行覆盖，这里测试环境就将 master 节点看成边缘节点，所以直接将 `ingress-nginx` 固定到 master 节点上，采用 hostNetwork 模式(生产环境可以使用 LB + DaemonSet hostNetwork 模式)，为了避免创建的错误 Ingress 等资源对象影响控制器重新加载，所以强烈建议大家开启准入控制器，`ingess-nginx` 中会提供一个用于校验资源对象的 Admission Webhook，可以通过 Values 文件进行开启。然后新建一个名为 `ci/daemonset-prod.yaml` 的 Values 文件，用来覆盖 ingress-nginx 默认的 Values 值。
 
-![主机网络模式](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231115104636.png)
+![主机网络模式](https://blog.tianch.com.cn/img/20231115104636.png)
 
 ```sh
 kubectl create ns ingress-nginx
@@ -211,7 +211,7 @@ If TLS is enabled for the Ingress, a Secret containing the certificate and key m
   type: kubernetes.io/tls
 ```
 
-![image-20231115134848460](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231115134851.png)
+![image-20231115134848460](https://blog.tianch.com.cn/img/20231115134851.png)
 
 安装完成后会自动创建一个 名为 `nginx` 的 `IngressClass` 对象：
 
@@ -314,13 +314,13 @@ spec:
 kubectl apply -f my-nginx.yaml
 ```
 
-![image-20231115140324520](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231115140327.png)
+![image-20231115140324520](https://blog.tianch.com.cn/img/20231115140327.png)
 
 在上面的 Ingress 资源对象中使用配置 `ingressClassName: nginx` 指定让安装的 `ingress-nginx` 这个控制器来处理 Ingress 资源，配置的匹配路径类型为前缀的方式去匹配 `/`，将来自域名 `ngdemo.tianch.com.cn` 的所有请求转发到 `my-nginx` 服务的后端 Endpoints 中去。
 
 上面资源创建成功后，将域名 `ngdemo.tianch.com.cn` 解析到 `ingress-nginx` 所在的**边缘节点**中的任意一个，当然也可以在本地 `/etc/hosts` 中添加对应的映射也可以，然后就可以通过域名进行访问了。
 
-![image-20231115140606238](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231115140609.png)
+![image-20231115140606238](https://blog.tianch.com.cn/img/20231115140609.png)
 
 客户端是如何通过 Ingress 控制器连接到其中一个 Pod 的流程: 客户端首先对 `ngdemo.tianch.com`.cn 执行 DNS 解析，得到 Ingress 控制器所在节点的 IP，然后客户端向 Ingress 控制器发送 HTTP 请求，然后根据 Ingress 对象里面的描述匹配域名，找到对应的 Service 对象，并获取关联的 Endpoints 列表，将客户端的请求转发给其中一个 Pod。
 
@@ -495,7 +495,7 @@ kubectl create secret generic basic-auth --from-file=auth
 kubectl get secret basic-auth -o yaml
 ```
 
-![image-20231115142331751](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231115142333.png)
+![image-20231115142331751](https://blog.tianch.com.cn/img/20231115142333.png)
 
 然后对上面的 my-nginx 应用创建一个具有 Basic Auth 的 Ingress 对象：
 
@@ -524,15 +524,15 @@ spec:
                   number: 80
 ```
 
-![image-20231115142834835](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231115142836.png)
+![image-20231115142834835](https://blog.tianch.com.cn/img/20231115142836.png)
 
-![image-20231115142851687](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231115142853.png)
+![image-20231115142851687](https://blog.tianch.com.cn/img/20231115142853.png)
 
 ```sh
 curl -v http://bauth.tianch.com.cn -H 'Host: bauth.tianch.com.cn'
 ```
 
-![image-20231115143059604](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231115143101.png)
+![image-20231115143059604](https://blog.tianch.com.cn/img/20231115143101.png)
 
 可以看到出现了 401 认证失败错误，然后带上配置的用户名和密码进行认证：
 
@@ -540,7 +540,7 @@ curl -v http://bauth.tianch.com.cn -H 'Host: bauth.tianch.com.cn'
 curl -v http://bauth.tianch.com.cn -H 'Host: bauth.tianch.com.cn' -u 'foo:77589910'
 ```
 
-![image-20231115143227126](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231115143228.png)
+![image-20231115143227126](https://blog.tianch.com.cn/img/20231115143228.png)
 
 可以看到已经认证成功了。除了可以使用自己在本地集群创建的 Auth 信息之外，还可以使用外部的 Basic Auth 认证信息，比如使用 `https://httpbin.org` 的外部 Basic Auth 认证，创建如下所示的 Ingress 资源对象：
 
@@ -580,7 +580,7 @@ kubectl apply -f my-nginx-with-external-auth.yaml
 curl -k http://external-bauth.tianch.com.cn -v -H 'Host: external-bauth.tianch.com.cn'
 ```
 
-![image-20231115162235540](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231115162237.png)
+![image-20231115162235540](https://blog.tianch.com.cn/img/20231115162237.png)
 
 使用正确的用户名和密码测试：
 
@@ -588,7 +588,7 @@ curl -k http://external-bauth.tianch.com.cn -v -H 'Host: external-bauth.tianch.c
 curl -k http://external-bauth.tianch.com.cn -v -H 'Host: external-bauth.tianch.com.cn' -u 'user:passwd'
 ```
 
-![image-20231115162332471](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231115162334.png)
+![image-20231115162332471](https://blog.tianch.com.cn/img/20231115162334.png)
 
 用户名或者密码错误则同样会出现 401 的状态码：
 
@@ -596,13 +596,13 @@ curl -k http://external-bauth.tianch.com.cn -v -H 'Host: external-bauth.tianch.c
 curl -k http://external-bauth.tianch.com.cn -v -H 'Host: external-bauth.tianch.com.cn' -u 'user:passwd111'
 ```
 
-![image-20231115162416144](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231115162417.png)
+![image-20231115162416144](https://blog.tianch.com.cn/img/20231115162417.png)
 
 ```sh
 curl -k http://external-bauth.tianch.com.cn -v -H 'Host: external-bauth.tianch.com.cn' -u 'user111:passwd'
 ```
 
-![image-20231115162448926](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231115162453.png)
+![image-20231115162448926](https://blog.tianch.com.cn/img/20231115162453.png)
 
 除了 Basic Auth 这一种简单的认证方式之外，`ingress-nginx` 还支持一些其他高级的认证，比如可以使用 GitHub OAuth 来认证 Kubernetes 的 Dashboard。
 
@@ -618,7 +618,7 @@ location /app/ {
 
 `proxy_pass` 后面加了 `/remote` 这个路径，此时会将匹配到该规则路径中的 `/app` 用 `/remote` 替换掉，相当于截掉路径中的 `/app`。同样的在 Kubernetes 中使用 `ingress-nginx` 的 `rewrite-target` 注解来实现这个需求，比如现在要通过 `rewrite.tianch.com.cn/gateway/` 来访问到 Nginx 服务，则需要对访问的 URL 路径做一个 Rewrite，在 PATH 中添加一个 gateway 的前缀，关于 Rewrite 的操作在 [ingress-nginx 官方文档](https://kubernetes.github.io/ingress-nginx/examples/rewrite/)中也给出对应的说明:
 
-![ingress nginx rewrite](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231115162824.png)
+![ingress nginx rewrite](https://blog.tianch.com.cn/img/20231115162824.png)
 
 按照要求需要在 `path` 中匹配前缀 `gateway`，然后通过 `rewrite-target` 指定目标，Ingress 对象如下所示：
 
@@ -646,11 +646,11 @@ spec:
 
 更新后，可以预见到直接访问域名肯定是不行了，因为没有匹配 `/` 的 path 路径：
 
-![image-20231115164910681](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231115164910681.png)
+![image-20231115164910681](https://blog.tianch.com.cn/img/image-20231115164910681.png)
 
 带上 `gateway` 的前缀再去访问:
 
-![image-20231115164950861](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231115164956.png)
+![image-20231115164950861](https://blog.tianch.com.cn/img/20231115164956.png)
 
 可以看到已经可以访问到了，这是因为在 `path` 中通过正则表达式 `/gateway(/|$)(.*)` 将匹配的路径设置成了 `rewrite-target` 的目标路径了，所以访问 `rewite.tianch.com.cn/gateway/` 的时候实际上相当于访问的就是后端服务的 `/` 路径。
 
@@ -723,8 +723,8 @@ spec:
 
 总的来说可以把以上的四个 annotation 规则划分为以下两类：
 
-- 基于权重的 Canary 规则 ![基于权重的 Canary 规则](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231115170426.png)
-- 基于用户请求的 Canary 规则 ![基于用户请求的 Canary 规则](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231115170428.png)
+- 基于权重的 Canary 规则 ![基于权重的 Canary 规则](https://blog.tianch.com.cn/img/20231115170426.png)
+- 基于用户请求的 Canary 规则 ![基于用户请求的 Canary 规则](https://blog.tianch.com.cn/img/20231115170428.png)
 
 下面我们通过一个示例应用来对灰度发布功能进行说明。
 
@@ -816,11 +816,11 @@ kubectl apply -f production-ingress.yaml
 kubectl get pods -l app=production
 ```
 
-![image-20231115171707059](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231115171708.png)
+![image-20231115171707059](https://blog.tianch.com.cn/img/20231115171708.png)
 
 应用部署成功后，将域名 `echo.tianch.com.cn` 解析到 master 节点（ingress-nginx 所在的节点）的 IP 即可正常访问应用：
 
-![image-20231115171747367](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231115171749.png)
+![image-20231115171747367](https://blog.tianch.com.cn/img/20231115171749.png)
 
 #### 第二步. 创建 Canary 版本
 
@@ -886,7 +886,7 @@ spec:
 kubectl apply -f canary.yaml
 ```
 
-![image-20231115172049502](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231115172051.png)
+![image-20231115172049502](https://blog.tianch.com.cn/img/20231115172051.png)
 
 #### 第三步. Annotation 规则配置
 
@@ -919,7 +919,7 @@ spec:
 
 创建上面的资源对象：
 
-![image-20231115172714676](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231115172716.png)
+![image-20231115172714676](https://blog.tianch.com.cn/img/20231115172716.png)
 
 Canary 版本应用创建成功后，在命令行终端中来不断访问这个应用，观察 Hostname 变化：
 
@@ -927,7 +927,7 @@ Canary 版本应用创建成功后，在命令行终端中来不断访问这个�
 for i in $(seq 1 10); do curl -s echo.tianch.com.cn | grep "Hostname"; done
 ```
 
-![image-20231115173138621](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231115173140.png)
+![image-20231115173138621](https://blog.tianch.com.cn/img/20231115173140.png)
 
 由于给 Canary 版本应用分配了 30% 左右权重的流量，所以上面每访问 10 次有 3-4 次访问到了 Canary 版本的应用，是符合预期的。
 
@@ -967,7 +967,7 @@ spec:
 for i in $(seq 1 10); do curl -s -H "canary: never" echo.tianch.com.cn | grep "Hostname"; done
 ```
 
-![image-20231115173726435](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231115173728.png)
+![image-20231115173726435](https://blog.tianch.com.cn/img/20231115173728.png)
 
 在请求的时候设置了 `canary: never` 这个 Header 值，所以请求没有发送到 Canary 应用中去。如果设置为其他值:
 
@@ -975,7 +975,7 @@ for i in $(seq 1 10); do curl -s -H "canary: never" echo.tianch.com.cn | grep "H
 for i in $(seq 1 10); do curl -s -H "canary: other-value" echo.tianch.com.cn | grep "Hostname"; done
 ```
 
-![image-20231115173918588](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231115173920.png)
+![image-20231115173918588](https://blog.tianch.com.cn/img/20231115173920.png)
 
 由于请求设置的 Header 值为 `canary: other-value`，所以 ingress-nginx 会通过优先级将请求与其他 Canary 规则进行优先级的比较，也就会进入 `canary-weight: "30"` 这个规则去。
 
@@ -985,7 +985,7 @@ for i in $(seq 1 10); do curl -s -H "canary: other-value" echo.tianch.com.cn | g
 for i in $(seq 1 10); do curl -s -H "canary: always" echo.tianch.com.cn | grep "Hostname"; done
 ```
 
-![image-20231115174132721](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231115174135.png)
+![image-20231115174132721](https://blog.tianch.com.cn/img/20231115174135.png)
 
 在请求的时候设置了 `canary: always` 这个 Header 值，所以请求都发送到了 Canary 应用中去。
 
@@ -1022,7 +1022,7 @@ spec:
 for i in $(seq 1 10); do curl -s -H "canary: user-value" echo.tianch.com.cn | grep "Hostname"; done
 ```
 
-![image-20231115175126035](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231115175128.png)
+![image-20231115175126035](https://blog.tianch.com.cn/img/20231115175128.png)
 
 **3. 基于 Cookie**：与基于 Request Header 的 annotation 用法规则类似。例如在 A/B 测试场景下，需要让地域为北京的用户访问 Canary 版本。那么当 cookie 的 annotation 设置为 `nginx.ingress.kubernetes.io/canary-by-cookie: "users_from_Beijing"`，此时后台可对登录的用户请求进行检查，如果该用户访问源来自北京则设置 cookie `users_from_Beijing` 的值为 `always`，这样就可以确保北京的用户仅访问 Canary 版本。
 
@@ -1058,7 +1058,7 @@ spec:
 for i in $(seq 1 10); do curl -s -b "users_from_Beijing=always" echo.tianch.com.cn | grep "Hostname"; done
 ```
 
-![image-20231115175756547](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231115175758.png)
+![image-20231115175756547](https://blog.tianch.com.cn/img/20231115175758.png)
 
 可以看到应用都被路由到了 Canary 版本的应用中去了，如果将这个 Cookie 值设置为 never，则不会路由到 Canary 应用中。
 
@@ -1166,7 +1166,7 @@ kubectl get svc
 kubectl get pods -l app=mongo
 ```
 
-![image-20231115181313479](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231115181315.png)
+![image-20231115181313479](https://blog.tianch.com.cn/img/20231115181315.png)
 
 要通过 `ingress-nginx` 来暴露上面的 MongoDB 服务，需要创建一个如下所示的 ConfigMap：
 
@@ -1201,20 +1201,20 @@ helm upgrade --install ingress-nginx . -f values.yaml --namespace ingress-nginx
 kubectl get configmap -n ingress-nginx ingress-nginx-tcp -o yaml
 ```
 
-![image-20231115182038742](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231115182042.png)
+![image-20231115182038742](https://blog.tianch.com.cn/img/20231115182042.png)
 
 ```sh
 kubectl get pods -n ingress-nginx
 kubectl get pod ingress-nginx-controller-fzlpl -n ingress-nginx -o yaml
 ```
 
-![image-20231115182748257](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231115182749.png)
+![image-20231115182748257](https://blog.tianch.com.cn/img/20231115182749.png)
 
 可以看到在 `ingress-nginx` 的启动参数中也添加上了 `--tcp-services-configmap=$(POD_NAMESPACE)/ingress-nginx-tcp` 这样的配置
 
 现在就可以通过 `ingress-nginx` 暴露的 27017 端口去访问 Mongo 服务了：
 
-![image-20231115183043201](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231115183045.png)
+![image-20231115183043201](https://blog.tianch.com.cn/img/20231115183045.png)
 
 同样也可以去查看最终生成的 `nginx.conf` 配置文件：
 
@@ -1222,7 +1222,7 @@ kubectl get pod ingress-nginx-controller-fzlpl -n ingress-nginx -o yaml
 kubectl exec -it ingress-nginx-controller-fzlpl -n ingress-nginx -- cat /etc/nginx/nginx.conf
 ```
 
-![image-20231115183240391](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231115183242.png)
+![image-20231115183240391](https://blog.tianch.com.cn/img/20231115183242.png)
 
 TCP 相关的配置位于 `stream` 配置块下面。从 Nginx 1.9.13 版本开始提供 UDP 负载均衡，同样也可以在 `ingress-nginx` 中来代理 UDP 服务，比如可以去暴露 `kube-dns` 的服务，同样需要创建一个如下所示的 ConfigMap：
 
@@ -1269,7 +1269,7 @@ containers:
 kubectl get configmap -n ingress-nginx
 ```
 
-![image-20231129183030181](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231129183033.png)
+![image-20231129183030181](https://blog.tianch.com.cn/img/20231129183033.png)
 
 比如可以添加如下所示的一些常用配置：
 
@@ -1307,7 +1307,7 @@ kind: ConfigMap
 kubectl exec -it ingress-nginx-controller-fzlpl -n ingress-nginx -- cat /etc/nginx/nginx.conf |grep large_client_header_buffers
 ```
 
-![image-20231129183504115](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231129183507.png)
+![image-20231129183504115](https://blog.tianch.com.cn/img/20231129183507.png)
 
 由于这里是 Helm Chart 安装的，为了保证重新部署后配置还在，同样需要通过 Values 进行全局配置：
 

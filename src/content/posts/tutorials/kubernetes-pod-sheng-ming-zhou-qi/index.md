@@ -8,7 +8,7 @@ draft: false
 lang: zh_CN
 ---
 
-![pod loap](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/1662384295453.jpg)
+![pod loap](https://blog.tianch.com.cn/img/1662384295453.jpg)
 
 上图展示了一个 Pod 的完整生命周期过程，其中包含 `Init Container`、`Pod Hook`、`健康检查` 三个主要部分，接下来分别介绍影响 Pod 生命周期的部分：
 
@@ -72,7 +72,7 @@ Pod 有一个 PodStatus 对象，其中包含一个 [PodConditions](https://kube
 kubectl explain pod.status.phase
 ```
 
-![image-20231020110315279](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231020110315279.png)
+![image-20231020110315279](https://blog.tianch.com.cn/img/image-20231020110315279.png)
 
 ## 重启策略
 
@@ -243,7 +243,7 @@ Events:
 kubectl get pods -n default -o wide
 ```
 
-![image-20231020144101231](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231020144101231.png)
+![image-20231020144101231](https://blog.tianch.com.cn/img/image-20231020144101231.png)
 
 ## Pod Hook
 
@@ -297,7 +297,7 @@ kubectl apply -f pod-poststart.yaml
 kubectl exec -it hook-demo1 -- cat /usr/share/message
 ```
 
-![image-20231020145249253](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231020145249253.png)
+![image-20231020145249253](https://blog.tianch.com.cn/img/image-20231020145249253.png)
 
 当用户请求删除含有 Pod 的资源对象时（如 Deployment 等），K8S 为了让应用程序优雅关闭（即让应用程序完成正在处理的请求后，再关闭软件），K8S 提供两种信息通知：
 
@@ -374,7 +374,7 @@ kubectl apply -f pod-prestop.yaml
 kubectl describe pod hook-demo3 -n default
 ```
 
-![image-20231030160508981](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231030160508981.png)
+![image-20231030160508981](https://blog.tianch.com.cn/img/image-20231030160508981.png)
 
 删除 hook-demo3 这个 Pod，按照设定在容器退出之前会执行 `preStop` 里面的命令，也就是会往 message 文件中输出一些信息：
 
@@ -382,7 +382,7 @@ kubectl describe pod hook-demo3 -n default
 kubectl delete pod hook-demo3 -n default
 ```
 
-![image-20231030161150163](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231030161150163.png)
+![image-20231030161150163](https://blog.tianch.com.cn/img/image-20231030161150163.png)
 
 另外 Hook 调用的日志没有暴露给 Pod，所以只能通过 describe 命令来获取，如果有错误将可以看到 `FailedPostStartHook` 或 `FailedPreStopHook` 这样的 event。
 
@@ -448,11 +448,11 @@ kubectl apply -f liveness-exec.yaml
 kubectl describe pod liveness-exec -n default
 ```
 
-![image-20231030163801253](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231030163801253.png)
+![image-20231030163801253](https://blog.tianch.com.cn/img/image-20231030163801253.png)
 
-![image-20231030163824473](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231030163824473.png)
+![image-20231030163824473](https://blog.tianch.com.cn/img/image-20231030163824473.png)
 
-![image-20231030164005984](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231030164005984.png)
+![image-20231030164005984](https://blog.tianch.com.cn/img/image-20231030164005984.png)
 
 还可以使用`HTTP GET`请求来配置我们的存活探针，我们这里使用一个 liveness 镜像来验证演示下：
 
@@ -509,7 +509,7 @@ http.HandleFunc("/healthz", func(w http.ResponseWriter, r *http.Request) {
 kubectl apply -f liveness-http.yaml
 ```
 
-![image-20231030165523842](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231030165523842.png)
+![image-20231030165523842](https://blog.tianch.com.cn/img/image-20231030165523842.png)
 
 除了上面的 `exec` 和 `httpGet` 两种检测方式之外，还可以通过 `tcpSocket` 方式来检测端口是否正常。
 

@@ -98,7 +98,7 @@ spec:
 kubectl apply -f pv.yaml
 ```
 
-![image-20231101172050369](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231101172050369.png)
+![image-20231101172050369](https://blog.tianch.com.cn/img/image-20231101172050369.png)
 
 创建了两个 PV 对象，状态是：`Available`。
 
@@ -144,7 +144,7 @@ spec:
 
 从上面的资源清单中可以看出和前面的 Deployment 基本上也是一致的，也是通过声明的 Pod 模板来创建 Pod 的，另外上面资源清单中和 `volumeMounts` 进行关联的不是 `volumes` 而是一个新的属性：`volumeClaimTemplates`，该属性会自动创建一个 PVC 对象，其实这里就是一个 PVC 的模板，和 Pod 模板类似，PVC 被创建后会自动去关联当前系统中和他合适的 PV 进行绑定。除此之外，还多了一个 `serviceName: "nginx"` 的字段，`serviceName` 就是管理当前 `StatefulSet` 的服务名称，该服务必须在 StatefulSet 之前存在，并且负责该集合的网络标识，Pod 会遵循以下格式获取 DNS/主机名：`pod-specific-string.serviceName.default.svc.cluster.local`，其中 `pod-specific-string` 由 StatefulSet 控制器管理。
 
-![StatefulSet](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/1662426977822.jpg)
+![StatefulSet](https://blog.tianch.com.cn/img/1662426977822.jpg)
 
 `StatefulSet` 的拓扑结构和其他用于部署的资源对象其实比较类似，比较大的区别在于 `StatefulSet` 引入了 PV 和 PVC 对象来持久存储服务产生的状态，这样所有的服务虽然可以被杀掉或者重启，但是其中的数据由于 PV 的原因不会丢失。
 
@@ -175,7 +175,7 @@ kubectl exec web-0 hostname
 kubectl exec web-1 hostname
 ```
 
-![image-20231101174823001](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231101174823001.png)
+![image-20231101174823001](https://blog.tianch.com.cn/img/image-20231101174823001.png)
 
 StatefulSet 中 Pod 副本的创建会按照序列号**升序**处理，副本的更新和删除会按照序列号**降序**处理。
 

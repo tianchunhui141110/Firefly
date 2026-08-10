@@ -98,7 +98,6 @@ lang: zh_CN
      UNIQUE KEY `uk_configinfoaggr_datagrouptenantdatum` (`data_id`,`group_id`,`tenant_id`,`datum_id`)
    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='增加租户字段';
 
-
    /******************************************/
    /*   数据库全名 = nacos_config   */
    /*   表名称 = config_info_beta   */
@@ -201,7 +200,6 @@ lang: zh_CN
      KEY `idx_did` (`data_id`)
    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='多租户改造';
 
-
    /******************************************/
    /*   数据库全名 = nacos_config   */
    /*   表名称 = tenant_capacity   */
@@ -220,7 +218,6 @@ lang: zh_CN
      PRIMARY KEY (`id`),
      UNIQUE KEY `uk_tenant_id` (`tenant_id`)
    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='租户容量信息表';
-
 
    CREATE TABLE `tenant_info` (
      `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'id',
@@ -296,7 +293,6 @@ lang: zh_CN
 
    ### Specify local server's IP:
    # nacos.inetutils.ip-address=
-
 
    #*************** Config Module Related Configurations ***************#
    ### If use MySQL as datasource:
@@ -375,7 +371,6 @@ lang: zh_CN
 
    ### If turn on data loading task:
    # nacos.cmdb.loadDataAtStart=false
-
 
    #*************** Metrics Related Configurations ***************#
    ### Metrics for prometheus
@@ -503,11 +498,11 @@ lang: zh_CN
 
    ```
 
-   ![image-20220120105455342](https://oss.tianch.xyz/img/image-20220120105455342.png)
+   ![image-20220120105455342](https://blog.tianch.com.cn/img/image-20220120105455342.png)
 
-   ![image-20220120105544787](https://oss.tianch.xyz/img/image-20220120105544787.png)
+   ![image-20220120105544787](https://blog.tianch.com.cn/img/image-20220120105544787.png)
 
-   ![image-20220120110258708](https://oss.tianch.xyz/img/image-20220120110258708.png)
+   ![image-20220120110258708](https://blog.tianch.com.cn/img/image-20220120110258708.png)
 
 2. 添加cluster.conf配置
 
@@ -537,45 +532,45 @@ lang: zh_CN
    nacos-v1-2.nacos.demo-project.svc.cluster.local:8848
    ```
 
-   ![image-20220120112046328](https://oss.tianch.xyz/img/image-20220120112046328.png)
+   ![image-20220120112046328](https://blog.tianch.com.cn/img/image-20220120112046328.png)
 
 3. 创建服务
 
-   ![image-20220120112327902](https://oss.tianch.xyz/img/image-20220120112327902.png)
+   ![image-20220120112327902](https://blog.tianch.com.cn/img/image-20220120112327902.png)
 
-   ![image-20220120132547817](https://oss.tianch.xyz/img/image-20220120132547817.png)
+   ![image-20220120132547817](https://blog.tianch.com.cn/img/image-20220120132547817.png)
 
-   ![image-20220120132708373](https://oss.tianch.xyz/img/image-20220120132708373.png)
+   ![image-20220120132708373](https://blog.tianch.com.cn/img/image-20220120132708373.png)
 
-   ![](https://oss.tianch.xyz/img/image-20220120132745618.png)
+   ![](https://blog.tianch.com.cn/img/image-20220120132745618.png)
 
-   ![image-20220120133027957](https://oss.tianch.xyz/img/image-20220120133027957.png)
+   ![image-20220120133027957](https://blog.tianch.com.cn/img/image-20220120133027957.png)
 
-   ![image-20220120133558415](https://oss.tianch.xyz/img/image-20220120133558415.png)
+   ![image-20220120133558415](https://blog.tianch.com.cn/img/image-20220120133558415.png)
 
-   ![image-20220120133622790](https://oss.tianch.xyz/img/image-20220120133622790.png)
+   ![image-20220120133622790](https://blog.tianch.com.cn/img/image-20220120133622790.png)
 
-   ![image-20220120133656474](https://oss.tianch.xyz/img/image-20220120133656474.png)
+   ![image-20220120133656474](https://blog.tianch.com.cn/img/image-20220120133656474.png)
 
    启动效果
 
-   ![image-20220120134635330](https://oss.tianch.xyz/img/image-20220120134635330.png)
+   ![image-20220120134635330](https://blog.tianch.com.cn/img/image-20220120134635330.png)
 
 4. 暴露外网访问
 
-   ![image-20220120134739184](https://oss.tianch.xyz/img/image-20220120134739184.png)
+   ![image-20220120134739184](https://blog.tianch.com.cn/img/image-20220120134739184.png)
 
-   ![image-20220120134805937](https://oss.tianch.xyz/img/image-20220120134805937.png)
+   ![image-20220120134805937](https://blog.tianch.com.cn/img/image-20220120134805937.png)
 
-   ![image-20220120134845709](https://oss.tianch.xyz/img/image-20220120134845709.png)
+   ![image-20220120134845709](https://blog.tianch.com.cn/img/image-20220120134845709.png)
 
-   ![image-20220120134935001](https://oss.tianch.xyz/img/image-20220120134935001.png)
+   ![image-20220120134935001](https://blog.tianch.com.cn/img/image-20220120134935001.png)
 
-   ![image-20220120135013034](https://oss.tianch.xyz/img/image-20220120135013034.png)
+   ![image-20220120135013034](https://blog.tianch.com.cn/img/image-20220120135013034.png)
 
-   ![image-20220120135039296](https://oss.tianch.xyz/img/image-20220120135039296.png)
+   ![image-20220120135039296](https://blog.tianch.com.cn/img/image-20220120135039296.png)
 
    访问效果
 
-   ![image-20220120140304585](https://oss.tianch.xyz/img/image-20220120140304585.png)
+   ![image-20220120140304585](https://blog.tianch.com.cn/img/image-20220120140304585.png)
 

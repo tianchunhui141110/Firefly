@@ -76,7 +76,6 @@ lang: zh_CN
   import org.apache.dubbo.common.extension.Activate;
   import org.apache.dubbo.rpc.*;
 
-
   @Activate(group = CommonConstants.CONSUMER)
   public class ParamConsumerFilter implements Filter {
 
@@ -97,7 +96,6 @@ lang: zh_CN
   import org.apache.dubbo.common.constants.CommonConstants;
   import org.apache.dubbo.common.extension.Activate;
   import org.apache.dubbo.rpc.*;
-
 
   @Activate(group = CommonConstants.PROVIDER)
   public class ParamProviderFilter implements Filter {

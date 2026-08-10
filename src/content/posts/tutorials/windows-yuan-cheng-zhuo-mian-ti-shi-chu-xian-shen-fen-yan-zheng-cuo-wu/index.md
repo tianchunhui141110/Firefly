@@ -16,5 +16,5 @@ lang: zh_CN
 
 **选择启用并选择易受攻击。**
 
-![image](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image_thumb-28.png)
+![image](https://blog.tianch.com.cn/img/image_thumb-28.png)
 

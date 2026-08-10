@@ -10,7 +10,7 @@ lang: zh_CN
 
 [Kubernetes（简称 K8S）](https://kubernetes.io/) 的出现是容器化技术发展的必然结果，**容器化**是应用程序级别的虚拟化，运行单个内核上有多个独立的用户空间实例，这些实例就是容器；**容器**提供了将应用程序的代码、运行时、系统工具、系统库和配置打包到一个实例中的标准方法，而且容器是共享一个内核的；由于容器技术的兴起，导致大量的容器应用出现，所以就出现了一些用来支持应用程序容器化部署和组织的**容器编排**技术，一些流行的开源容器编排工具有 Docker Swarm、Kubernetes 等，但是在发展过程中 Kubernetes 现在已经成为了容器编排领域事实上的一个标准了。
 
-![kubernetes](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20200510123237.png)
+![kubernetes](https://blog.tianch.com.cn/img/20200510123237.png)
 
 [Kubernetes](https://kubernetes.io/) 是 Google 团队发起的一个开源项目，它的目标是管理跨多个主机的容器，用于自动部署、扩展和管理容器化的应用程序，主要实现语言为 Go 语言，他的理论基础来源与 Google 内部的 Borg 项目，所以 Kubernetes 项目的理论基础就比其他开源项目要“先进”很多，因为 Borg 系统一直依赖就被称为 Google 公司内部最强大的“私密武器”。
 
@@ -18,7 +18,7 @@ lang: zh_CN
 
 Kubernetes 项目依托着 Borg 项目的理论优势，确定了一个如下图所示的全局架构图：
 
-![kubernetes arch](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20200510122933.png)
+![kubernetes arch](https://blog.tianch.com.cn/img/20200510122933.png)
 
 从上面我们可以看出 Kubernetes 由 Master 和 Node 两种节点组成，这两种角色分别对应着控制节点和工作节点（可以理解为老板和员工）。
 
@@ -30,7 +30,7 @@ kubelet 的另外一个重要功能就是调用网络插件（`CNI`）和存储�
 
 可能下面的架构图看上去更清晰一些：
 
-![kubernetes high level component archtecture](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20200510122959.png)
+![kubernetes high level component archtecture](https://blog.tianch.com.cn/img/20200510122959.png)
 
 # 组件
 
@@ -43,7 +43,7 @@ API Server 提供了资源对象的唯一操作入口，其它所有组件都必
 
 ## kube-controller-manager
 
-![kube-controller-manager](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20200510123033.png)
+![kube-controller-manager](https://blog.tianch.com.cn/img/20200510123033.png)
 
 Controller Manager 用于实现 Kubernetes 集群故障检测和恢复的自动化工作。主要负责执行各种控制器：
 
@@ -102,7 +102,7 @@ Kubectl 是 Kubernetes 的集群管理命令行客户端工具集。通过 Kubec
 
 Pod 是一组紧密关联的`容器集合`，它们共享 PID、IPC、Network 和 UTS namespace，是 Kubernetes 调度的`基本单位`。Pod 的设计理念是支持多个容器在一个 Pod 中共享网络和文件系统，可以通过进程间通信和文件共享这种简单高效的方式组合完成服务。我们知道容器本质上就是进程，那么 Pod 实际上就是进程组了，只是这一组进程是作为一个整体来进行调度的。
 
-![kubernetes pod](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20200510123112.png)
+![kubernetes pod](https://blog.tianch.com.cn/img/20200510123112.png)
 
 在 Kubernetes 中，所有资源对象都使用资源清单（yaml 或 json）来定义，比如我们可以定义一个简单的 nginx 服务，它包含一个镜像为 nginx 的容器：(nginx-pod.yaml)
 
@@ -129,7 +129,7 @@ kubectl apply -f nginx-pod.yaml
 
 Pod 在 Kubernetes 集群中被创建的基本流程如下所示：
 
-![k8s pod process](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20200510123137.png)
+![k8s pod process](https://blog.tianch.com.cn/img/20200510123137.png)
 
 - 用户通过 REST API 创建一个 Pod
 - apiserver 将其写入 etcd
@@ -172,5 +172,5 @@ Service 是应用服务的抽象，通过 Labels 为应用提供`负载均衡和
 
 每个 Service 都会自动分配一个 cluster IP（仅在集群内部可访问的虚拟地址）和 DNS 名，其他容器可以通过该地址或 DNS 来访问服务，而不需要了解后端容器的运行。
 
-![k8s service](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20200510123201.png)
+![k8s service](https://blog.tianch.com.cn/img/20200510123201.png)
 

@@ -119,7 +119,6 @@ select `Id`, `Key`, `Value`, `Comment` from `ApolloConfigDB`.`ServerConfig` limi
 
 ```shell
 
-
 docker run -p 8080:8080 -e DS_URL="jdbc:mysql://192.168.123.5:3306/ApolloConfigDB?characterEncoding=utf8" -e DS_USERNAME=root -e DS_PASSWORD=root -d -v /tmp/logs:/opt/logs --name apollo-configservice apollo-configservice
 ```
 

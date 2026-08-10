@@ -48,7 +48,6 @@ sysctl -p
   fi
   }
 
-
   selinux()
   {
   #being selinux config
@@ -94,7 +93,6 @@ sysctl -p
   hwclock --systohc
 
   }
-
 
   ssh_port()
   {
@@ -284,7 +282,6 @@ sysctl -p
   systemctl stop firewalld.service > /dev/null
   }
 
-
   unnecessary_service()
   {
   #begin turn off unnecessary services
@@ -369,7 +366,6 @@ sysctl -p
   local8.debug    /var/log/sudo.log
   EOF
   }
-
 
   echo -e "\e[32m----------------Begin  system initialization ---------------\e[0m"
   echo

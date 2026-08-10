@@ -61,7 +61,7 @@ kubectl describe secret mysecret -n default
 kubectl get secret mysecret -n default
 ```
 
-![image-20231106153029910](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231106153035.png)
+![image-20231106153029910](https://blog.tianch.com.cn/img/20231106153035.png)
 
 对于某些场景，可能希望使用 `stringData` 字段，这字段可以将一个非 base64 编码的字符串直接放入 Secret 中， 当创建或更新该 Secret 时，此字段将被编码。
 
@@ -88,7 +88,7 @@ stringData:
     password: <Password>
 ```
 
-![image-20231106153726907](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231106153728.png)
+![image-20231106153726907](https://blog.tianch.com.cn/img/20231106153728.png)
 
 创建好 `Secret`对象后，有两种方式来使用它：
 
@@ -129,7 +129,7 @@ spec:
           cpu: "500m"
 ```
 
-![image-20231106161019493](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231106161021.png)
+![image-20231106161019493](https://blog.tianch.com.cn/img/20231106161021.png)
 
 ### Volume挂载
 
@@ -161,7 +161,7 @@ spec:
           cpu: "500m"
 ```
 
-![image-20231106161817360](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231106161819.png)
+![image-20231106161817360](https://blog.tianch.com.cn/img/20231106161819.png)
 
 可以看到 Secret 把两个 key 挂载成了两个对应的文件。当然如果想要挂载到指定的文件上面，可以在 `secretName` 下面添加 `items` 指定 `key` 和 `path`。
 
@@ -179,7 +179,7 @@ kubectl create secret docker-registry myregistry --docker-server=DOCKER_SERVER -
 kubectl create secret generic myregistry --from-file=.dockerconfigjson=/root/.docker/config.json --type=kubernetes.io/dockerconfigjson
 ```
 
-![image-20231106163012987](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231106163015.png)
+![image-20231106163012987](https://blog.tianch.com.cn/img/20231106163015.png)
 
 注意看上面的 TYPE 类型，myregistry 对应的是 `kubernetes.io/dockerconfigjson`，同样的可以使用 describe 命令来查看详细信息：
 
@@ -187,7 +187,7 @@ kubectl create secret generic myregistry --from-file=.dockerconfigjson=/root/.do
 kubectl describe secret myregistry -n default
 ```
 
-![image-20231106163540411](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231106163542.png)
+![image-20231106163540411](https://blog.tianch.com.cn/img/20231106163542.png)
 
 `data.dockerconfigjson` 下面的数据是 `base64` 编码后的结果。
 
@@ -311,7 +311,7 @@ kubectl get pods -n default
 kubectl describe pod secret-pod3 -n default
 ```
 
-![image-20231106165821857](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231106165823.png)
+![image-20231106165821857](https://blog.tianch.com.cn/img/20231106165823.png)
 
 当创建 Pod 的时候，如果没有指定 ServiceAccount，Pod 则会使用命名空间中名为 default 的 ServiceAccount，上面我们可以看到 `spec.serviceAccountName` 字段已经被自动设置了。
 

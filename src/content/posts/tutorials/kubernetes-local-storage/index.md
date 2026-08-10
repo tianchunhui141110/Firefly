@@ -61,7 +61,7 @@ spec:
 
   下图是一些常用的 Volume 插件支持的访问模式：
 
-  ![pv access modes](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231211192744.jpeg)
+  ![pv access modes](https://blog.tianch.com.cn/img/20231211192744.jpeg)
 
   创建上面的资源对象：
 
@@ -73,7 +73,7 @@ spec:
   kubectl get pv pv-hostpath
   ```
 
-  ![image-20231211192728076](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231211192730.png)
+  ![image-20231211192728076](https://blog.tianch.com.cn/img/20231211192730.png)
 
   其中有一项 `RECLAIM POLICY` 的配置，同样可以通过 PV 的 `persistentVolumeReclaimPolicy`（回收策略）属性来进行配置，目前 PV 支持的策略有三种：
   - Retain（保留）：保留数据，需要管理员手工清理数据
@@ -128,7 +128,7 @@ kubectl get pv -l type=local
 kubectl get pvc pvc-hostpath
 ```
 
-![image-20231211193748514](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231211193750.png)
+![image-20231211193748514](https://blog.tianch.com.cn/img/20231211193750.png)
 
 输出结果表明该 PVC 绑定了到了上面创建的 `pv-hostpath` 这个 PV 上面了，这里虽然声明的 3G 的容量，但是由于 PV 里面是 10G，所以显然也是满足要求的。
 
@@ -185,7 +185,7 @@ apt-get install curl -y
 curl localhost
 ```
 
-![image-20231212160418329](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231212160422.png)
+![image-20231212160418329](https://blog.tianch.com.cn/img/20231212160422.png)
 
 可以看到输出结果是前面写到 hostPath 卷种的 index.html 文件中的内容，同样可以把 Pod 删除，然后再次重建再测试一次，可以发现内容还是在 hostPath 中设置的内容。
 
@@ -240,7 +240,7 @@ kubectl apply -f pv-local.yaml
 kubectl get pv
 ```
 
-![image-20231212164153534](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231212164155.png)
+![image-20231212164153534](https://blog.tianch.com.cn/img/20231212164155.png)
 
 可以看到这个 PV 创建后，进入了 `Available`（可用）状态。这个时候如果按照前面提到的，要使用这个 `Local PV` 的话就需要去创建一个 PVC 和他进行绑定：_pvc-local.yaml_
 
@@ -268,7 +268,7 @@ kubectl apply -f pvc-local.yaml
 kubectl get pvc
 ```
 
-![image-20231212165917447](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231212165919.png)
+![image-20231212165917447](https://blog.tianch.com.cn/img/20231212165919.png)
 
 可以看到现在 PVC 和 PV 已经处于 `Bound` 绑定状态了。但实际上这是不符合需求的，比如现在 Pod 声明使用这个 pvc-local，并且也明确规定这个 Pod 只能运行在 node2 这个节点上，如果按照上面这里的操作，这个 pvc-local 是不是就和这里的 pv-local 这个 `Local PV` 绑定在一起了，但是这个 PV 的存储卷又在 node1 这个节点上，显然就会出现冲突了，那么这个 Pod 的调度肯定就会失败了，所以在使用 `Local PV` 的时候，必须想办法延迟这个`“绑定”`操作。
 
@@ -303,7 +303,7 @@ kubectl delete -f pvc-local.yaml
 kubectl create -f pvc-local.yaml
 ```
 
-![image-20231212170626893](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231212170628.png)
+![image-20231212170626893](https://blog.tianch.com.cn/img/20231212170628.png)
 
 可以发现这个时候，集群中即使已经存在了一个可以与 PVC 匹配的 PV 了，但这个 PVC 依然处于 `Pending` 状态，也就是等待绑定的状态，这就是因为上面我们配置的是延迟绑定，需要在真正的 Pod 使用的时候才会来做绑定。
 
@@ -363,7 +363,7 @@ cat /data/k8s/localpv/test.txt
 Hello from Kubernetes local pv storage
 ```
 
-![image-20231212180334809](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231212180336.png)
+![image-20231212180334809](https://blog.tianch.com.cn/img/20231212180336.png)
 
 如果重新创建这个 Pod 的话，就会发现，之前创建的测试文件，依然被保存在这个持久化 Volume 当中：
 

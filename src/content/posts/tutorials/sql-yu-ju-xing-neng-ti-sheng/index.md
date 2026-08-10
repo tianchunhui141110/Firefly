@@ -608,7 +608,6 @@ lang: zh_CN
 
        public static void writeInsert() throws Exception {
 
-
                FileOutputStream fos = new FileOutputStream(new File("E:/user_insert_10w.sql"));
                OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");
                BufferedWriter bw = new BufferedWriter(osw);
@@ -623,7 +622,6 @@ lang: zh_CN
                osw.close();
                fos.close();
            }
-
 
            public static void writeLoad() throws Exception {
                FileOutputStream fos = new FileOutputStream(new File("E:/user_load_1000w_disorder.sql"));
@@ -752,7 +750,6 @@ lang: zh_CN
     primary key(id)
     )ENGINE=myisam DEFAULT CHARSET=utf8;
 
-
     create table country_innodb(
     country_id int NOT NULL AUTO_INCREMENT,
     country_name varchar(100) NOT NULL,
@@ -769,7 +766,6 @@ lang: zh_CN
     country_innodb(country_id) ON DELETE RESTRICT ON UPDATE CASCADE
     )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
     insert into country_innodb values(null,'China'),(null,'America'),(null,'Japan');
     insert into city_innodb values(null,'Xian',1),(null,'NewYork',2),(null,'BeiJing',1);
 
@@ -778,7 +774,6 @@ lang: zh_CN
     country_name varchar(100) NOT NULL,
     primary key(country_id)
     )ENGINE=myisam DEFAULT CHARSET=utf8;
-
 
     create table city_myisam(
     city_id int NOT NULL AUTO_INCREMENT,
@@ -789,7 +784,6 @@ lang: zh_CN
     CONSTRAINT `fk_city_country` FOREIGN KEY(country_id) REFERENCES
     country_myisam(country_id) ON DELETE RESTRICT ON UPDATE CASCADE
     )ENGINE=myisam DEFAULT CHARSET=utf8;
-
 
     insert into country_myisam values(null,'China'),(null,'America'),(null,'Japan');
     insert into city_myisam values(null,'Xian',1),(null,'NewYork',2),(null,'BeiJing',1);

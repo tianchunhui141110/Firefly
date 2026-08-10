@@ -19,7 +19,7 @@ yum list installed | grep docker
 - 
 如果已经有docker，并且想重新安装的执行下面的操作 否则忽略
 
-![image.png](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20200212150336772.png)
+![image.png](https://blog.tianch.com.cn/img/image-20200212150336772.png)
 
 yum remove docker-ce.x86_64 docker-ce-cli.x86_64 -y 
 #注意 删除的是你查出来的包 不要全部照抄
@@ -53,7 +53,7 @@ yum makecache fast
 yum list docker-ce --showduplicates|sort -r
 `
 
-![image.png](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20200313174615611.png)
+![image.png](https://blog.tianch.com.cn/img/image-20200313174615611.png)
 
 - 
 安装指定版本
@@ -82,4 +82,4 @@ systemctl enable docker
 docker version
 `
 
-![image.png](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20200313175418462.png)
+![image.png](https://blog.tianch.com.cn/img/image-20200313175418462.png)

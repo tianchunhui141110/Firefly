@@ -46,7 +46,7 @@ OpenKruise 提供了以下核心能力：
 
 下图是 OpenKruise 的整体架构：
 
-![架构](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20220224101357.png)
+![架构](https://blog.tianch.com.cn/img/20220224101357.png)
 
 ### API
 
@@ -58,7 +58,7 @@ OpenKruise 提供了以下核心能力：
   kubectl get crd | grep kruise.io
   ```
 
-  ![image-20231103121557412](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231103121557412.png)
+  ![image-20231103121557412](https://blog.tianch.com.cn/img/image-20231103121557412.png)
 
   其中 `Kruise-manager` 是一个运行控制器和 webhook 的中心组件，它通过 Deployment 部署在 `kruise-system` 命名空间中。 从逻辑上来看，如 `cloneset-controller`、`sidecarset-controller` 这些的控制器都是独立运行的，不过为了减少复杂度，它们都被打包在一个独立的二进制文件、并运行在 `kruise-controller-manager-xxx` 这个 Pod 中。除了控制器之外，`kruise-controller-manager-xxx` 中还包含了针对 Kruise CRD 以及 Pod 资源的 admission webhook。`Kruise-manager` 会创建一些 webhook configurations 来配置哪些资源需要感知处理、以及提供一个 Service 来给 kube-apiserver 调用。
 
@@ -81,7 +81,7 @@ OpenKruise 提供了以下核心能力：
   helm install kruise openkruise/kruise --version 1.5.0
   ```
 
-  ![image-20231103112150632](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231103112150632.png)
+  ![image-20231103112150632](https://blog.tianch.com.cn/img/image-20231103112150632.png)
 
   该 charts 在模板中默认定义了命名空间为 `kruise-system`，所以在安装的时候可以不用指定，如果你的环境访问 DockerHub 官方镜像较慢，则可以使用下面的命令将镜像替换成阿里云的镜像：
 
@@ -95,7 +95,7 @@ OpenKruise 提供了以下核心能力：
   kubectl get pod -n kruise-system
   ```
 
-  ![image-20231103112229567](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231103112229567.png)
+  ![image-20231103112229567](https://blog.tianch.com.cn/img/image-20231103112229567.png)
 
 ## CloneSet
 
@@ -130,7 +130,7 @@ spec:
 kubectl apply -f cloneset-demo.yaml
 ```
 
-![image-20231103122758723](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231103122758723.png)
+![image-20231103122758723](https://blog.tianch.com.cn/img/image-20231103122758723.png)
 
 ```sh
 kubectl describe cloneset cs-demo
@@ -254,7 +254,7 @@ Events:
 kubectl get pods -l app=cs
 ```
 
-![image-20231103122915573](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231103122915573.png)
+![image-20231103122915573](https://blog.tianch.com.cn/img/image-20231103122915573.png)
 
 CloneSet 虽然在使用上和 Deployment 比较类似，但还是有非常多比 Deployment 更高级的功能:
 
@@ -279,11 +279,11 @@ spec:
 
 上面配置的 `scaleStrategy.maxUnavailable` 为 1，结合 `minReadySeconds` 参数，表示在扩容时，只有当上一个扩容出的 Pod 已经 Ready 超过一分钟后，CloneSet 才会执行创建下一个 Pod，比如这里我们扩容成 5 个副本，更新上面对象后查看 CloneSet 的事件：
 
-![image-20231103123852328](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231103123852328.png)
+![image-20231103123852328](https://blog.tianch.com.cn/img/image-20231103123852328.png)
 
 可以看到第一时间扩容了一个 Pod，由于配置了 `minReadySeconds: 60`，也就是新扩容的 Pod 创建成功超过 1 分钟后才会扩容另外一个 Pod，上面的 Events 信息也能表现出来，查看 Pod 的 `AGE` 也能看出来扩容的 2 个 Pod 之间间隔了 1 分钟左右：
 
-![image-20231103124011932](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231103124011932.png)
+![image-20231103124011932](https://blog.tianch.com.cn/img/image-20231103124011932.png)
 
 当 CloneSet 被缩容时，还可以指定一些 Pod 来删除，这对于 StatefulSet 或者 Deployment 来说是无法实现的， StatefulSet 是根据序号来删除 Pod，而 Deployment/ReplicaSet 目前只能根据控制器里定义的排序来删除。而 CloneSet 允许用户在缩小 replicas 数量的同时，指定想要删除的 Pod 名字，如下所示：
 
@@ -304,7 +304,7 @@ spec:
 
 更新上面的资源对象后，会将应用缩到 4 个 Pod，如果在 `podsToDelete` 列表中指定了 Pod 名字，则控制器会优先删除这些 Pod，对于已经被删除的 Pod，控制器会自动从 `podsToDelete` 列表中清理掉。比如更新上面的资源对象后 `cs-demo-8zbgl` 这个 Pod 会被移除，其余会保留下来：
 
-![image-20231103124337612](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231103124337612.png)
+![image-20231103124337612](https://blog.tianch.com.cn/img/image-20231103124337612.png)
 
 如果只把 Pod 名字加到 `podsToDelete`，但没有修改 replicas 数量，那么控制器会先把指定的 Pod 删掉，然后再扩一个新的 Pod，另一种直接删除 Pod 的方式是在要删除的 Pod 上打 `apps.kruise.io/specified-delete: true` 标签。
 
@@ -320,7 +320,7 @@ CloneSet 一共提供了 3 种升级方式：
 
 这里有一个重要概念：**原地升级**，这也是 OpenKruise 提供的核心功能之一，当要升级一个 Pod 中镜像的时候，下图展示了**重建升级**和**原地升级**的区别：
 
-![原地升级](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20220227173546.png)
+![原地升级](https://blog.tianch.com.cn/img/20220227173546.png)
 
 **重建升级**时会删除旧 Pod、创建新 Pod：
 
@@ -358,19 +358,19 @@ spec:
 
 升级前:
 
-![image-20231103135702286](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231103135702286.png)
+![image-20231103135702286](https://blog.tianch.com.cn/img/image-20231103135702286.png)
 
-![image-20231103140413421](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231103140413421.png)
+![image-20231103140413421](https://blog.tianch.com.cn/img/image-20231103140413421.png)
 
 升级后:
 
-![image-20231103140440553](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231103140440553.png)
+![image-20231103140440553](https://blog.tianch.com.cn/img/image-20231103140440553.png)
 
 更新后可以发现 Pod 的状态并没有发生什么大的变化，名称、IP 都一样，唯一变化的是镜像 tag
 
 这就是原地升级的效果，原地升级整体工作流程如下图所示：
 
-![原地升级流程](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20220227181343.png)
+![原地升级流程](https://blog.tianch.com.cn/img/20220227181343.png)
 
 如果在安装或升级 Kruise 的时候启用了 `PreDownloadImageForInPlaceUpdate` 这个 feature-gate，CloneSet 控制器会自动在所有旧版本 pod 所在节点上预热你正在灰度发布的新版本镜像，这对于应用发布加速很有帮助。
 
@@ -393,7 +393,7 @@ metadata:
 
 将上面示例中的的 image 更新为 `nginx:latest` 并且设置 `partition=2`，更新后，过一会查看可以发现只升级了 2 个 Pod：
 
-![image-20231103141237212](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231103141237212.png)
+![image-20231103141237212](https://blog.tianch.com.cn/img/image-20231103141237212.png)
 
 ## Advanced StatefulSet
 
@@ -459,7 +459,7 @@ kubectl apply -f asts-demo.yaml
 kubectl get asts -n default
 ```
 
-![image-20231103142720075](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231103142720075.png)
+![image-20231103142720075](https://blog.tianch.com.cn/img/image-20231103142720075.png)
 
 该应用下有五个 Pod，假设应用能容忍 3 个副本不可用，当把 StatefulSet 里的 Pod 升级版本的时候，可以通过以下步骤来做：
 
@@ -474,7 +474,7 @@ kubectl get asts -n default
 kubectl get pods -l app=nginx
 ```
 
-![image-20231103143057229](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231103143057229.png)
+![image-20231103143057229](https://blog.tianch.com.cn/img/image-20231103143057229.png)
 
 ### 原地升级
 
@@ -521,7 +521,7 @@ spec:
 kubectl describe asts web
 ```
 
-![image-20231103144122000](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231103144122000.png)
+![image-20231103144122000](https://blog.tianch.com.cn/img/image-20231103144122000.png)
 
 同样的 Advanced StatefulSet 也支持原地升级自动预热。
 
@@ -632,7 +632,7 @@ kubectl apply -f ads-demo.yaml
 kubectl get daemon -n default
 ```
 
-![image-20231103145953642](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231103145953642.png)
+![image-20231103145953642](https://blog.tianch.com.cn/img/image-20231103145953642.png)
 
 我们这里只有3个 Work 节点，所以一共运行了 3 个 Pod，每个节点上一个，和默认的 DaemonSet 行为基本一致。此外这个策略还支持用户通过配置 node 标签的 selector，来指定灰度升级某些特定类型 node 上的 Pod，比如现在只升级 node1 节点的应用，则可以使用 `selector` 标签来标识：
 
@@ -653,7 +653,7 @@ spec:
 
 更新应用后可以看到只会更新 node1 节点上的 Pod：
 
-![image-20231103150616177](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231103150616177.png)
+![image-20231103150616177](https://blog.tianch.com.cn/img/image-20231103150616177.png)
 
 和前面两个控制器一样，Advanced DaemonSet 也支持分批灰度升级，使用 Partition 进行配置，Partition 的语义是**保留旧版本 Pod 的数量**，默认为 0，如果在发布过程中设置了 partition，则控制器只会将 `(status.DesiredNumberScheduled - partition)` 数量的 Pod 更新到最新版本。
 
@@ -719,7 +719,7 @@ kubectl get bcj bcj-demo
 kubectl get pod -n default -o wide
 ```
 
-![image-20231103152230069](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231103152230069.png)
+![image-20231103152230069](https://blog.tianch.com.cn/img/image-20231103152230069.png)
 
 可以看到创建了一个 BroadcastJob 对象后，同时启动了3个 Pod 任务，每个节点上一个，这和原生的 Job 是不太一样的。创建的 BroadcastJob 一共有以下几种状态：
 
@@ -810,7 +810,7 @@ spec:
 - `jobTemplate`：与原生 CronJob 一样创建 Job 执行任务
 - `broadcastJobTemplate`：周期性创建 BroadcastJob 执行任务
 
-![AdvancedCronJob](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20220303181145.png)
+![AdvancedCronJob](https://blog.tianch.com.cn/img/20220303181145.png)
 
 ```yaml
 apiVersion: apps.kruise.io/v1alpha1
@@ -855,11 +855,11 @@ kubectl get bcj
 kubectl get pod -n default
 ```
 
-![image-20231103161304819](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231103161304819.png)
+![image-20231103161304819](https://blog.tianch.com.cn/img/image-20231103161304819.png)
 
-![image-20231103161316979](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231103161316979.png)
+![image-20231103161316979](https://blog.tianch.com.cn/img/image-20231103161316979.png)
 
-![image-20231103161341673](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231103161341673.png)
+![image-20231103161341673](https://blog.tianch.com.cn/img/image-20231103161341673.png)
 
 ## SidecarSet
 
@@ -901,7 +901,7 @@ kubectl apply -f sidecarset.yaml
 kubectl get sidecarset -n default
 ```
 
-![image-20231103163124798](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231103163124798.png)
+![image-20231103163124798](https://blog.tianch.com.cn/img/image-20231103163124798.png)
 
 需要注意上面我们在定义 SidecarSet 对象的时候里面有一个非常终于的属性就是 label selector，会去匹配具有 `app=nginx` 的 Pod，然后向其中注入下面定义的 `sidecar1` 这个容器，比如定义如下所示的一个 Pod，该 Pod 中包含 `app=nginx` 的标签，这样可以和上面的 SidecarSet 对象匹配：
 
@@ -918,7 +918,7 @@ spec:
       image: nginx
 ```
 
-![image-20231103163323990](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231103163323990.png)
+![image-20231103163323990](https://blog.tianch.com.cn/img/image-20231103163323990.png)
 
 可以看到该 Pod 中有 2 个容器，被自动注入了上面定义的 `sidecar1` 容器：
 
@@ -926,7 +926,7 @@ spec:
 kubectl get pod test-pod -n default -o yaml
 ```
 
-![image-20231103163512263](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231103163512263.png)
+![image-20231103163512263](https://blog.tianch.com.cn/img/image-20231103163512263.png)
 
 现在更新 SidecarSet 中的 sidecar 容器镜像替换成 `busybox:1.35.0`：
 
@@ -934,7 +934,7 @@ kubectl get pod test-pod -n default -o yaml
 kubectl patch sidecarset test-sidecarset --type='json' -p='[{"op": "replace", "path": "/spec/containers/0/image", "value": "busybox:1.35.0"}]'
 ```
 
-![image-20231103163703326](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231103163703326.png)
+![image-20231103163703326](https://blog.tianch.com.cn/img/image-20231103163703326.png)
 
 可以看到 Pod 中的 sidecar 容器镜像被原地升级成 `busybox:1.35.0` 了， 对主容器没有产生任何影响。
 
@@ -1035,7 +1035,7 @@ spec:
 
 创建后现在就具有 4 个 `app=nginx` 标签的 Pod 了，由于都匹配上面创建的 SidecarSet 对象，所以都会被注入一个 `sidecar1` 的容器，镜像为 `busybox`：
 
-![image-20231103165919504](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231103165919504.png)
+![image-20231103165919504](https://blog.tianch.com.cn/img/image-20231103165919504.png)
 
 现在如果想为 `test-pod` 这个应用来执行灰度策略，将 sidecar 容器镜像更新成 `busybox:1.35.0`，则可以在 `updateStrategy` 下面添加 `selector.matchLabels` 属性 `canary.release: "true"`：
 
@@ -1079,9 +1079,9 @@ spec:
       image: nginx
 ```
 
-![image-20231103170718542](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231103170718542.png)
+![image-20231103170718542](https://blog.tianch.com.cn/img/image-20231103170718542.png)
 
-![image-20231103170734043](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231103170734043.png)
+![image-20231103170734043](https://blog.tianch.com.cn/img/image-20231103170734043.png)
 
 ### 热升级
 
@@ -1129,7 +1129,7 @@ Pod 创建时，SidecarSet Webhook 将会注入两个容器：
 - `{sidecarContainer.name}-1`: 如下图所示 envoy-1，这个容器代表正在实际工作的 sidecar 容器，例如：envoy:1.16.0
 - `{sidecarContainer.name}-2`: 如下图所示 envoy-2，这个容器是业务配置的 hotUpgradeEmptyImage 容器，例如：empty:1.0，用于后面的热升级机制
 
-![注入热升级容器](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20220306185421.png)
+![注入热升级容器](https://blog.tianch.com.cn/img/20220306185421.png)
 
 这里以 OpenKruise 的官方示例来进行说明，首先创建上面的 `hotupgrade-sidecarset` 这个 SidecarSet。然后创建一个如下所示的 CloneSet 对象：
 
@@ -1157,13 +1157,13 @@ spec:
 
 创建完成后，CloneSet 管理的 Pod 已经注入 `sidecar-1` 和 `sidecar-2` 两个容器：
 
-![image-20231103175519470](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231103175519470.png)
+![image-20231103175519470](https://blog.tianch.com.cn/img/image-20231103175519470.png)
 
 ```sh
 kubectl describe pods busybox-hqvck
 ```
 
-![image-20231103175541234](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231103175541234.png)
+![image-20231103175541234](https://blog.tianch.com.cn/img/image-20231103175541234.png)
 
 busybox 主容器每 100 毫秒会请求一次 sidecar(version=v1)服务：
 
@@ -1171,7 +1171,7 @@ busybox 主容器每 100 毫秒会请求一次 sidecar(version=v1)服务：
 kubectl logs -f busybox-hqvck -c busybox
 ```
 
-![image-20231103175834893](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231103175834893.png)
+![image-20231103175834893](https://blog.tianch.com.cn/img/image-20231103175834893.png)
 
 升级 sidecar 容器，将镜像修改为 `openkruise/hotupgrade-sample:sidecarv2`：
 
@@ -1179,7 +1179,7 @@ kubectl logs -f busybox-hqvck -c busybox
 kubectl patch sidecarset hotupgrade-sidecarset --type='json' -p='[{"op": "replace", "path": "/spec/containers/0/image", "value": "openkruise/hotupgrade-sample:sidecarv2"}]'
 ```
 
-![image-20231103180037499](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231103180037499.png)
+![image-20231103180037499](https://blog.tianch.com.cn/img/image-20231103180037499.png)
 
 并且在更新过程中观察 busybox 容器仍然会不断请求 sidecar 服务，但是并没有失败的请求出现：
 
@@ -1187,7 +1187,7 @@ kubectl patch sidecarset hotupgrade-sidecarset --type='json' -p='[{"op": "replac
 kubectl logs -f busybox-hqvck -c busybox
 ```
 
-![image-20231103180152789](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231103180152789.png)
+![image-20231103180152789](https://blog.tianch.com.cn/img/image-20231103180152789.png)
 
 ## Container Restart
 
@@ -1226,7 +1226,7 @@ spec:
 kubectl get nodeimage
 ```
 
-![image-20231103181624762](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231103181624762.png)
+![image-20231103181624762](https://blog.tianch.com.cn/img/image-20231103181624762.png)
 
 查看 node1 节点上的 NodeImage 对象：
 
@@ -1234,7 +1234,7 @@ kubectl get nodeimage
 kubectl get nodeimage node1 -o yaml
 ```
 
-![image-20231103181718135](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231103181718135.png)
+![image-20231103181718135](https://blog.tianch.com.cn/img/image-20231103181718135.png)
 
 比如在这个节点上拉去一个 `ubuntu:latest` 镜像，则可以按照如下所示的去修改 spec：
 
@@ -1258,13 +1258,13 @@ kubectl edit nodeimage node1
 # 把spec: {}替换成上面的spec那一堆配置
 ```
 
-![image-20231103182410309](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231103182410309.png)
+![image-20231103182410309](https://blog.tianch.com.cn/img/image-20231103182410309.png)
 
 更新后可以从 status 中看到拉取进度以及结果，并且拉取完成 600s 后任务会被清除。
 
 此外用户可以创建 `ImagePullJob` 对象，来指定一个镜像要在哪些节点上做预热。
 
-![ImagePullJob](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20220306192211.png)
+![ImagePullJob](https://blog.tianch.com.cn/img/20220306192211.png)
 
 比如创建如下所示的 `ImagePullJob` 资源对象：
 

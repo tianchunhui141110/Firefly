@@ -65,7 +65,7 @@ spec:
 
 这种模式，kube-proxy 会 watch apiserver 对 Service 对象和 Endpoints 对象的添加和移除。对每个 Service，它会添加上 iptables 规则，从而捕获到达该 Service 的 clusterIP（虚拟 IP）和端口的请求，进而将请求重定向到 Service 的一组 backend 中的某一个 Pod 上面。还可以使用 `Pod readiness 探针` 验证后端 Pod 可以正常工作，以便 iptables 模式下的 kube-proxy 仅看到测试正常的后端，这样做意味着可以避免将流量通过 `kube-proxy` 发送到已知失败的 Pod 中，所以对于线上的应用来说一定要做 readiness 探针。
 
-![service iptables](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231107154655.png)
+![service iptables](https://blog.tianch.com.cn/img/20231107154655.png)
 
 iptables 模式的 kube-proxy 默认的策略，随机选择一个后端 Pod。
 
@@ -88,7 +88,7 @@ IPVS 提供了更多选项来平衡后端 Pod 的流量，默认是 `rr`，有�
 
 不过现在只能整体修改策略，可以通过 kube-proxy 中配置 `–ipvs-scheduler` 参数来实现，暂时不支持特定的 Service 进行配置。
 
-![service ipvs](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231107155522.png)
+![service ipvs](https://blog.tianch.com.cn/img/20231107155522.png)
 
 也可以实现基于客户端 IP 的会话亲和性，可以将 service.spec.sessionAffinity 的值设置为 "ClientIP" （默认值为 "None"）即可，此外还可以通过适当设置 `service.spec.sessionAffinityConfig.clientIP.timeoutSeconds` 来设置最大会话停留时间（默认值为 10800 秒，即 3 小时）:
 
@@ -137,7 +137,7 @@ spec:
       name: myapp-http
 ```
 
-![image-20231107172049567](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231107172051.png)
+![image-20231107172049567](https://blog.tianch.com.cn/img/20231107172051.png)
 
 可以看到 myservice 的 TYPE 类型已经变成了 NodePort，后面的 PORT(S) 部分也多了一个 30864的映射端口。
 
@@ -248,13 +248,13 @@ spec:
 
 直接创建后可以查看 nginx 服务被自动分配了一个 31320 的 NodePort 端口：
 
-![image-20231107174110630](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231107174112.png)
+![image-20231107174110630](https://blog.tianch.com.cn/img/20231107174112.png)
 
-![image-20231107174532719](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231107174534.png)
+![image-20231107174532719](https://blog.tianch.com.cn/img/20231107174534.png)
 
 可以看到这个 3 个 Pod 被分配到了 3 个不同的节点，这个时候通过 master 节点的 NodePort 端口来访问下我们的服务，这个时候我们查看 nginx 的 Pod 日志可以看到其中获取到的 clientIP 是 `10.233.70.0`，其实是 master 节点的某一个内网 IP，并不是我们期望的真正的浏览器端访问的 IP 地址：
 
-![image-20231107175132043](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231107175134.png)
+![image-20231107175132043](https://blog.tianch.com.cn/img/20231107175134.png)
 
 这是因为 master 节点上并没有对应的 Pod，所以通过 master 节点去访问应用的时候必然需要额外的网络跳转才能到达其他节点上 Pod，在跳转过程中由于对数据包进行了 SNAT，所以看到的是 master 节点的 IP。这个时候可以在 Service 设置 `externalTrafficPolicy` 来减少网络跳数：
 
@@ -313,9 +313,9 @@ spec:
       targetPort: 80
 ```
 
-![image-20231107180621543](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231107180623.png)
+![image-20231107180621543](https://blog.tianch.com.cn/img/20231107180623.png)
 
 更新服务后，然后再通过 NodePort 访问服务可以看到拿到的就是正确的客户端 IP 地址了：
 
-![image-20231107180737257](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231107180738.png)
+![image-20231107180737257](https://blog.tianch.com.cn/img/20231107180738.png)
 

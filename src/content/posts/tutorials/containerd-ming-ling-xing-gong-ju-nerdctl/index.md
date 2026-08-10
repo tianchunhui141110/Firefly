@@ -21,7 +21,7 @@ wget https://github.com/containerd/nerdctl/releases/download/v1.6.2/nerdctl-1.6.
 tar Cxzvvf /usr/local/bin nerdctl-1.6.2-linux-amd64.tar.gz
 ```
 
-![image-20231016101552884](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231016101552884.png)
+![image-20231016101552884](https://blog.tianch.com.cn/img/image-20231016101552884.png)
 
 ## 命令
 
@@ -33,7 +33,7 @@ tar Cxzvvf /usr/local/bin nerdctl-1.6.2-linux-amd64.tar.gz
   nerdctl run -d -p 80:80 --name=nginx --restart=always nginx:alpine
   ```
 
-  ![image-20231016102757105](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231016102757105.png)
+  ![image-20231016102757105](https://blog.tianch.com.cn/img/image-20231016102757105.png)
 
 - ### exec
 
@@ -41,7 +41,7 @@ tar Cxzvvf /usr/local/bin nerdctl-1.6.2-linux-amd64.tar.gz
   nerdctl exec -it nginx /bin/sh
   ```
 
-  ![image-20231016103856190](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231016103856190.png)
+  ![image-20231016103856190](https://blog.tianch.com.cn/img/image-20231016103856190.png)
 
 - ### ps
 
@@ -51,7 +51,7 @@ tar Cxzvvf /usr/local/bin nerdctl-1.6.2-linux-amd64.tar.gz
   nerdctl ps
   ```
 
-  ![image-20231016104003495](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231016104003495.png)
+  ![image-20231016104003495](https://blog.tianch.com.cn/img/image-20231016104003495.png)
 
   同样可以使用 `-a` 选项显示所有的容器列表，默认只显示正在运行的容器，不过需要注意的是 `nerdctl ps` 命令并没有实现 `docker ps` 下面的 `--filter`、`--format`、`--last`、`--size` 等选项
 
@@ -71,7 +71,7 @@ tar Cxzvvf /usr/local/bin nerdctl-1.6.2-linux-amd64.tar.gz
   nerdctl logs -f nginx --tail 5
   ```
 
-  ![image-20231016104515183](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231016104515183.png)
+  ![image-20231016104515183](https://blog.tianch.com.cn/img/image-20231016104515183.png)
 
 - ### stop
 
@@ -79,7 +79,7 @@ tar Cxzvvf /usr/local/bin nerdctl-1.6.2-linux-amd64.tar.gz
   nerdctl stop nginx
   ```
 
-  ![image-20231016104614294](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231016104614294.png)
+  ![image-20231016104614294](https://blog.tianch.com.cn/img/image-20231016104614294.png)
 
 - ### rm
 
@@ -87,7 +87,7 @@ tar Cxzvvf /usr/local/bin nerdctl-1.6.2-linux-amd64.tar.gz
   nerdctl rm nginx
   ```
 
-  ![image-20231016104726339](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231016104726339.png)
+  ![image-20231016104726339](https://blog.tianch.com.cn/img/image-20231016104726339.png)
 
   rm不能直接杀掉正在运行的容器 要想杀掉正在运行的容器需要加上`-f`强制删除
 
@@ -97,7 +97,7 @@ tar Cxzvvf /usr/local/bin nerdctl-1.6.2-linux-amd64.tar.gz
   nerdctl images
   ```
 
-  ![image-20231016104955438](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231016104955438.png)
+  ![image-20231016104955438](https://blog.tianch.com.cn/img/image-20231016104955438.png)
 
 - ### pull
 
@@ -105,7 +105,7 @@ tar Cxzvvf /usr/local/bin nerdctl-1.6.2-linux-amd64.tar.gz
   nerdctl pull busybox
   ```
 
-  ![image-20231016105131475](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231016105131475.png)
+  ![image-20231016105131475](https://blog.tianch.com.cn/img/image-20231016105131475.png)
 
 - ### tag
 
@@ -113,7 +113,7 @@ tar Cxzvvf /usr/local/bin nerdctl-1.6.2-linux-amd64.tar.gz
   nerdctl tag busybox registry.cn-hangzhou.aliyuncs.com/tianchunhui/busybox:231016
   ```
 
-  ![image-20231016105501575](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231016105501575.png)
+  ![image-20231016105501575](https://blog.tianch.com.cn/img/image-20231016105501575.png)
 
 - ### push
 
@@ -123,9 +123,9 @@ tar Cxzvvf /usr/local/bin nerdctl-1.6.2-linux-amd64.tar.gz
   nerdctl push registry.cn-hangzhou.aliyuncs.com/tianchunhui/busybox:231016
   ```
 
-  ![image-20231016105551521](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231016105551521.png)
+  ![image-20231016105551521](https://blog.tianch.com.cn/img/image-20231016105551521.png)
 
-  ![image-20231016105623053](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231016105623053.png)
+  ![image-20231016105623053](https://blog.tianch.com.cn/img/image-20231016105623053.png)
 
 - ### save
 
@@ -133,7 +133,7 @@ tar Cxzvvf /usr/local/bin nerdctl-1.6.2-linux-amd64.tar.gz
   nerdctl save -o busybox.tar.gz busybox:latest
   ```
 
-  ![image-20231016105742772](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231016105742772.png)
+  ![image-20231016105742772](https://blog.tianch.com.cn/img/image-20231016105742772.png)
 
 - ### rmi
 
@@ -141,7 +141,7 @@ tar Cxzvvf /usr/local/bin nerdctl-1.6.2-linux-amd64.tar.gz
   nerdctl rmi busybox
   ```
 
-  ![image-20231016105920930](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231016105920930.png)
+  ![image-20231016105920930](https://blog.tianch.com.cn/img/image-20231016105920930.png)
 
 - ### load
 
@@ -151,7 +151,7 @@ tar Cxzvvf /usr/local/bin nerdctl-1.6.2-linux-amd64.tar.gz
   nerdctl load -i busybox.tar.gz
   ```
 
-  ![image-20231016110015340](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231016110015340.png)
+  ![image-20231016110015340](https://blog.tianch.com.cn/img/image-20231016110015340.png)
 
 - ### build
 
@@ -169,7 +169,7 @@ tar Cxzvvf /usr/local/bin nerdctl-1.6.2-linux-amd64.tar.gz
      nerdctl build -t nginx:nerdctl -f Dockerfile .
      ```
 
-     ![image-20231016110417256](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231016110417256.png)
+     ![image-20231016110417256](https://blog.tianch.com.cn/img/image-20231016110417256.png)
 
      可以看到有一个错误提示，需要安装 `buildctl` 并运行 `buildkitd`，这是因为 `nerdctl build` 需要依赖 `buildkit` 工具
 
@@ -195,7 +195,6 @@ tar Cxzvvf /usr/local/bin nerdctl-1.6.2-linux-amd64.tar.gz
      ```
      vim /etc/systemd/system/buildkit.service
 
-
      [Unit]
      Description=BuildKit
      Documentation=https://github.com/moby/buildkit
@@ -215,7 +214,7 @@ tar Cxzvvf /usr/local/bin nerdctl-1.6.2-linux-amd64.tar.gz
      systemctl status buildkit
      ```
 
-     ![image-20231016134709582](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231016134709582.png)
+     ![image-20231016134709582](https://blog.tianch.com.cn/img/image-20231016134709582.png)
 
   4. 重新执行构建命令
 
@@ -223,7 +222,7 @@ tar Cxzvvf /usr/local/bin nerdctl-1.6.2-linux-amd64.tar.gz
      nerdctl build -t nginx:nerdctl -f Dockerfile .
      ```
 
-     ![image-20231016135200764](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231016135200764.png)
+     ![image-20231016135200764](https://blog.tianch.com.cn/img/image-20231016135200764.png)
 
   单机环境下使用 Docker Compose，在 containerd 模式下，也可以使用 `nerdctl` 来兼容该功能。同样可以使用 `nerdctl compose`、`nerdctl compose up`、`nerdctl compose logs`、`nerdctl compose build`、`nerdctl compose down` 等命令来管理 Compose 服务。这样使用 containerd、nerdctl 结合 buildkit 等工具就完全可以替代 docker 在镜像构建、镜像容器方面的管理功能了。
 

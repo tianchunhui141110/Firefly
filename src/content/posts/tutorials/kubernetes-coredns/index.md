@@ -60,7 +60,7 @@ spec:
 kubectl apply -f test-nginx.yaml
 ```
 
-![image-20231109111407293](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231109111409.png)
+![image-20231109111407293](https://blog.tianch.com.cn/img/20231109111409.png)
 
 可以看到两个 Pod 和一个名为 nginx-service 的服务创建成功了，该 Service 监听的端口是 5000，同时它会把流量转发给它代理的所有 Pod（这里就是拥有 `app: nginx` 标签的两个 Pod）。
 
@@ -92,7 +92,7 @@ kubectl apply -f test-pod.yaml
 kubectl logs test-pod -n default
 ```
 
-![image-20231109112149211](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231109112151.png)
+![image-20231109112149211](https://blog.tianch.com.cn/img/20231109112151.png)
 
 可以看到打印了很多环境变量信息，其中就包括刚刚创建的 nginx-service 这个服务，有 HOST、PORT、PROTO、ADDR 等，也包括其他已经存在的 Service 的环境变量，如果现在需要在这个 Pod 里面访问 nginx-service 的服务，可以直接通过 `NGINX_SERVICE_SERVICE_HOST` 和 `NGINX_SERVICE_SERVICE_PORT` 就可以了，但是如果这个 Pod 启动起来的时候 nginx-service 服务还没启动起来，在环境变量中是无法获取到这些信息的，当然可以通过 `initContainer` 之类的方法来确保 nginx-service 启动后再启动 Pod，但是这种方法毕竟增加了 Pod 启动的复杂性，所以这不是最优的方法，局限性太多了。
 
@@ -106,7 +106,7 @@ DNS 服务不是一个独立的系统服务，而是作为一种 addon 插件而
 kubectl get pods -n kube-system -l k8s-app=kube-dns
 ```
 
-![image-20231109142312393](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231109142314.png)
+![image-20231109142312393](https://blog.tianch.com.cn/img/20231109142314.png)
 
 CoreDns 是用 GO 写的高性能，高扩展性的 DNS 服务，基于 HTTP/2 Web 服务 Caddy 进行编写的。CoreDns 内部采用插件机制，所有功能都是插件形式编写，用户也可以扩展自己的插件，以下是 Kubernetes 部署 CoreDns 时的默认配置：
 
@@ -177,7 +177,7 @@ clusterDomain: cluster.local
 kubectl run -it --image busybox test-dns --restart=Never --rm /bin/sh
 ```
 
-![image-20231109143743544](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231109143745.png)
+![image-20231109143743544](https://blog.tianch.com.cn/img/20231109143745.png)
 
 进入到 Pod 中，查看 `/etc/resolv.conf` 中的内容，可以看到 `nameserver` 的地址 `169.254.25.10`，该 IP 地址即是在安装 CoreDNS 插件的时候集群分配的一个固定的静态 IP 地址。
 
@@ -187,11 +187,11 @@ kubectl run -it --image busybox test-dns --restart=Never --rm /bin/sh
 / # wget -q -O- nginx-service.default.svc.cluster.local
 ```
 
-![image-20231109144627763](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231109144627763.png)
+![image-20231109144627763](https://blog.tianch.com.cn/img/image-20231109144627763.png)
 
 可以看到上面使用 wget 命令去访问 nginx-service 服务的域名的时候连接拒绝了，没有得到期望的结果，这是因为上面建立 Service 的时候暴露的端口是 5000：
 
-![image-20231109144655080](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231109144657.png)
+![image-20231109144655080](https://blog.tianch.com.cn/img/20231109144657.png)
 
 加上 5000 端口，就正常访问到服务，再试一试访问：`nginx-service.default.svc`、`nginx-service.default`、`nginx-service`，不出意外这些域名都可以正常访问到期望的结果。
 
@@ -224,7 +224,7 @@ spec:
 
 创建service，并尝试解析 service DNS：
 
-![image-20231109151130073](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231109151135.png)
+![image-20231109151130073](https://blog.tianch.com.cn/img/20231109151135.png)
 
 ```sh
 dig @169.254.25.10 nginx.default.svc.cluster.local
@@ -236,7 +236,7 @@ dig @169.254.25.10 nginx.default.svc.cluster.local
 yum install -y bind-utils
 ```
 
-![image-20231109151413538](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231109151415.png)
+![image-20231109151413538](https://blog.tianch.com.cn/img/20231109151415.png)
 
 然后对 nginx 的 FQDN 域名进行 dig 操作，可以看到返回了多条 A 记录，每一条对应一个 Pod。
 
@@ -246,7 +246,7 @@ yum install -y bind-utils
 dig @169.254.25.10 nginx-deploy-67d4bdd6f5-n2ff5.nginx.default.svc.cluster.local
 ```
 
-![image-20231109152820900](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231109152824.png)
+![image-20231109152820900](https://blog.tianch.com.cn/img/20231109152824.png)
 
 可以看到并没有得到解析结果。官方文档中有一段 `Pod’s hostname and subdomain fields` 说明：
 
@@ -281,7 +281,7 @@ spec:
             - containerPort: 80
 ```
 
-![image-20231109153318014](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231109153320.png)
+![image-20231109153318014](https://blog.tianch.com.cn/img/20231109153320.png)
 
 可以看到依然不能解析，那就试试官方文档中的例子 ，不用 Deployment 直接创建 Pod 吧。第一步先将 hostname 和 subdomain 注释掉：
 
@@ -346,7 +346,7 @@ spec:
 dig @169.254.25.10 busybox-1.default-subdomain.default.svc.cluster.local
 ```
 
-![image-20231109154104935](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231109154106.png)
+![image-20231109154104935](https://blog.tianch.com.cn/img/20231109154106.png)
 
 现在看到有 ANSWER 记录回来了，hostname 和 subdomain 二者都必须显式指定，缺一不可。一开始的截图中的实现方式其实也是这种方式。
 
@@ -397,7 +397,7 @@ spec:
 dig @169.254.25.10 nginx.nginx.default.svc.cluster.local
 ```
 
-![image-20231109161815082](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231109161816.png)
+![image-20231109161815082](https://blog.tianch.com.cn/img/20231109161816.png)
 
 可以看到解析成功了，但是因为 Deployment 中无法给每个 Pod 指定不同的 hostname，所以两个 Pod 有同样的 hostname，解析出来两个 IP，跟本意就不符合了。不过知道了这种方式过后就可以自己去写一个 Operator 去直接管理 Pod 了，给每个 Pod 设置不同的 hostname 和一个 Headless SVC 名称的 subdomain，这样就相当于实现了 StatefulSet 中的 Pod 解析。
 

@@ -131,7 +131,7 @@ WordPress 是使用 PHP 开发的博客平台，用户可以在支持 PHP 和 My
 
 - 在 `工作负载`下查看 **部署** 和 **有状态副本集** 的状态，当它们都显示为 `运行中`，说明 WordPress 应用创建成功。
 
-![img](https://pek3b.qingstor.com/kubesphere-docs/png/20191027213213.png)
+![img](https://blog.tianch.com.cn/kubesphere-docs/png/20191027213213.png)
 
 ![img](./images/20191027213150.png)
 

@@ -284,9 +284,6 @@ public class UserRegisterRequest {
 ```
 
 这样我们的后端就可以直接把 json 格式的数据映射到我们的 `UserRegisterRequest` 类上。
-
-![663d1ec1-7ebc-41ab-8431-159dc1ec6589](http://oss.tianch.xyz/img/663d1ec1-7ebc-41ab-8431-159dc1ec6589_1594204449348.png)
-
 👉 需要注意的是：**一个请求方法只可以有一个`@RequestBody`，但是可以有多个`@RequestParam`和`@PathVariable`**。 如果你的方法必须要用两个 `@RequestBody`来接受数据的话，大概率是你的数据库设计或者系统设计出问题了！
 
 5. 读取配置信息
@@ -380,9 +377,6 @@ class WebSite {
 校验的时候我们实际用的是 **Hibernate Validator** 框架。Hibernate Validator 是 Hibernate 团队最初的数据校验框架，Hibernate Validator 4.x 是 Bean Validation 1.0（JSR 303）的参考实现，Hibernate Validator 5.x 是 Bean Validation 1.1（JSR 349）的参考实现，目前最新版的 Hibernate Validator 6.x 是 Bean Validation 2.0（JSR 380）的参考实现。
 
 SpringBoot 项目的 spring-boot-starter-web 依赖中已经有 hibernate-validator 包，不需要引用相关依赖。如下图所示（通过 idea 插件—Maven Helper 生成）：
-
-![c7bacd12-1c1a-4e41-aaaf-4cad840fc073](http://oss.tianch.xyz/img/c7bacd12-1c1a-4e41-aaaf-4cad840fc073_1594204449375.png)
-
 非 SpringBoot 项目需要自行引入相关依赖包。
 
 👉 需要注意的是： **所有的注解，推荐使用 JSR 注解，即`javax.validation.constraints`，而不是`org.hibernate.validator.constraints`**

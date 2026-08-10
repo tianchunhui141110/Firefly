@@ -20,7 +20,6 @@ lang: zh_CN
 cd ~
 vim .bashrc
 
-
 # .bashrc
 
 # User specific aliases and functions

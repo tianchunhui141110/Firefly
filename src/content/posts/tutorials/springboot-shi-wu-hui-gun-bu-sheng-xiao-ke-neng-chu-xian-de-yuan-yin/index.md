@@ -34,8 +34,6 @@ transaction:
     org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration
 8.进入TransactionAutoConfiguration类中可以看到一下源码 有这个一个注解 @EnableTransactionManagement
 
-
-
 @Configuration(proxyBeanMethods = false)
 @ConditionalOnBean(TransactionManager.class)
 @ConditionalOnMissingBean(AbstractTransactionManagementConfiguration.class)

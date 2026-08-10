@@ -52,9 +52,9 @@ kubectl get pod -n default
 kubectl describe job job-demo -n default
 ```
 
-![image-20231102111006796](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231102111006796.png)
+![image-20231102111006796](https://blog.tianch.com.cn/img/image-20231102111006796.png)
 
-![image-20231102111026826](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231102111026826.png)
+![image-20231102111026826](https://blog.tianch.com.cn/img/image-20231102111026826.png)
 
 Job 任务对应的 Pod 在运行结束后，会变成 `Completed` 状态，但是如果执行任务的 Pod 因为某种原因一直没有结束，可以在 Job 对象中通过设置字段 `spec.activeDeadlineSeconds` 来限制任务运行的最长时间，比如：
 
@@ -99,11 +99,11 @@ Events:
 
 如果的任务执行失败了，会怎么处理呢，这个和定义的 `restartPolicy` 有关系，比如定义如下所示的 Job 任务，定义 `restartPolicy: Never` 的重启策略：
 
-![image-20231102112011909](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231102112011909.png)
+![image-20231102112011909](https://blog.tianch.com.cn/img/image-20231102112011909.png)
 
 设置成 `Never` 重启策略的时候，Job 任务执行失败后会不断创建新的 Pod，但是不会一直创建下去，会根据 `spec.backoffLimit` 参数进行限制，默认为6，通过该字段可以定义重建 Pod 的次数，另外需要注意的是 Job 控制器重新创建 Pod 的间隔是呈指数增加的，即下一次重新创建 Pod 的动作会分别发生在 10s、20s、40s… 后。
 
-![image-20231102120729419](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231102120729419.png)
+![image-20231102120729419](https://blog.tianch.com.cn/img/image-20231102120729419.png)
 
 但是如果设置 `restartPolicy: OnFailure` 重启策略，则当 Job 任务执行失败后不会创建新的 Pod 出来，只会不断重启 Pod。
 
@@ -130,7 +130,7 @@ spec:
 kubectl apply -f para-demo.yaml
 ```
 
-![image-20231102121002977](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231102121002977.png)
+![image-20231102121002977](https://blog.tianch.com.cn/img/image-20231102121002977.png)
 
 可以看到一次可以有2个 Pod 同时运行，需要8个 Pod 执行成功，如果不是8个成功，那么会根据 `restartPolicy` 的策略进行处理，可以认为是一种检查机制。
 
@@ -182,7 +182,7 @@ kubectl apply -f cronjob-demo.yaml
 
 稍微等一会儿查看可以发现多了几个 Job 资源对象，这个就是因为上面设置的 CronJob 资源对象，每1分钟执行一个新的 Job：
 
-![image-20231102122757357](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231102122757357.png)
+![image-20231102122757357](https://blog.tianch.com.cn/img/image-20231102122757357.png)
 
 这个就是 CronJob 的基本用法，一旦不再需要 CronJob，可以使用 kubectl 命令删除它：
 

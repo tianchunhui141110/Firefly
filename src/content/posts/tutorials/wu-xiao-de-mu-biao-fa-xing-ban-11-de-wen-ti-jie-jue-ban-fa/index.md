@@ -14,5 +14,5 @@ lang: zh_CN
 
 然而以上操作并没有什么卵用,最终在一篇文章中找到了解决方案,特此记录一下:
 
-![image-20211216142646897](https://oss.tianch.xyz/img/image-20211216142646897.png)
+![image-20211216142646897](https://blog.tianch.com.cn/img/image-20211216142646897.png)
 

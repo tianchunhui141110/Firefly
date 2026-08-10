@@ -46,5 +46,5 @@ lang: zh_CN
 
 通过这些条目内核可以相应地修改任何相关数据包的目的地和源地址，而无需再次遍历 DNAT 规则，此外，它将知道如何修改回复以及应将回复发送给谁。创建 `conntrack` 条目后，将首先对其进行确认，然后如果没有已确认的 `conntrack` 条目具有相同的原始元组或回复元组，则内核将尝试确认该条目。`conntrack` 创建和 DNAT 的简化流程如下所示：
 
-![conntrack](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231114175844.png)
+![conntrack](https://blog.tianch.com.cn/img/20231114175844.png)
 

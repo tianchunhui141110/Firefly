@@ -14,17 +14,17 @@ lang: zh_CN
    -Dfile.encoding=UTF-8
    ```
 
-   ![image-20220126173835082](https://oss.tianch.xyz/img/image-20220126173835082.png)
+   ![image-20220126173835082](https://blog.tianch.com.cn/img/image-20220126173835082.png)
 
 2. IDEA全局编码设置成UTF-8
 
-   ![image-20220126174205707](https://oss.tianch.xyz/img/image-20220126174205707.png)
+   ![image-20220126174205707](https://blog.tianch.com.cn/img/image-20220126174205707.png)
 
 3. IDEA项目配置
 
    `在Tomcat配置项VM options文本框中输入-Dfile.encoding=UTF-8`
 
-   ![image-20220126174427034](https://oss.tianch.xyz/img/image-20220126174427034.png)
+   ![image-20220126174427034](https://blog.tianch.com.cn/img/image-20220126174427034.png)
 
 4. 配置Tomcat的配置文件`logging.properties`
 
@@ -34,5 +34,5 @@ lang: zh_CN
    java.util.logging.ConsoleHandler.encoding = UTF-8
    ```
 
-   ![image-20220126174648760](https://oss.tianch.xyz/img/image-20220126174648760.png)
+   ![image-20220126174648760](https://blog.tianch.com.cn/img/image-20220126174648760.png)
 

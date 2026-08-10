@@ -58,7 +58,6 @@ MDC类基本原理其实非常简单，其内部持有一个InheritableThreadLoc
   @Slf4j
   public class LogInterceptor implements HandlerInterceptor {
 
-
       private final static String REQUEST_ID = "requestId";
 
       private final static String REQUEST_TIME = "requestTime";

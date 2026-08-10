@@ -12,7 +12,7 @@ lang: zh_CN
 
 从[krew官网](https://krew.sigs.k8s.io/)进去,再进入[安装文档](https://krew.sigs.k8s.io/docs/user-guide/setup/install/)页
 
-![image-20220121145706361](https://oss.tianch.xyz/img/image-20220121145706361.png)
+![image-20220121145706361](https://blog.tianch.com.cn/img/image-20220121145706361.png)
 
 1. 安装git
 
@@ -55,13 +55,13 @@ lang: zh_CN
    kubectl krew
    ```
 
-   ![image-20220121150302092](https://oss.tianch.xyz/img/image-20220121150302092.png)
+   ![image-20220121150302092](https://blog.tianch.com.cn/img/image-20220121150302092.png)
 
 ### 2.在kubesphere后台创建一个项目(命名空间)
 
 为什么这么做呢?因为在操作过程中,通过命令直接安装后,kubesphere后台不显示
 
-![image-20220121160719885](https://oss.tianch.xyz/img/image-20220121160719885.png)
+![image-20220121160719885](https://blog.tianch.com.cn/img/image-20220121160719885.png)
 
 ### 3.安装插件
 
@@ -69,7 +69,7 @@ lang: zh_CN
 kubectl krew install rabbitmq
 ```
 
-![image-20220121160020782](https://oss.tianch.xyz/img/image-20220121160020782.png)
+![image-20220121160020782](https://blog.tianch.com.cn/img/image-20220121160020782.png)
 
 ### 3.安装rabbitmq-cluster-operator
 
@@ -79,7 +79,7 @@ kubectl krew install rabbitmq
 kubectl rabbitmq install-cluster-operator
 ```
 
-![image-20220121161008387](https://oss.tianch.xyz/img/image-20220121161008387.png)
+![image-20220121161008387](https://blog.tianch.com.cn/img/image-20220121161008387.png)
 
 ### 4.创建集群
 
@@ -95,21 +95,21 @@ rabbitmq-cluster 是实例名称
 --image 使用的镜像
 ```
 
-![image-20220121163844833](https://oss.tianch.xyz/img/image-20220121163844833.png)
+![image-20220121163844833](https://blog.tianch.com.cn/img/image-20220121163844833.png)
 
 ### 5.设置NodePort外网访问
 
-![image-20220121164816700](https://oss.tianch.xyz/img/image-20220121164816700.png)
+![image-20220121164816700](https://blog.tianch.com.cn/img/image-20220121164816700.png)
 
-![image-20220121164901757](https://oss.tianch.xyz/img/image-20220121164901757.png)
+![image-20220121164901757](https://blog.tianch.com.cn/img/image-20220121164901757.png)
 
-![image-20220121164921619](https://oss.tianch.xyz/img/image-20220121164921619.png)
+![image-20220121164921619](https://blog.tianch.com.cn/img/image-20220121164921619.png)
 
 用户名密码从保密字段里找
 
-![image-20220121165040917](https://oss.tianch.xyz/img/image-20220121165040917.png)
+![image-20220121165040917](https://blog.tianch.com.cn/img/image-20220121165040917.png)
 
-![image-20220121165228493](https://oss.tianch.xyz/img/image-20220121165228493.png)
+![image-20220121165228493](https://blog.tianch.com.cn/img/image-20220121165228493.png)
 
 ### 6.通过任意终端添加用户
 
@@ -152,7 +152,7 @@ rabbitmq-cluster 是实例名称
   rabbitmqctl start_app
   ```
 
-  ![image-20220121172015118](https://oss.tianch.xyz/img/image-20220121172015118.png)
+  ![image-20220121172015118](https://blog.tianch.com.cn/img/image-20220121172015118.png)
 
 ### 7.配置镜像集群
 
@@ -175,7 +175,7 @@ rabbitmq-cluster 是实例名称
 
 2. 方式二：通过后台管理设置
 
-   ![image-20220121183803914](https://oss.tianch.xyz/img/image-20220121183803914.png)
+   ![image-20220121183803914](https://blog.tianch.com.cn/img/image-20220121183803914.png)
 
-   ![image-20220121183850796](https://oss.tianch.xyz/img/image-20220121183850796.png)
+   ![image-20220121183850796](https://blog.tianch.com.cn/img/image-20220121183850796.png)
 

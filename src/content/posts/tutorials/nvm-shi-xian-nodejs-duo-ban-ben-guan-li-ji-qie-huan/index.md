@@ -14,19 +14,19 @@ lang: zh_CN
 
 [nvm官网](https://nvm.uihtm.com/)
 
-![image-20231009152217250](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231009152217250.png)
+![image-20231009152217250](https://blog.tianch.com.cn/img/image-20231009152217250.png)
 
 ## 2.安装nvm
 
-![nvm安装](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/step1.png)
+![nvm安装](https://blog.tianch.com.cn/img/step1.png)
 
-![nvm安装](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/step2.png)
+![nvm安装](https://blog.tianch.com.cn/img/step2.png)
 
-![nvm安装](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/step3.png)
+![nvm安装](https://blog.tianch.com.cn/img/step3.png)
 
-![nvm安装](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/step4.png)
+![nvm安装](https://blog.tianch.com.cn/img/step4.png)
 
-![image-20231009152648186](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231009152648186.png)
+![image-20231009152648186](https://blog.tianch.com.cn/img/image-20231009152648186.png)
 
 ## 3.使用nvm安装nodejs
 
@@ -49,7 +49,7 @@ nvm version ：显示nvm版本。version可简化为v。
 nvm list available
 ```
 
-![image-20231009152924109](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231009152924109.png)
+![image-20231009152924109](https://blog.tianch.com.cn/img/image-20231009152924109.png)
 
 - 安装nodejs最新版本
 
@@ -70,7 +70,7 @@ nvm list available
   nvm ls
   ```
 
-  ![image-20231009153240638](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231009153240638.png)
+  ![image-20231009153240638](https://blog.tianch.com.cn/img/image-20231009153240638.png)
 
 - 切换nodejs版本
 

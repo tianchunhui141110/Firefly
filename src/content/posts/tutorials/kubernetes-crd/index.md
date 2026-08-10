@@ -64,7 +64,7 @@ spec:
 kubectl apply -f crd-demo.yaml
 ```
 
-![image-20231102182137026](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231102182137026.png)
+![image-20231102182137026](https://blog.tianch.com.cn/img/image-20231102182137026.png)
 
 这个时候一个新的 namespace 级别的 RESTful API 就会被创建：
 
@@ -92,7 +92,7 @@ spec:
 kubectl apply -f crd-crontab-demo.yaml
 ```
 
-![image-20231102182642342](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231102182642342.png)
+![image-20231102182642342](https://blog.tianch.com.cn/img/image-20231102182642342.png)
 
 在使用 kubectl 的时候，资源名称是不区分大小写的，可以使用 CRD 中定义的单数或者复数形式以及任何简写。也可以查看创建的这个对象的原始 YAML 数据：
 
@@ -138,7 +138,7 @@ metadata:
 
 下图显示了 client-go 中的各个组件是如何工作的以及要编写自定义控制器代码的交互入口：
 
-![client-go controller interaction](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/client-go-controller-interaction.jpeg)
+![client-go controller interaction](https://blog.tianch.com.cn/img/client-go-controller-interaction.jpeg)
 
 ### **client-go 组件**：
 
@@ -156,7 +156,7 @@ metadata:
 
 `client-go/tool/cache/` 和自定义 Controller 的控制流([图片来源](https://itnext.io/how-to-create-a-kubernetes-custom-controller-using-client-go-f36a7a7536cc))：
 
-![client-go controller workflow](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/client-go-controller-workflow.png)
+![client-go controller workflow](https://blog.tianch.com.cn/img/client-go-controller-workflow.png)
 
 如上图所示主要有两个部分，一个是发生在 `SharedIndexInformer` 中，另外一个是在自定义控制器中。
 

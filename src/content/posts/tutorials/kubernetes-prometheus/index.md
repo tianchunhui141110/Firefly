@@ -28,7 +28,7 @@ Prometheus 由多个组件组成，但是其中有些组件是可选的：
 
 大多数 Prometheus 组件都是用 Go 编写的，因此很容易构建和部署为静态的二进制文件。下图是 Prometheus 官方提供的架构及其一些相关的生态系统组件：
 
-![prometheus architecture](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231213171917.png)
+![prometheus architecture](https://blog.tianch.com.cn/img/20231213171917.png)
 
 整体流程比较简单，Prometheus 直接接收或者通过中间的 Pushgateway 网关被动获取指标数据，在本地存储所有的获取的指标数据，并对这些数据进行一些规则整理，用来生成一些聚合数据或者报警信息，Grafana 或者其他工具用来可视化这些数据。
 
@@ -111,7 +111,7 @@ scrape_configs:
 
 然后到浏览器中查看 Prometheus 的配置是否有新增的任务，这就是 Prometheus 添加监控配置最基本的配置方式了，非常简单，只需要提供一个符合 metrics 格式的可访问的接口配置给 Prometheus 就可以了。
 
-![image-20231213175934662](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231213175937.png)
+![image-20231213175934662](https://blog.tianch.com.cn/img/20231213175937.png)
 
 由于最终要运行在 Kubernetes 系统中，所以用 Docker 镜像的方式运行。
 
@@ -442,7 +442,7 @@ metadata:
 
 上面 ConfigMap 中 `prometheus :9153` 就是开启 prometheus 的插件：
 
-![image-20231214153614761](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231214153617.png)
+![image-20231214153614761](https://blog.tianch.com.cn/img/20231214153617.png)
 
 可以先尝试手动访问下 `/metrics` 接口，如果能够手动访问到那证明接口是没有任何问题的。
 
@@ -491,7 +491,7 @@ kubectl get pods -n monitor -o wide
 
 再去看 Prometheus 的 Dashboard 中查看采集的目标数据：
 
-![prometheus webui coredns](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231214154604.png)
+![prometheus webui coredns](https://blog.tianch.com.cn/img/20231214154604.png)
 
 可以看到刚刚添加的 coredns 这个任务已经出现了，同样的可以切换到 Graph 下面去，可以找到一些 CoreDNS 的指标数据，至于这些指标数据代表什么意义，一般情况下，可以去查看对应的 `/metrics` 接口，里面一般情况下都会有对应的注释。
 
@@ -557,11 +557,11 @@ spec:
 kubectl apply -f prome-redis.yaml
 ```
 
-![image-20231214155638181](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231214155638181.png)
+![image-20231214155638181](https://blog.tianch.com.cn/img/image-20231214155638181.png)
 
 创建完成后，可以看到 redis 的 Pod 里面包含有两个容器：
 
-![image-20231214155829925](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231214155831.png)
+![image-20231214155829925](https://blog.tianch.com.cn/img/20231214155831.png)
 
 可以通过 9121 端口来校验是否能够采集到数据：
 
@@ -588,11 +588,11 @@ configmap/prometheus-config configured
 
 这个时候再去看 Prometheus 的 Dashboard 中查看采集的目标数据：
 
-![prometheus webui redis](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231214160113.png)
+![prometheus webui redis](https://blog.tianch.com.cn/img/20231214160113.png)
 
 可以看到配置的 redis 这个 job 已经生效了。切换到 Graph 下面可以看到很多关于 redis 的指标数据，选择任意一个指标，比如 `redis_exporter_scrapes_total`，然后点击执行就可以看到对应的数据图表了：
 
-![prometheus webui redisquery](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231214160140.png)
+![prometheus webui redisquery](https://blog.tianch.com.cn/img/20231214160140.png)
 
 # 集群节点
 
@@ -719,7 +719,7 @@ kubectl apply -f prome-node-exporter.yaml
 kubectl get pods -n kubesphere-monitoring-system -l app.kubernetes.io/name=node-exporter -o wide
 ```
 
-![image-20231214161806622](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231214161809.png)
+![image-20231214161806622](https://blog.tianch.com.cn/img/20231214161809.png)
 
 部署完成后，可以看到在几个节点上都运行了一个 Pod，由于指定了 `hostNetwork=true`，所以在每个节点上就会绑定一个端口 9100，我们可以通过这个端口去获取到监控指标数据：
 
@@ -771,7 +771,7 @@ prometheus 的 ConfigMap 更新完成后，执行 reload 操作，让配置生�
 
 配置生效后，再去 prometheus 的 dashboard 中查看 Targets 是否能够正常抓取数据
 
-![image-20231214164925929](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231214164929.png)
+![image-20231214164925929](https://blog.tianch.com.cn/img/20231214164929.png)
 
 可以看到上面的 `nodes` 这个 job 任务已经自动发现了我们 4 个 node 节点，但是在获取数据的时候失败了，出现了类似于下面的错误信息：
 
@@ -783,7 +783,7 @@ server returned HTTP status 400 Bad Request
 
 这里就需要使用到 Prometheus 提供的 `relabel_configs` 中的 `replace` 能力了，`relabel` 可以在 Prometheus 采集数据之前，通过 Target 实例的 `Metadata` 信息，动态重新写入 Label 的值。除此之外，还能根据 Target 实例的 `Metadata` 信息选择是否采集或者忽略该 Target 实例。比如这里就可以去匹配 `__address__` 这个 Label 标签，然后替换掉其中的端口，如果不知道有哪些 Label 标签可以操作的话，可以在 `Service Discovery` 页面获取到相关的元标签，这些标签都是可以进行 Relabel 的标签：
 
-![image-20231214165110714](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231214165112.png)
+![image-20231214165110714](https://blog.tianch.com.cn/img/20231214165112.png)
 
 替换掉端口，修改 ConfigMap：
 
@@ -848,17 +848,17 @@ server returned HTTP status 400 Bad Request
 
 现在再去更新下配置文件，执行 reload 操作，让配置生效，然后访问 Prometheus 的 Dashboard 查看 Targets 路径：
 
-![prometheus webui sd kubelet](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231214165527.png)
+![prometheus webui sd kubelet](https://blog.tianch.com.cn/img/20231214165527.png)
 
 现在可以看到上面添加的 `kubernetes-kubelet` 和 `kubernetes-nodes` 这两个 job 任务都已经配置成功了，而且二者的 Labels 标签都和集群的 node 节点标签保持一致了。
 
 现在就可以切换到 Graph 路径下面查看采集的一些指标数据了，比如查询 node_load1 指标：
 
-![image-20231214165632117](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231214165634.png)
+![image-20231214165632117](https://blog.tianch.com.cn/img/20231214165634.png)
 
 可以看到将几个节点对应的 `node_load1` 指标数据都查询出来了，同样的，还可以使用 `PromQL` 语句来进行更复杂的一些聚合查询操作，还可以根据 Labels 标签对指标数据进行聚合，比如这里只查询 `node1` 节点的数据，可以使用表达式 `node_load1{instance="node1"}` 来进行查询：
 
-![image-20231214165741090](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231214165743.png)
+![image-20231214165741090](https://blog.tianch.com.cn/img/20231214165743.png)
 
 到这里就把 Kubernetes 集群节点使用 Prometheus 监控起来了，接下来我们再学习怎样监控 Pod 或者 Service 之类的资源对象。
 
@@ -893,7 +893,7 @@ server returned HTTP status 400 Bad Request
 
 上面的配置和之前配置 `node-exporter` 的时候几乎是一样的，区别是这里使用了 https 的协议，另外需要注意的是配置了 ca.cart 和 token 这两个文件，这两个文件是 Pod 启动后自动注入进来的，然后加上 `__metrics_path__` 的访问路径 `/metrics/cadvisor`，现在同样更新下配置，然后查看 Targets 路径：
 
-![prometheus webui cadvisor](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231214172048.png)
+![prometheus webui cadvisor](https://blog.tianch.com.cn/img/20231214172048.png)
 
 可以切换到 Graph 路径下面查询容器相关数据，比如这里来查询集群中所有 Pod 的 CPU 使用情况，kubelet 中的 cAdvisor 采集的指标和含义，可以查看 [Monitoring cAdvisor with Prometheus](https://github.com/google/cadvisor/blob/master/docs/storage/prometheus.md) 说明，其中有一项：
 
@@ -931,7 +931,7 @@ sum(container_spec_cpu_quota{image!="", pod!=""}) by(namespace, pod) / 100000
 
 在 promethues 里面执行上面的 promQL 语句可以得到下面的结果：
 
-![prometheus cadvisor cpu rate](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231214170652.png)
+![prometheus cadvisor cpu rate](https://blog.tianch.com.cn/img/20231214170652.png)
 
 Pod 内存使用率的计算就简单多了，直接用内存实际使用量除以内存限制使用量即可：
 
@@ -941,7 +941,7 @@ sum(container_memory_rss{image!=""}) by(namespace, pod) / sum(container_spec_mem
 
 在 promethues 里面执行上面的 promQL 语句可以得到下面的结果：
 
-![prometheus cadvisor memory rate](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231214170721.png)
+![prometheus cadvisor memory rate](https://blog.tianch.com.cn/img/20231214170721.png)
 
 # 监控apiserver
 
@@ -968,7 +968,7 @@ curl -X POST "http://10.244.3.174:9090/-/reload"
 
 更新完成后，再去查看 Prometheus 的 Dashboard 的 target 页面：
 
-![prometheus webui apiserver](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231214172040.png)
+![prometheus webui apiserver](https://blog.tianch.com.cn/img/20231214172040.png)
 
 可以看到 kubernetes-apiservers 下面出现了很多实例，这是因为这里使用的是 Endpoints 类型的服务发现，所以 Prometheus 把所有的 Endpoints 服务都抓取过来了，同样的，上面需要的服务名为 `kubernetes` 这个 apiserver 的服务也在这个列表之中，那么应该怎样来过滤出这个服务来呢？还记得前面的 `relabel_configs` 吗？没错，同样需要使用这个配置，只是这里不是使用 `replace` 这个动作了，而是 `keep`，就是只把符合要求的给保留下来，哪些才是符合要求的呢？可以把鼠标放置在任意一个 target 上，可以查看到 `Before relabeling`里面所有的元数据，比如要过滤的服务是 `default` 这个 namespace 下面，服务名为 `kubernetes` 的元数据，所以这里就可以根据对应的 `__meta_kubernetes_namespace` 和 `__meta_kubernetes_service_name` 这两个元数据来 relabel，另外由于 kubernetes 这个服务对应的端口是 443，需要使用 https 协议，所以这里需要使用 https 的协议，对应的就需要将 ca 证书配置上，如下所示：
 
@@ -997,7 +997,7 @@ curl -X POST "http://10.244.3.174:9090/-/reload"
 
 现在可以看到 `kubernetes-apiserver` 这个任务下面只有 apiserver 这一个实例了，证明 `relabel` 是成功的，现在切换到 Graph 路径下面查看下采集到的数据，比如查询 apiserver 的总的请求数：
 
-![prometheus apiserver rate](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231214172036.png)
+![prometheus apiserver rate](https://blog.tianch.com.cn/img/20231214172036.png)
 
 这样就完成了对 Kubernetes APIServer 的监控。
 
@@ -1044,7 +1044,7 @@ curl -X POST "http://10.244.3.174:9090/-/reload"
 
 注意这里在 `relabel_configs` 区域做了大量的配置，特别是第一个保留 `__meta_kubernetes_service_annotation_prometheus_io_scrape` 为 true 的才保留下来，这就是说要想自动发现集群中的 Endpoint，就需要在 Service 的 `annotation` 区域添加 `prometheus.io/scrape=true` 的声明，现在先将上面的配置更新，查看下效果：
 
-![prometheus k8s endpoints](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231214172033.png)
+![prometheus k8s endpoints](https://blog.tianch.com.cn/img/20231214172033.png)
 
 可以看到 `kubernetes-endpoints` 这一个任务下面只发现了两个服务，这是因为在 `relabel_configs` 中过滤了 `annotation` 有 `prometheus.io/scrape=true` 的 Service，而现在我们系统中只有这样一个 `kube-dns` 服务符合要求，该 Service 下面有两个实例，所以出现了两个实例：
 
@@ -1097,7 +1097,7 @@ kubectl apply -f prometheus-redis.yaml
 
 更新完成后，去 Prometheus 查看 Targets 路径，可以看到 redis 服务自动出现在了 `kubernetes-endpoints` 这个任务下面：
 
-![prometheus k8s endpoints redis](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231214172029.png)
+![prometheus k8s endpoints redis](https://blog.tianch.com.cn/img/20231214172029.png)
 
 这样以后我们有了新的服务，服务本身提供了 `/metrics` 接口，我们就完全不需要用静态的方式去配置了，到这里我们就可以将之前配置的 redis 的静态配置去掉了。
 
@@ -1153,7 +1153,7 @@ service/kube-state-metrics created
 
 部署完成后正常就可以被 Prometheus 采集到指标了：
 
-![img](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231214172025.png)
+![img](https://blog.tianch.com.cn/img/20231214172025.png)
 
 ## 水平缩放(分片)
 
@@ -1172,7 +1172,7 @@ service/kube-state-metrics created
 
 现在有一个问题是前面做 `endpoints` 类型的服务发现的时候做了一次 labelmap，将 namespace 和 pod 标签映射到了指标中，但是由于 `kube-state-metrics` 暴露的指标中本身就包含 namespace 和 pod 标签，这就会产生冲突，这种情况会将映射的标签变成 `exported_namespace` 和 `exported_pod`，这变会对指标的查询产生影响，如下所示：
 
-![kube_pod_info](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231214172021.png)
+![kube_pod_info](https://blog.tianch.com.cn/img/20231214172021.png)
 
 这个情况下可以使用 `metric_relabel_configs` 这 Prometheus 保存数据前的最后一步重新编辑标签，`metric_relabel_configs` 模块和 `relabel_configs` 模块很相似，`metric_relabel_configs` 一个很常用的用途就是可以将监控不需要的数据，直接丢掉，不在 Prometheus 中保存。比如这里可以重新配置 `endpoints` 类型的指标发现配置：
 

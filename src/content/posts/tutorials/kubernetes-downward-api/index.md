@@ -68,7 +68,7 @@ kubectl logs env-pod -n kube-system |grep POD
 kubectl logs env-pod -n kube-system
 ```
 
-![image-20231031110701074](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231031110701074.png)
+![image-20231031110701074](https://blog.tianch.com.cn/img/image-20231031110701074.png)
 
 上面打印 Pod 的环境变量可以看到有很多内置的变量，其中大部分是系统自动添加的，Kubernetes 会把当前命名空间下面的 Service 信息通过环境变量的形式注入到 Pod 中去
 
@@ -126,7 +126,7 @@ kubectl apply -f volume-pod.yaml
 kubectl exec -it volume-pod /bin/sh -n kube-system
 ```
 
-![image-20231031141338407](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231031141338407.png)
+![image-20231031141338407](https://blog.tianch.com.cn/img/image-20231031141338407.png)
 
 可以看到 Pod 的 Labels 和 Annotations 信息都被挂载到容器的 `/etc/podinfo` 目录下面的 lables 和 annotations 文件了。
 

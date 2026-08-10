@@ -53,13 +53,13 @@ spec:
 kubectl apply -f nginx-ds.yaml
 ```
 
-![image-20231102102212812](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231102102212812.png)
+![image-20231102102212812](https://blog.tianch.com.cn/img/image-20231102102212812.png)
 
 观察发现除了 master 节点之外的 3 个节点上都有一个相应的 Pod 运行，因为 master 节点上默认被打上了`污点`，所以默认情况下不能调度普通的 Pod 到节点上去。
 
 基本上可以用下图来描述 DaemonSet 的拓扑图：
 
-![DaemonSet](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/1662427459142.jpg)
+![DaemonSet](https://blog.tianch.com.cn/img/1662427459142.jpg)
 
 集群中的 Pod 和 Node 是**一一**对应的，而 DaemonSet 会管理全部机器上的 Pod 副本，负责对它们进行更新和删除。
 

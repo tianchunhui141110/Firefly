@@ -8,7 +8,7 @@ draft: false
 lang: zh_CN
 ---
 
-![containerd 架构](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20210810134700.png)
+![containerd 架构](https://blog.tianch.com.cn/img/20210810134700.png)
 
 ## 安装
 
@@ -18,7 +18,7 @@ lang: zh_CN
 
 缺少依赖或依赖版本过低后面启动容器会报错
 
-![image-20231015233431916](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231015233431916.png)
+![image-20231015233431916](https://blog.tianch.com.cn/img/image-20231015233431916.png)
 
 【报错原因】 缺少依赖包libseccomp（2.4以上版本）
 
@@ -221,7 +221,7 @@ ctr -v
 ctr version
 ```
 
-![image-20231015223026051](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231015223026051.png)
+![image-20231015223026051](https://blog.tianch.com.cn/img/image-20231015223026051.png)
 
 ### 配置文件解析
 
@@ -233,7 +233,7 @@ ctr version
 ctr plugin ls
 ```
 
-![image-20231015223702053](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231015223702053.png)
+![image-20231015223702053](https://blog.tianch.com.cn/img/image-20231015223702053.png)
 
 顶级配置块下面的子配置块表示该插件的各种配置，比如 cri 插件下面就分为 containerd、cni 和 registry 的配置，而 containerd 下面又可以配置各种 runtime，还可以配置默认的 runtime。比如现在我们要为镜像配置一个加速器，那么就需要在 cri 配置块下面的 `registry` 配置块下面进行配置 `registry.mirrors`：
 
@@ -268,7 +268,7 @@ state = "/run/containerd"
   ctr
   ```
 
-  ![image-20231015224611650](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231015224611650.png)
+  ![image-20231015224611650](https://blog.tianch.com.cn/img/image-20231015224611650.png)
 
 - ### 拉取镜像
 
@@ -278,7 +278,7 @@ state = "/run/containerd"
   ctr image pull docker.io/library/nginx:alpine
   ```
 
-  ![image-20231015224830196](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231015224830196.png)
+  ![image-20231015224830196](https://blog.tianch.com.cn/img/image-20231015224830196.png)
 
 - 镜像列表
 
@@ -296,7 +296,7 @@ state = "/run/containerd"
   ctr i ls
   ```
 
-  ![image-20231015225437782](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231015225437782.png)
+  ![image-20231015225437782](https://blog.tianch.com.cn/img/image-20231015225437782.png)
 
   使用 `-q（--quiet）` 选项可以只打印镜像名称
 
@@ -310,7 +310,7 @@ state = "/run/containerd"
   ctr i ls -q
   ```
 
-  ![image-20231015225642753](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231015225642753.png)
+  ![image-20231015225642753](https://blog.tianch.com.cn/img/image-20231015225642753.png)
 
 - ### 检测本地镜像
 
@@ -320,7 +320,7 @@ state = "/run/containerd"
   ctr i check
   ```
 
-  ![image-20231015225748148](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231015225748148.png)
+  ![image-20231015225748148](https://blog.tianch.com.cn/img/image-20231015225748148.png)
 
 - ### 重新打Tag
 
@@ -328,9 +328,9 @@ state = "/run/containerd"
   ctr image tag docker.io/library/nginx:alpine harbor.k8s.local/tianch/nginx:alpine
   ```
 
-  ![image-20231015225953125](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231015225953125.png)
+  ![image-20231015225953125](https://blog.tianch.com.cn/img/image-20231015225953125.png)
 
-  ![image-20231015230027828](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231015230027828.png)
+  ![image-20231015230027828](https://blog.tianch.com.cn/img/image-20231015230027828.png)
 
 - ### 删除镜像
 
@@ -340,7 +340,7 @@ state = "/run/containerd"
   ctr image rm harbor.k8s.local/tianch/nginx:alpine
   ```
 
-  ![image-20231015230146446](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231015230146446.png)
+  ![image-20231015230146446](https://blog.tianch.com.cn/img/image-20231015230146446.png)
 
   加上 `--sync` 选项可以同步删除镜像和所有相关的资源
 
@@ -357,7 +357,7 @@ state = "/run/containerd"
   yum install -y tree
   ```
 
-  ![image-20231015230356220](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231015230356220.png)
+  ![image-20231015230356220](https://blog.tianch.com.cn/img/image-20231015230356220.png)
 
 - ### 将镜像从主机目录卸载
 
@@ -365,7 +365,7 @@ state = "/run/containerd"
   ctr image unmount /mnt
   ```
 
-  ![image-20231015230633929](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231015230633929.png)
+  ![image-20231015230633929](https://blog.tianch.com.cn/img/image-20231015230633929.png)
 
 - ### 镜像导出
 
@@ -375,7 +375,7 @@ state = "/run/containerd"
 
   可能会出现类似于 `ctr: content digest sha256:xxxxxx not found` 的错误，解决办法需要 pull 所有平台镜像
 
-  ![image-20231015230924372](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231015230924372.png)
+  ![image-20231015230924372](https://blog.tianch.com.cn/img/image-20231015230924372.png)
 
   ```sh
   ctr i pull --all-platforms docker.io/library/nginx:alpine
@@ -383,7 +383,7 @@ state = "/run/containerd"
 
   再重新执行导出命令
 
-  ![image-20231015231153565](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231015231153565.png)
+  ![image-20231015231153565](https://blog.tianch.com.cn/img/image-20231015231153565.png)
 
 - ### 镜像导入
 
@@ -391,7 +391,7 @@ state = "/run/containerd"
   ctr i import nginx.tar.gz
   ```
 
-  ![image-20231015231648205](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231015231648205.png)
+  ![image-20231015231648205](https://blog.tianch.com.cn/img/image-20231015231648205.png)
 
 - ### 创建容器
 
@@ -409,7 +409,7 @@ state = "/run/containerd"
 
   同样可以加上 `-q` 选项精简列表内容
 
-  ![image-20231015232054569](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231015232054569.png)
+  ![image-20231015232054569](https://blog.tianch.com.cn/img/image-20231015232054569.png)
 
 - ### 查看容器详细配置
 
@@ -427,7 +427,7 @@ state = "/run/containerd"
   ctr c rm nginx
   ```
 
-  ![image-20231015232301141](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231015232301141.png)
+  ![image-20231015232301141](https://blog.tianch.com.cn/img/image-20231015232301141.png)
 
 - ### 启动容器
 
@@ -443,7 +443,7 @@ state = "/run/containerd"
   ctr task start -d nginx
   ```
 
-  ![image-20231015233813044](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231015233813044.png)
+  ![image-20231015233813044](https://blog.tianch.com.cn/img/image-20231015233813044.png)
 
 - ### 进入容器
 
@@ -451,7 +451,7 @@ state = "/run/containerd"
   ctr task exec -t --exec-id 0 nginx sh
   ```
 
-  ![image-20231015234004576](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231015234004576.png)
+  ![image-20231015234004576](https://blog.tianch.com.cn/img/image-20231015234004576.png)
 
   必须要指定 `--exec-id` 参数，这个 id 可以随便写，只要唯一就行
 
@@ -463,7 +463,7 @@ state = "/run/containerd"
   ctr task pause nginx
   ```
 
-  ![image-20231015234137929](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231015234137929.png)
+  ![image-20231015234137929](https://blog.tianch.com.cn/img/image-20231015234137929.png)
 
 - ### 恢复容器
 
@@ -471,7 +471,7 @@ state = "/run/containerd"
   ctr task resume nginx
   ```
 
-  ![image-20231015234228568](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231015234228568.png)
+  ![image-20231015234228568](https://blog.tianch.com.cn/img/image-20231015234228568.png)
 
   ctr 没有 stop 容器的功能，只能暂停或者kill掉容器
 
@@ -481,7 +481,7 @@ state = "/run/containerd"
   ctr task kill nginx
   ```
 
-  ![image-20231015234414953](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231015234414953.png)
+  ![image-20231015234414953](https://blog.tianch.com.cn/img/image-20231015234414953.png)
 
 - ### 限额与使用量
 
@@ -489,7 +489,7 @@ state = "/run/containerd"
   ctr task metrics nginx
   ```
 
-  ![image-20231015235005852](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231015235005852.png)
+  ![image-20231015235005852](https://blog.tianch.com.cn/img/image-20231015235005852.png)
 
   还可以使用 `task ps` 命令查看容器中所有进程在宿主机中的 PID
 
@@ -497,7 +497,7 @@ state = "/run/containerd"
   ctr t ps nginx
   ```
 
-  ![image-20231015235111771](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231015235111771.png)
+  ![image-20231015235111771](https://blog.tianch.com.cn/img/image-20231015235111771.png)
 
   其中第一个 PID 就是容器中的 1 号进程
 
@@ -511,7 +511,7 @@ Docker 其实也是默认调用的 containerd，事实上 Docker 使用的 conta
 ctr -n moby container ls
 ```
 
-![image-20231016000255901](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231016000255901.png)
+![image-20231016000255901](https://blog.tianch.com.cn/img/image-20231016000255901.png)
 
 同样 Kubernetes 下使用的 containerd 默认命名空间是 `k8s.io`，所以我们可以使用 `ctr -n k8s.io` 来查看 Kubernetes 下面创建的容器
 
@@ -521,7 +521,7 @@ ctr -n moby container ls
   ctr ns ls
   ```
 
-  ![image-20231015235354973](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231015235354973-1697385275542-3.png)
+  ![image-20231015235354973](https://blog.tianch.com.cn/img/image-20231015235354973-1697385275542-3.png)
 
 - ### 创建命名空间
 
@@ -531,7 +531,7 @@ ctr -n moby container ls
   ctr ns create tianch
   ```
 
-  ![image-20231015235539993](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231015235539993.png)
+  ![image-20231015235539993](https://blog.tianch.com.cn/img/image-20231015235539993.png)
 
 - ### 删除命名空间
 
@@ -541,7 +541,7 @@ ctr -n moby container ls
   ctr ns remove tianch
   ```
 
-  ![image-20231015235800678](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231015235800678.png)
+  ![image-20231015235800678](https://blog.tianch.com.cn/img/image-20231015235800678.png)
 
 - ### 指定命名空间
 
@@ -549,5 +549,5 @@ ctr -n moby container ls
   ctr -n default image ls -q
   ```
 
-  ![image-20231015235944352](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231015235944352.png)
+  ![image-20231015235944352](https://blog.tianch.com.cn/img/image-20231015235944352.png)
 

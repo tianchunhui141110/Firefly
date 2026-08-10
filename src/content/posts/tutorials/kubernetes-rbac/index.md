@@ -16,7 +16,7 @@ lang: zh_CN
 cat /etc/kubernetes/manifests/kube-apiserver.yaml|grep authorization-mode
 ```
 
-![image-20231106172346729](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231106172346729.png)
+![image-20231106172346729](https://blog.tianch.com.cn/img/image-20231106172346729.png)
 
 如果是二进制的方式搭建的集群，添加这个参数过后，记得要重启 kube-apiserver 服务。
 
@@ -32,7 +32,7 @@ cat /etc/kubernetes/manifests/kube-apiserver.yaml|grep authorization-mode
 
 在 Kubernetes 集群中，一个 API 对象在 Etcd 里的完整资源路径，是由：`Group（API 组）`、`Version（API 版本）`和 `Resource（API 资源类型）`三个部分组成的。通过这样的结构，整个 Kubernetes 里的所有 API 对象，实际上就可以用如下的树形结构表示出来：
 
-![apiserver tree](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231106172513.jpeg)
+![apiserver tree](https://blog.tianch.com.cn/img/20231106172513.jpeg)
 
 从上图中也可以看出 Kubernetes 的 API 对象的组织方式，在顶层，可以看到有一个核心组（由于历史原因，是 `/api/v1` 下的所有内容而不是在 `/apis/core/v1` 下面）和命名组（路径 `/apis/$NAME/$VERSION`）和系统范围内的实体，比如 `/metrics`。也可以用下面的命令来查看集群中的 API 组织形式：
 
@@ -126,7 +126,7 @@ kubectl get --raw /apis/batch/v1 | python -m json.tool
 kubectl proxy
 ```
 
-![image-20231106174039875](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231106174041.png)
+![image-20231106174039875](https://blog.tianch.com.cn/img/20231106174041.png)
 
 然后重新开启一个新的终端，可以通过如下方式来访问批处理的 API 服务：
 
@@ -259,7 +259,7 @@ Kubernetes 没有 User Account 的 API 对象，不过要创建一个用户帐�
 openssl genrsa -out tianch.key 2048
 ```
 
-![image-20231106180944671](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231106180946.png)
+![image-20231106180944671](https://blog.tianch.com.cn/img/20231106180946.png)
 
 使用刚刚创建的私钥创建一个证书签名请求文件：`tianch.csr`，要注意需要确保在 `-subj` 参数中指定用户名和组(`CN`表示用户名，`O`表示组)：
 
@@ -273,9 +273,9 @@ openssl req -new -key tianch.key -out tianch.csr -subj "/CN=tianch/O=tch"
 openssl x509 -req -in tianch.csr -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -out tianch.crt -days 500
 ```
 
-![image-20231106180958587](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231106181000.png)
+![image-20231106180958587](https://blog.tianch.com.cn/img/20231106181000.png)
 
-![image-20231106181054755](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231106181057.png)
+![image-20231106181054755](https://blog.tianch.com.cn/img/20231106181057.png)
 
 使用刚刚创建的证书文件和私钥文件在集群中创建新的凭证和上下文(Context):
 
@@ -291,7 +291,7 @@ kubectl config set-credentials tianch --client-certificate=tianch.crt --client-k
 kubectl config get-clusters
 ```
 
-![image-20231107102254048](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231107180324.png)
+![image-20231107102254048](https://blog.tianch.com.cn/img/20231107180324.png)
 
 ```sh
 kubectl config set-context tianch-context --cluster=cluster.local --namespace=kube-system --user=tianch
@@ -303,7 +303,7 @@ kubectl config set-context tianch-context --cluster=cluster.local --namespace=ku
 kubectl get pods --context=tianch-context
 ```
 
-![image-20231106181301623](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231106181303.png)
+![image-20231106181301623](https://blog.tianch.com.cn/img/20231106181303.png)
 
 #### 创建角色
 
@@ -363,7 +363,7 @@ kubectl create -f tianch-rolebinding.yaml
 kubectl get pods --context=tianch-context
 ```
 
-![image-20231107102711882](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231107102713.png)
+![image-20231107102711882](https://blog.tianch.com.cn/img/20231107102713.png)
 
 可以看到使用 kubectl 的使用并没有指定 namespace，这是因为上面创建这个 Context 的时候就绑定在了 kube-system 这个命名空间下面，如果在后面加上一个`-n default`
 
@@ -371,7 +371,7 @@ kubectl get pods --context=tianch-context
 kubectl --context=tianch.context get pods --namespace=default
 ```
 
-![image-20231107102931165](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231107102931165.png)
+![image-20231107102931165](https://blog.tianch.com.cn/img/image-20231107102931165.png)
 
 获取其他的资源对象:
 
@@ -379,7 +379,7 @@ kubectl --context=tianch.context get pods --namespace=default
 kubectl --context=tianch-context get svc
 ```
 
-![image-20231107103126664](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231107103128.png)
+![image-20231107103126664](https://blog.tianch.com.cn/img/20231107103128.png)
 
 可以看到没有权限获取，因为并没有为当前操作用户指定其它对象资源的访问权限，是符合预期的。这样就创建了一个只有单个命名空间访问权限的普通 User。
 
@@ -439,7 +439,7 @@ roleRef:
 kubectl apply -f tianch-sa.yaml
 ```
 
-![image-20231107110333855](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231107110336.png)
+![image-20231107110333855](https://blog.tianch.com.cn/img/20231107110336.png)
 
 ```sh
 kubectl get secret tianch-sa-token-qm9wg -o jsonpath={.data.token} -n kube-system |base64 -d
@@ -497,11 +497,11 @@ status:
   loadBalancer: {}
 ```
 
-![image-20231107111614495](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231107111616.png)
+![image-20231107111614495](https://blog.tianch.com.cn/img/20231107111616.png)
 
 在default命名空间下提示没有权限,切换到kube-system命名空间后就可以了
 
-![image-20231107111851720](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231107111854.png)
+![image-20231107111851720](https://blog.tianch.com.cn/img/20231107111854.png)
 
 可以看到可以访问 pod 列表了，但是也会有一些其他额外的提示：`events is forbidden: User “system:serviceaccount:kube-system:tianch-sa” cannot list events in the namespace “kube-system”`，这是因为当前登录用只被授权了访问 pod 和 deployment 的权限。
 
@@ -544,7 +544,7 @@ roleRef:
 kubectl apply -f tianch-clusterolebinding.yaml
 ```
 
-![image-20231107141012264](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231107141014.png)
+![image-20231107141012264](https://blog.tianch.com.cn/img/20231107141014.png)
 
 获取登录token
 
@@ -552,7 +552,7 @@ kubectl apply -f tianch-clusterolebinding.yaml
 kubectl get secret tianch-sa2-token-xr4ht -o jsonpath={.data.token} -n kube-system |base64 -d
 ```
 
-![image-20231107141201837](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231107141204.png)
+![image-20231107141201837](https://blog.tianch.com.cn/img/20231107141204.png)
 
 一开始没有权限的default命名空间也可以访问了。
 

@@ -14,7 +14,7 @@ Dubbo服务调用过程中抛出的自定义异常捕获不到，总是抛出了
 
 经过断点可知:
 
-![image-20211216143614030](https://oss.tianch.xyz/img/image-20211216143614030.png)
+![image-20211216143614030](https://blog.tianch.com.cn/img/image-20211216143614030.png)
 
 自定义异常确实被包装成了RuntimeException异常。
 
@@ -40,7 +40,6 @@ import org.apache.dubbo.rpc.RpcException;
 import org.apache.dubbo.rpc.service.GenericService;
 
 import java.lang.reflect.Method;
-
 
 /**
  * ExceptionInvokerFilter
@@ -225,15 +224,15 @@ public class DubboProviderFilter implements Filter, Filter.Listener {
 
 和dubbo一样,利用SPI机制加载我们的异常过滤器
 
-![image-20211216152335306](https://oss.tianch.xyz/img/image-20211216152335306.png)
+![image-20211216152335306](https://blog.tianch.com.cn/img/image-20211216152335306.png)
 
 仿照这个文件写一个把我们自己的异常过滤器声明出来
 
-![image-20211216152515977](https://oss.tianch.xyz/img/image-20211216152515977.png)
+![image-20211216152515977](https://blog.tianch.com.cn/img/image-20211216152515977.png)
 
 在配置里去掉dubbo的异常过滤器并加上我们自己的异常过滤器
 
-![image-20211216152639390](https://oss.tianch.xyz/img/image-20211216152639390.png)
+![image-20211216152639390](https://blog.tianch.com.cn/img/image-20211216152639390.png)
 
 注意`-`是排除
 

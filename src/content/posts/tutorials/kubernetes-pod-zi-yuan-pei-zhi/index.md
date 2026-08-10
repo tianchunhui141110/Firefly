@@ -66,11 +66,11 @@ resource-demo1   1/1     Running   0          2m34s   10.233.96.108   node2   <n
 
 然后我们到 node2 节点上去查看 Pod 里面启动的 `resource-demo1` 这个容器。
 
-![image-20231030173944436](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231030173944436-1698658791485-1.png)
+![image-20231030173944436](https://blog.tianch.com.cn/img/image-20231030173944436-1698658791485-1.png)
 
 实际上我们就可以看到这个容器的一些资源情况，Pod 上的资源配置最终也还是通过底层的容器运行时去控制 CGroup 来实现的，进入如下目录查看 CGroup 的配置，该目录就是 CGroup 父级目录，而 CGroup 是通过文件系统来进行资源限制的，所以上面限制容器的资源就可以在该目录下面反映出来：
 
-![image-20231030174518420](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231030174518420.png)
+![image-20231030174518420](https://blog.tianch.com.cn/img/image-20231030174518420.png)
 
 其中 `cpu.cfs_quota_us` 就是 CPU 的限制值，如果要查看具体的容器的资源，也可以进入到容器目录下面去查看即可。
 

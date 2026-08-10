@@ -53,7 +53,7 @@ kubectl apply -f nginx-deploy.yaml
 kubectl get pod -n default -l app=nginx
 ```
 
-![image-20231031170428299](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231031170428299.png)
+![image-20231031170428299](https://blog.tianch.com.cn/img/image-20231031170428299.png)
 
 到这里发现和之前的 RS 对象似乎没有什么两样，都是根据`spec.replicas`来维持的副本数量，随意查看一个 Pod 的描述信息：
 
@@ -167,7 +167,7 @@ Events:
 
 其中有这样的一个信息：`Controlled By: Deployment/nginx-deploy`，意思就是 Pod 依赖的控制器 RS 实际上被 Deployment 控制着，可以用下图来说明 Pod、ReplicaSet、Deployment 三者之间的关系：
 
-![Deployment](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/1662426664683.jpg)
+![Deployment](https://blog.tianch.com.cn/img/1662426664683.jpg)
 
 通过上图可以很清楚的看到，定义了 3 个副本的 Deployment 与 ReplicaSet 和 Pod 的关系，就是一层一层进行控制的。ReplicaSet 作用和之前一样还是来保证 Pod 的个数始终保存指定的数量，所以 Deployment 中的容器 `restartPolicy=Always` 是唯一的就是这个原因，因为容器必须始终保证自己处于 Running 状态，ReplicaSet 才可以去明确调整 Pod 的个数。而 Deployment 是通过管理 ReplicaSet 的数量和属性来实现`水平扩展/收缩`以及`滚动更新`两个功能的。
 
@@ -183,7 +183,7 @@ kubectl scale deployment nginx-deployment -n default --replicas=4
 kubectl get rs -n default
 ```
 
-![image-20231031171315023](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231031171315023.png)
+![image-20231031171315023](https://blog.tianch.com.cn/img/image-20231031171315023.png)
 
 ## 滚动更新
 
@@ -262,9 +262,9 @@ kubectl rollout resume deployment/nginx-deploy -n default
 kubectl describe deployment nginx-deployment -n default
 ```
 
-![image-20231031172846974](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231031172846974.png)
+![image-20231031172846974](https://blog.tianch.com.cn/img/image-20231031172846974.png)
 
-![Deployment RollingUpdate](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/1662426687515.jpg)
+![Deployment RollingUpdate](https://blog.tianch.com.cn/img/1662426687515.jpg)
 
 仔细观察 Events 事件区域的变化，上面用 `kubectl scale` 命令将 Pod 副本调整到了 4，现在更新的时候是不是声明又变成 3 了，所以 Deployment 控制器首先是将之前控制的 `nginx-deployment-67d4bdd6f5` 这个 RS 资源对象进行缩容操作，然后滚动更新开始了，可以发现 Deployment 为一个新的 `nginx-deployment-7d745cff58` RS 资源对象首先新建了一个新的 Pod，然后将之前的 RS 对象缩容到 2 了，再然后新的 RS 对象扩容到 2，这个过程就是滚动更新的过程，启动一个新的 Pod，杀掉一个旧的 Pod，然后再启动一个新的 Pod，这样滚动更新下去，直到全都变成新的 Pod，这个时候系统中应该存在 4 个 Pod，因为设置的策略`maxSurge=1`，所以在升级过程中是允许的，而且是两个新的 Pod，两个旧的 Pod。
 
@@ -272,7 +272,7 @@ kubectl describe deployment nginx-deployment -n default
 kubectl get rs -n default
 ```
 
-![image-20231031173335133](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231031173335133.png)
+![image-20231031173335133](https://blog.tianch.com.cn/img/image-20231031173335133.png)
 
 从上面可以看出滚动更新之前使用的 RS 资源对象的 Pod 副本数已经变成 0 了，而滚动更新后的 RS 资源对象变成了 3 个副本，可以导出之前的 RS 对象查看：
 
@@ -346,7 +346,7 @@ status:
 kubectl rollout history deployment nginx-deployment -n default
 ```
 
-![image-20231031174352623](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231031174352623.png)
+![image-20231031174352623](https://blog.tianch.com.cn/img/image-20231031174352623.png)
 
 其实 `rollout history` 中记录的 `revision` 是和 `ReplicaSets` 一一对应。如果手动删除某个 `ReplicaSet`，对应的`rollout history`就会被删除，也就无法回滚到这个`revison`了，同样还可以查看一个`revison`的详细信息：
 
@@ -354,7 +354,7 @@ kubectl rollout history deployment nginx-deployment -n default
 kubectl rollout history deployment nginx-deployment -n default --revision=1
 ```
 
-![image-20231031174553069](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231031174553069.png)
+![image-20231031174553069](https://blog.tianch.com.cn/img/image-20231031174553069.png)
 
 要直接回退到当前版本的前一个版本，可以直接使用如下命令进行操作：
 
@@ -374,7 +374,7 @@ kubectl rollout undo deployment nginx-deployment -n default --to-revision=1
 kubectl rollout status deployment/nginx-deployment -n default
 ```
 
-![image-20231031174755427](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231031174755427.png)
+![image-20231031174755427](https://blog.tianch.com.cn/img/image-20231031174755427.png)
 
 这个时候查看对应的 RS 资源对象可以看到 Pod 副本已经回到之前的 RS 里面去了:
 
@@ -382,7 +382,7 @@ kubectl rollout status deployment/nginx-deployment -n default
 kubectl get rs -n default -l app=nginx
 ```
 
-![image-20231031174829165](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231031174829165.png)
+![image-20231031174829165](https://blog.tianch.com.cn/img/image-20231031174829165.png)
 
 不过需要注意的是回滚的操作滚动的`revision`始终是递增的：
 
@@ -390,7 +390,7 @@ kubectl get rs -n default -l app=nginx
 kubectl rollout history deployment nginx-deployment -n default
 ```
 
-![image-20231031174939152](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231031174939152.png)
+![image-20231031174939152](https://blog.tianch.com.cn/img/image-20231031174939152.png)
 
 在很早之前的 Kubernetes 版本中，默认情况下会暴露下所有滚动升级的历史记录，也就是 ReplicaSet 对象，但一般情况下没必要保留所有的版本，毕竟会存在 etcd 中，可以通过配置 `spec.revisionHistoryLimit` 属性来设置保留的历史记录数量，不过新版本中该值默认为 10，如果希望多保存几个版本可以设置该字段。
 

@@ -12,9 +12,6 @@ lang: zh_CN
 跨域问题的解决
 
 现象
-
-![1626084844105](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/1626084844105_1626086192389.png)
-
 location / {
     #允许带上cookie请求
 	add_header 'Access-Control-Allow-Credentials' 'true';
@@ -44,9 +41,6 @@ server {
 }
 `
 未开启防盗链效果
-
-![1626085870567](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/1626085870567_1626086192634.png)
-
 server {
     listen       81;
     server_name  localhost;
@@ -66,5 +60,3 @@ server {
 }
 `
 开启防盗链效果
-
-![1626086057215](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/1626086057215_1626086192391.png)

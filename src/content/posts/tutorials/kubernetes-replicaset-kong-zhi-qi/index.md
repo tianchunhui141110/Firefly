@@ -80,7 +80,7 @@ spec:
 
 上面就是一个普通的 ReplicaSet 资源清单文件，ReplicaSet 控制器会通过定义的 Label Selector 标签去查找集群中的 Pod 对象：
 
-![replicaset top](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/1662426531708.jpg)
+![replicaset top](https://blog.tianch.com.cn/img/1662426531708.jpg)
 
 直接来创建上面的资源对象：
 
@@ -104,7 +104,7 @@ kubectl get pod -n default -l app=nginx
 kubectl delete pod nginx-rs-9ndjb -n default
 ```
 
-![image-20231031145719258](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231031145719258.png)
+![image-20231031145719258](https://blog.tianch.com.cn/img/image-20231031145719258.png)
 
 可以看到又重新出现了一个 Pod，这个就是上面说的 ReplicaSet 控制器做的工作，在 YAML 文件中声明了 3 个副本，然后删除了一个副本，变成了两个，这个时候 ReplicaSet 控制器监控到控制的 Pod 数量和期望的 3 不一致，就需要启动一个新的 Pod 来保持 3 个副本，这个过程就是上面说的`调谐`的过程。同样可以查看 RS 的描述信息来查看到相关的事件信息：
 
@@ -112,7 +112,7 @@ kubectl delete pod nginx-rs-9ndjb -n default
 kubectl describe rs nginx-rs -n default
 ```
 
-![image-20231031150245567](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231031150245567.png)
+![image-20231031150245567](https://blog.tianch.com.cn/img/image-20231031150245567.png)
 
 可以发现最开始通过 ReplicaSet 控制器创建了 3 个 Pod，后面删除了 Pod 后， ReplicaSet 控制器又创建了一个 Pod，和上面的描述是一致的。如果这个时候把 RS 资源对象的 Pod 副本更改为 2 `spec.replicas=2`，这个时候再更新下资源对象：
 
@@ -124,9 +124,9 @@ kubectl apply -f nginx-rs.yaml
 kubectl describe rs nginx-rs -n default
 ```
 
-![image-20231031150721916](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231031150721916.png)
+![image-20231031150721916](https://blog.tianch.com.cn/img/image-20231031150721916.png)
 
-![image-20231031150840293](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231031150840293.png)
+![image-20231031150840293](https://blog.tianch.com.cn/img/image-20231031150840293.png)
 
 可以看到 Replicaset 控制器在发现资源声明中副本数变更为 2 后，就主动去删除了一个 Pod，这样副本数就和期望的始终保持一致了
 
@@ -136,7 +136,7 @@ kubectl describe rs nginx-rs -n default
 kubectl describe pod nginx-rs-r7hjv -n default
 ```
 
-![image-20231031151049324](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231031151049324.png)
+![image-20231031151049324](https://blog.tianch.com.cn/img/image-20231031151049324.png)
 
 另外被 ReplicaSet 持有的 Pod 有一个 `metadata.ownerReferences` 指针指向当前的 ReplicaSet，表示当前 Pod 的所有者，这个引用主要会被集群中的**垃圾收集器**使用以清理失去所有者的 Pod 对象。这个 `ownerReferences` 和数据库中的`外键`非常类似。可以通过将 Pod 资源描述信息导出查看：
 
@@ -144,7 +144,7 @@ kubectl describe pod nginx-rs-r7hjv -n default
 kubectl get pod nginx-rs-r7hjv -n default -o yaml
 ```
 
-![image-20231031151315438](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231031151315438.png)
+![image-20231031151315438](https://blog.tianch.com.cn/img/image-20231031151315438.png)
 
 可以看到 Pod 中有一个 `metadata.ownerReferences` 的字段指向了 ReplicaSet 资源对象。如果要彻底删除 Pod，我们就只能删除 RS 对象：
 
@@ -152,7 +152,7 @@ kubectl get pod nginx-rs-r7hjv -n default -o yaml
 kubectl delete rs nginx-rs -n default
 ```
 
-![image-20231031151518023](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/image-20231031151518023.png)
+![image-20231031151518023](https://blog.tianch.com.cn/img/image-20231031151518023.png)
 
 ## Replication Controller（可忽略）
 

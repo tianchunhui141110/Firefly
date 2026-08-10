@@ -126,7 +126,6 @@ vim /etc/fail2ban/jail.local
 
 - 新增[nginx-cc]模块
 
-
     ```shell
     [nginx-cc]
     enabled = true

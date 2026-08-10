@@ -14,7 +14,7 @@ lang: zh_CN
 
 `Ingress` 资源对象是 Kubernetes 内置定义的一个对象，是从 Kuberenets 集群外部访问集群的一个入口，将外部的请求转发到集群内不同的 Service 上，其实就相当于 nginx、haproxy 等负载均衡代理服务器，可能会觉得直接使用 nginx 就实现了，但是只使用 nginx 这种方式有很大缺陷，每次有新服务加入的时候怎么改 Nginx 配置？不可能去手动更改或者滚动更新前端的 Nginx Pod 吧？那再加上一个服务发现的工具比如 consul 如何？貌似是可以，Ingress 实际上就是这样实现的，只是服务发现的功能自己实现了，不需要使用第三方的服务了，然后再加上一个域名规则定义，路由信息的刷新依靠 Ingress Controller 来提供。
 
-![ingress flow](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231114180512.png)
+![ingress flow](https://blog.tianch.com.cn/img/20231114180512.png)
 
 Ingress Controller 可以理解为一个监听器，通过不断地监听 kube-apiserver，实时的感知后端 Service、Pod 的变化，当得到这些信息变化后，Ingress Controller 再结合 Ingress 的配置，更新反向代理负载均衡器，达到服务发现的作用。其实这点和服务发现工具 consul、 consul-template 非常类似。
 
@@ -56,9 +56,9 @@ kubectl explain Ingress
 kubectl explain Ingress.spec
 ```
 
-![image-20231114181105758](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231114181107.png)
+![image-20231114181105758](https://blog.tianch.com.cn/img/20231114181107.png)
 
-![image-20231114181212955](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231114181214.png)
+![image-20231114181212955](https://blog.tianch.com.cn/img/20231114181214.png)
 
 从上面描述可以看出 Ingress 资源对象中有几个重要的属性：`defaultBackend`、`ingressClassName`、`rules`、`tls`。
 
@@ -106,7 +106,7 @@ spec:
 
 `Exact` 比较简单，就是需要精确匹配 URL 路径，对于 `Prefix` 前缀匹配，需要注意如果路径的最后一个元素是请求路径中最后一个元素的子字符串，则不会匹配，例如 `/foo/bar` 可以匹配 `/foo/bar/baz`, 但不匹配 `/foo/barbaz`，可以查看下表了解更多的匹配场景（来自官网）：
 
-![20231114181732](https://tianch-blog.oss-cn-beijing.aliyuncs.com/img/20231114181732.png)
+![20231114181732](https://blog.tianch.com.cn/img/20231114181732.png)
 
 > 在某些情况下，Ingress 中的多条路径会匹配同一个请求，这种情况下最长的匹配路径优先，如果仍然有两条同等的匹配路径，则精确路径类型优先于前缀路径类型。
 

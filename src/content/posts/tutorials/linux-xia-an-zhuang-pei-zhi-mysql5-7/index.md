@@ -183,9 +183,6 @@ lang: zh_CN
   #刷新权限
   flush privileges;
 
-
-
-
   GRANT ALL PRIVILEGES ON *.* TO 'bewinner'@'10.25.60.120' IDENTIFIED BY 'BeWinner2020#@!' WITH GRANT OPTION;
 
   GRANT ALL PRIVILEGES ON *.* TO 'bewinner_remote'@'114.251.40.124' IDENTIFIED BY 'BeWinner!!.' WITH GRANT OPTION;

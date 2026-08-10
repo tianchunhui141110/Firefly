@@ -207,7 +207,6 @@ http://www.tianch.xyz/archives/%E4%BD%BF%E7%94%A8docker-compose%E5%AE%89%E8%A3%8
       <springProperty scope="context" name="redis-port" source="spring.redis.port"/>
       <springProperty scope="context" name="redis-password" source="spring.redis.password"/>
 
-
       <!--程序关闭时关闭redis批处理的钩子-->
       <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook"/>
       <appender name="Logstash" class="net.logstash.logback.appender.LoggingEventAsyncDisruptorAppender">
@@ -253,12 +252,10 @@ http://www.tianch.xyz/archives/%E4%BD%BF%E7%94%A8docker-compose%E5%AE%89%E8%A3%8
           </appender>
       </appender>
 
-
       <appender name="Async" class="ch.qos.logback.classic.AsyncAppender">
           <neverBlock>true</neverBlock>
           <appender-ref ref="Logstash"/>
       </appender>
-
 
       <logger name="org.springframework" level="ERROR"/>
       <logger name="com.alibaba.cloud.dubbo.metadata.repository.DubboServiceMetadataRepository" level="ERROR"/>

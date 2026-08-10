@@ -10,13 +10,13 @@ lang: zh_CN
 
 只有截图和关键配置
 
-![image-20211216153557366](https://oss.tianch.xyz/img/image-20211216153557366.png)
+![image-20211216153557366](https://blog.tianch.com.cn/img/image-20211216153557366.png)
 
 ```java
 /**
 ```
 
-![image-20211216153609274](https://oss.tianch.xyz/img/image-20211216153609274.png)
+![image-20211216153609274](https://blog.tianch.com.cn/img/image-20211216153609274.png)
 
 ```java
 *
@@ -28,7 +28,7 @@ lang: zh_CN
 */
 ```
 
-![image-20211216153726066](https://oss.tianch.xyz/img/image-20211216153726066.png)
+![image-20211216153726066](https://blog.tianch.com.cn/img/image-20211216153726066.png)
 
 ```groovy
 groovyScript("if(\"${_1}\".length() == 2) {return '';} else {def result='*'; def params=\"${_1}\".replaceAll('[\\\\[|\\\\]|\\\\s]', '').split(',').toList(); for(i = 0; i < params.size(); i++) { if(i==0) result='@param ' + params[i] + ' ' + params[i] + '\\n'; else result+=' * @param ' + params[i] + ' ' + params[i] + ((i < params.size() - 1) ? '\\n' : '')}; return result}", methodParameters())
