@@ -23,30 +23,30 @@ export const displaySettingsConfig: DisplaySettingsConfig = {
 	// ── 壁纸 (Wallpaper) ──────────────────────────────────
 
 	// 壁纸模式切换开关
-	wallpaperModeSwitchable: true,
+	wallpaperModeSwitchable: false,
 
 	// 水波纹动画开关
-	wavesSwitchable: true,
+	wavesSwitchable: false,
 
 	// 渐变过渡效果开关
-	gradientSwitchable: true,
+	gradientSwitchable: false,
 
 	// 横幅标题显示开关
-	bannerTitleSwitchable: true,
+	bannerTitleSwitchable: false,
 
 	// 壁纸轮播开关
-	bannerCarouselSwitchable: true,
+	bannerCarouselSwitchable: false,
 
 	// 全屏透明模式参数调节开关
 	// 设为 false 关闭所有滑块，或用对象形式单独控制每个滑块
 	overlaySwitchable: {
-		opacity: true,
-		blur: true,
-		cardOpacity: true,
+		opacity: false,
+		blur: false,
+		cardOpacity: false,
 	},
 
 	// ── 特效 (Effects) ────────────────────────────────────
 
 	// 樱花特效开关
-	sakuraSwitchable: true,
+	sakuraSwitchable: false,
 };
