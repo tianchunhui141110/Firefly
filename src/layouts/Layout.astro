@@ -261,6 +261,7 @@ const siteLang = lang.replace("_", "-");
         defaultWallpaperMode: backgroundWallpaper.mode,
         isWallpaperSwitchable:
           displaySettingsConfig.wallpaperModeSwitchable,
+        isThemeColorSwitchable: displaySettingsConfig.themeColorSwitchable,
         darkTheme: expressiveCodeConfig.darkTheme,
         lightTheme: expressiveCodeConfig.lightTheme,
         baseUrl: import.meta.env.BASE_URL,
@@ -306,8 +307,10 @@ const siteLang = lang.replace("_", "-");
         isDark ? darkTheme : lightTheme
       );
 
-      // Load the hue from local storage
-      const hue = localStorage.getItem("hue") || configHue;
+      // Load the hue from local storage (仅当允许自定义主题色时读取，否则锁定为配置值)
+      const hue = isThemeColorSwitchable
+        ? localStorage.getItem("hue") || configHue
+        : configHue;
       document.documentElement.style.setProperty("--hue", hue);
 
       // 设置卡片透明度（全屏透明模式下使用），优先使用用户自定义值
