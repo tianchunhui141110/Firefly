@@ -1,5 +1,5 @@
 ---
-title: "直接使用helm方式安装operator"
+title: "使用docker-k8s安装nacos2.x集群"
 published: 2022-05-13
 description: "去github上下载对应版本的包 执行里面的sql文件导入到数据库即可"
 tags: ["k8s","docker","nacos","集群"]
