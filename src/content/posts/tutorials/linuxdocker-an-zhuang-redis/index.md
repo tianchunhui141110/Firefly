@@ -4,7 +4,7 @@ published: 2020-12-16
 description: ""
 tags: ["docker","Redis","Linux"]
 category: "Docker"
-draft: false
+draft: true
 lang: zh_CN
 ---
 

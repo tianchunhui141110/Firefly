@@ -4,7 +4,7 @@ published: 2022-01-27
 description: "我安装时的最新版本是封装的4.2.0版本 注意你下载时的版本"
 tags: ["k8s","skywalking","Elasticsearch"]
 category: "中间件"
-draft: false
+draft: true
 lang: zh_CN
 ---
 

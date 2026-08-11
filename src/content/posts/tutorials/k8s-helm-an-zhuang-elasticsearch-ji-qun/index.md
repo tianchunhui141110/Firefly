@@ -4,7 +4,7 @@ published: 2022-01-27
 description: "基本不用改什么东西"
 tags: ["k8s","Elasticsearch","集群"]
 category: "中间件"
-draft: false
+draft: true
 lang: zh_CN
 ---
 

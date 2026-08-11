@@ -4,7 +4,7 @@ published: 2020-05-27
 description: "先回顾一下Linux编译安装Redis 单机版"
 tags: ["Redis","Linux","集群"]
 category: "Redis"
-draft: false
+draft: true
 lang: zh_CN
 ---
 

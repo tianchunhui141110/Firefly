@@ -4,7 +4,7 @@ published: 2020-05-31
 description: "[preflight] Running pre-flight checks"
 tags: ["k8s","集群"]
 category: "Kubernetes"
-draft: false
+draft: true
 lang: zh_CN
 ---
 

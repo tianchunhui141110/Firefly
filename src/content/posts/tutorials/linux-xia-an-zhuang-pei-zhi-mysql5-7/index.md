@@ -4,7 +4,7 @@ published: 2020-05-27
 description: "注意：mysql5.7默认安装了密码安全检查插件（validatepassword），默认密码检查策略要求密码必须包含：大小写字母、数字和特殊符号，并且长度不能少于8位。否则会提示ERROR 1819 (HY000): Your passw"
 tags: ["MySQL","Linux"]
 category: "MySQL"
-draft: false
+draft: true
 lang: zh_CN
 ---
 
