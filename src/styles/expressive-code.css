@@ -3,6 +3,15 @@
     @apply shadow-none!;
   }
 
+  /* 关闭 JetBrains Mono 的代码连字（如 != 渲染成 ≠），保证代码所见即所得 */
+  pre,
+  code,
+  .ec-code,
+  .ec-code__inner {
+    font-variant-ligatures: none;
+    font-feature-settings: "liga" 0, "calt" 0;
+  }
+
   .title {
     font-family:
       var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, Monaco,

@@ -63,6 +63,11 @@
       Courier New,
       monospace;
 
+    /* JetBrains Mono 默认启用代码连字（如 != 渲染成 ≠），这里关闭，
+     * 让代码保持所见即所得，避免读者误以为源码写的是全角符号 */
+    font-variant-ligatures: none;
+    font-feature-settings: "liga" 0, "calt" 0;
+
     &:before {
       content: none;
     }
